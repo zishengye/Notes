@@ -1,0 +1,599 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{bm}
+\ifCLASSOPTIONcompsoc
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\else
+\usepackage[caption=false,font=footnotesize]{subfig}
+\fi
+
+\allowdisplaybreaks
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newtheorem{lemma}{Lemma}[section]
+
+\newtheorem{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem{exmp}{Example}
+
+\begin{document}
+    \bibliographystyle{IEEEtran}
+
+    \title{Notes on Lagrangian Mechanics}
+
+    \author{\IEEEauthorblockN{Zisheng Ye}}
+
+    \maketitle
+
+    \thispagestyle{plain}
+    \pagestyle{plain}
+
+    An $n$-dimensional coordinate space is used here. A vector in such a space is a set of numbers $\mathbf{x}=(x_1,\dots,x_n)$. Similarly, $\partial f/\partial \mathbf{x}$ means $(\partial f/\partial x_1, \dots, \partial f/\partial x_n)$, and $(\mathbf{a}, \mathbf{b}) = a_1b_1 + \dots + a_nb_n$. $[\mathbf{a}, \mathbf{b}]$ is the outer product of $\mathbf{a}$ and $\mathbf{b}$.
+
+    \section{Calculus of variantions}
+
+    A functional refers to a linear mapping from a vector space $V$ into its field of scalars.
+
+    \subsection{Variantions}
+    \begin{definition}
+        A functional $\Phi$ is called \emph{differentiable} if $\Phi(\gamma+h) - \Phi(\gamma) = F + R$, where $F$ depends linearly on $h$ (for a fixed $\gamma$, $F(h_1+h_2) = F(h_1) + F(h_2)$ and $F(ch) = cF(h)$), and $R(h, \gamma) = O(h^2)$ in the sense that, for $\| h \| < \varepsilon$ and $| \mathrm{d} h / \mathrm{d} t | < \varepsilon$, we have $| R | < C\varepsilon^2$. The linear part of the increment,$F(h)$, is called the \emph{differential}.
+    \end{definition}
+
+    It can be shown that if $\Phi$ is differentiable, its differential is \emph{uniquely} define. The differential of a functional is also called its \emph{variation}.
+
+    \begin{theorem}
+        The functional $\Phi(\gamma) = \int_{t_0}^{t_1} L(x, \dot{x}, t) \mathrm{d} t$ is differentiable, and its derivative is given by the formula
+        \begin{equation*}
+            F(h) = \int_{t_0}^{t_1} \left[ \dfrac{\partial L}{\partial x} - \dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial L}{\partial \dot{x}} \right] h \mathrm{d} t + \left. \left( \dfrac{\partial L}{\partial \dot{x}} h \right) \right|_{t_0}^{t_1}
+        \end{equation*}
+    \end{theorem}
+
+    \begin{proof}
+        \begin{align*}
+            \Phi(\gamma + h) - \Phi(\gamma) =& \int_{t_0}^{t_1} \left[ L(x+h, \dot{x} + \dot{h}, t) - L(x, \dot{x}, t) \right] \mathrm{d} t \\
+            =& \int_{t_0}^{t_1} \left[ \dfrac{\partial L}{\partial x} h + \dfrac{\partial L}{\partial \dot{x}} \dot{h} \right] \mathrm{d} t + O(h^2) \\
+            =& F(h) + R
+        \end{align*}
+        where
+        \begin{align*}
+            F(h) =& \int_{t_0}^{t_1} \left[ \dfrac{\partial L}{\partial x} h + \dfrac{\partial L}{\partial \dot{x}} \dot{h} \right] \mathrm{d} t \\
+            =& \int_{t_0}^{t_1} \left[ \dfrac{\partial L}{\partial x} - \dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial L}{\partial \dot{x}} \right] h \mathrm{d} t + \left. \left( \dfrac{\partial L}{\partial \dot{x}} h \right) \right|_{t_0}^{t_1} + O(h^2)
+        \end{align*}
+        and
+        \begin{align*}
+            R = O(h^2)
+        \end{align*}
+    \end{proof}
+
+    \subsection{Extremals}
+    \begin{definition}
+        An extremal of a differentiable functional $\Phi(\gamma)$ is a curve $\gamma$ such that $F(h) = 0$ for all $h$.
+    \end{definition}
+
+    \begin{theorem}
+        The curve $\gamma$: $x = x(t)$ is an extremal of the functional $\Phi(\gamma) = \int_{t_0}^{t_1} L(x, \dot{x}, t) \mathrm{d} t$ on the space of curves passing through the points $x(t_0) = x_0$ and $x(t_1) = x_1$, if and only if
+        \begin{equation*}
+            \dfrac{\mathrm{d}}{\mathrm{d} t} \left( \dfrac{\partial L}{\partial \dot{x}} \right) - \dfrac{\partial L}{\partial x} = 0
+        \end{equation*}
+    \end{theorem}
+
+    \subsection{The Euler-Lagrange equation}
+    \begin{definition}
+        The equation
+        \begin{equation*}
+            \dfrac{\mathrm{d}}{\mathrm{d} t} \left( \dfrac{\partial L}{\partial \dot{x}} \right) - \dfrac{\partial L}{\partial x} = 0
+        \end{equation*}
+        is called the \emph{Euler-Lagrange equation} for the functional
+        \begin{equation*}
+            \Phi = \int_{t_0}^{t_1} L(x, \dot{x}, t) \mathrm{d}t
+        \end{equation*}
+    \end{definition}
+
+    \begin{theorem}[Hamilton's form of the principle of least motion]
+        The curve $\gamma$ is an extremal of the functional $\Phi(\gamma) = \int_{t_0}^{t_1} L(\mathbf{x}, \dot{\mathbf{x}}, t) \mathrm{d} t$ on the space of curves joining $(t_0, \mathbf{x}_0)$ and $(t_1, \mathbf{x}_1)$, if and only if the Euler-Lagrange equation is satisfied along $\gamma$.
+    \end{theorem}
+
+    \section{Lagrange's equations}
+    \begin{theorem}
+        Motions of the mechanical system from Newton's equations of dynamics coincide with extremal of the functional
+        \begin{equation*}
+            \Phi(\gamma) = \int_{t_0}^{t_1} L \mathrm{d} t,\ L = T - U
+        \end{equation*}
+        is the difference between the kinetic and potential energy.
+    \end{theorem}
+
+    \begin{proof}
+        $U = U(\mathbf{r})$ and $T = \sum m_i \dot{r}_i^2/2$, we have $\partial L / \partial \dot{r}_i = \partial T / \partial \dot{r}_i = m_i \dot{r}_i$ and $\partial L = \partial r_i = -\partial U / \partial r_i$. This leads to
+        \begin{equation*}
+            \dfrac{\mathrm{d}}{\mathrm{d} t} (m_i r_i) + \dfrac{\partial U}{\partial r_i} = 0
+        \end{equation*}
+    \end{proof}
+
+    \begin{corollary}
+        Let $(q_1, \dots, q_{3n})$ be any coordinates in the configuration space of a system of n mass points. Then the evolution of $\mathbf{q}$  with time is subject to the Euler-Lagrange equtations
+        \begin{equation*}
+            \dfrac{\mathrm{d}}{\mathrm{d} t} \left( \dfrac{\partial L}{\partial \dot{\mathbf{q}}} \right) - \dfrac{\partial L}{\partial \mathbf{q}} = 0, \ \text{where } L = T - U
+        \end{equation*}
+    \end{corollary}
+
+    \begin{definition}
+        $L(\mathbf{q}, \dot{\mathbf{q}}, t) = T - U$ is the Lagrange function or Lagrangian. $q_i$ are the generalized coordinates. $\dot{q}_i$ are generalized velocites. $\dfrac{\partial L}{\partial \dot{q}_i} = p_i$ are generaelized momenta. $\dfrac{\partial L}{\partial q_i}$ are generalized forces. $\int_{t_0}^{t_1} L(\mathbf{q}, \dot{\mathbf{q}}, t) \mathrm{d} t$ is the action. $\dfrac{\mathrm{d}}{\mathrm{d} t} (m_i r_i) + \dfrac{\partial U}{\partial r_i} = 0$ are Lagrange's equations.
+    \end{definition}
+
+    \subsection{Examples}
+    \begin{exmp}
+        For a free mass point in $E^3$,
+        \begin{equation*}
+            L = T = \dfrac{m\dot{\mathbf{r}}^2}{2}
+        \end{equation*}
+        in cartesian coordinates $q_i = r_i$ we find
+        \begin{equation*}
+            L = \dfrac{m}2 (\dot{q}_1^2 + \dot{q}_2^2 + \dot{q}_3^2)
+        \end{equation*}
+
+        Here the generalized velocities are the components of the velocity vector, the generaelized momenta $p_i = m\dot{q}_i$ are the components of the momentum vecotr, and Lagrange's equations coincide with Newton's equations $\dfrac{\mathrm{d} \mathbf{p}}{\mathrm{d} t} = 0$. The extremals are straight lines. It follows from Hamilton's principle that straight lines are not only shortest but also extremals of the action $\int_{t_0}^{t_1} (\dot{q}_1^2 + \dot{q}_2^2 + \dot{q}_3^2) \mathrm{d} t$.
+    \end{exmp}
+    
+    \begin{exmp}
+        Consider planar motion in a central field in polar coordinates $q_1 = r, q_2 = \varphi$. From the relation $\dot{\mathbf{r}} = \dot{r} \mathbf{e}_r + \dot{\varphi} \mathbf{e}_{\varphi}$, the kinetic energy is $T = \frac12m\dot{\mathbf{r}}^2 = \frac12m(\dot{r}^2 + r^2 \dot{\varphi}^2)$ and the lagrangian $L(\mathbf{q}, \dot{\mathbf{q}}) = T(\mathbf{q}, \dot{\mathbf{q}}) - U(\mathbf{q})$, where $U = U(q_1)$.
+
+        The generalized momenta will be $\mathbf{p} = \partial L / \partial \dot{\mathbf{q}}$
+        \begin{equation*}
+            p_1 = m\dot{r}, \quad p_2 = mr^2 \dot{\varphi}
+        \end{equation*}
+        The first Lagrange equation $\dot{p}_1 = \partial L / \partial q_1$ takes the form
+        \begin{equation*}
+            m\ddot{r} = mr\dot{\varphi}^2  - \dfrac{\partial U}{\partial r}
+        \end{equation*}
+
+        Since $q_2 = \varphi$ does not enter into $L$, we have $\partial L / \partial q_1 = 0$. THerefore, the second Lagrange equation will be $\dot{p}_2 = 0, p_2 = \text{const}$. This is the law of conservation of angular momentum.
+    \end{exmp}
+
+    \begin{definition}
+        A coordinate $q_i$ is called \emph{cyclic} if it does not enter into the lagrangian: $\partial L / \partial q_i = 0$.
+    \end{definition}
+
+    \begin{theorem}
+        The generalized momentum correspoinging to a cyclic coordinate is conserved: $p_i = \text{const}$.
+    \end{theorem}
+
+    \section{Legendre transformations}
+    The Legendre transofrmation transforms functions on a vector space to functions on the dual space. Legendre transofrmations are related to projective duality and tangential coordinates in algebraic geometry and the construction of dual Banach spaces in analysis.
+
+    \subsection{Definition}
+    Let $y = f(x)$ be a convex function, $f^{\prime\prime}(x) > 0$. For each $p$ the function $px-f(x) = F(p, x)$ has a maximum with respect ot $x$ at the point $x(p)$. Then define $g(p) = F(p, x(p))$. The point $x(p)$ is defined by the extremal condition $\partial F / \partial x = 0$. Since $f$ is convex, the point $x(p)$ is unique.
+
+    \subsection{Involutivity}
+    \begin{theorem}
+        The Legendre transformation is involutive, its square is the identity: if under the Legendre transformation $f$ is taken to $g$, then the Legendre transform of $g$ will again be $f$.
+    \end{theorem}
+
+    \section{Hamilton's equations}
+    By means f a Legendre transformation, a lagrangian system of second-order differential equations is converted into a remarkably sysmmetrical system of 2n first-order equations called a hamiltonian system of equations (or canonical equations).
+
+    \subsection{Equivalence of Lagrange's and Hamilton's equations}
+    Consider the system of Lagrange's equations $\dot{\mathbf{p}} = \partial L / \partial \mathbf{q}$, where $\mathbf{p} = \partial L / \partial \dot{\mathbf{q}}$, with a given lagrangian function $L:\mathbb{R}^n \times \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$, which we will assume to be convex with respect to the second argument $\dot{\mathbf{q}}$.
+
+    \begin{theorem}
+        The system of Lagrange's equations is equivalent to the system of $2n$ first-order equations (Hamilton's equations)
+        \begin{align*}
+            \dot{\mathbf{p}} =& -\dfrac{\partial H}{\partial \mathbf{q}} \\
+            \dot{\mathbf{q}} =& \dfrac{\partial H}{\partial \mathbf{p}}
+        \end{align*}
+        where $H(\mathbf{p}, \mathbf{q}, t) = \mathbf{p} \dot{\mathbf{q}} - L(\mathbf{q}, \dot{\mathbf{q}}, t)$ is the Legendre transform of the lagrangian function viewed as a function of $\dot{\mathbf{q}}$.
+    \end{theorem}
+
+    \begin{proof}
+        The Legendre transform of $L(\mathbf{q}, \dot{\mathbf{q}}, t)$ with respect to $\dot{\mathbf{q}}$ is the function $H(\mathbf{q}) = \mathbf{p} \dot{\mathbf{q}} - L(\dot{\mathbf{q}})$, in which $\dot{\mathbf{q}}$ is expressed in terms of $\mathbf{p}$ by the formula $\mathbf{p} = \partial L / \partial \dot{\mathbf{q}}$, and which depends on the parameters $\mathbf{q}$ and $t$. This function is $H$ is called the \emph{hamiltonian}.
+
+        The total differential of the hamiltonian
+        \begin{equation*}
+            \mathrm{d} H = \dfrac{\partial H}{\partial \mathbf{p}} \mathrm{d} \mathbf{p} + \dfrac{\partial H}{\partial \mathbf{q}} \mathrm{d} \mathbf{q} + \dfrac{\partial H}{\partial t} \mathrm{d} t
+        \end{equation*}
+        is equal to the totla differential of $\mathbf{p} \dot{\mathbf{q}} - L$ for  $\mathbf{p} = \partial L / \partial \dot{\mathbf{q}}$:
+        \begin{equation*}
+            \mathrm{d} H = \dot{\mathbf{q}} \mathrm{d} \mathbf{p} - \dfrac{\partial L}{\partial \mathbf{q}} \mathrm{d} \mathbf{q} - \dfrac{\partial L}{\partial t} \mathrm{d} t
+        \end{equation*}
+
+        Both expressions for $\mathrm{d} H$ must be the same. Therefore,
+        \begin{equation*}
+            \dot{\mathbf{q}} = \dfrac{\partial H}{\partial \mathbf{p}} \quad \dfrac{\partial H}{\partial \mathbf{q}} = -\dfrac{\partial L}{\partial \mathbf{q}} \quad \dfrac{\partial H}{\partial t} = -\dfrac{\partial L}{\partial t}
+        \end{equation*}
+
+        Applying Lagrange's equations $\dot{\mathbf{p}} = \partial L / \partial \mathbf{q}$, we obtain Hamilton's equations.
+    \end{proof}
+
+    \subsection{Hamilton's function and energy}
+    \begin{lemma}
+        The values of a quadratic form $f(\mathbf{x})$ and of its Legendre transform $g(\mathbf{p})$ coincide at corresponding points: $f(\mathbf{x}) = g(\mathbf{p})$.
+    \end{lemma}
+
+    \begin{proof}
+        By Euler's theorem on homogeneous function
+        \begin{equation*}
+            \dfrac{\partial f}{\partial \mathbf{x}} \mathbf{x} = 2f(\mathbf{x})
+        \end{equation*}
+        Therefore
+        \begin{equation*}
+            g(\mathbf{p}(\mathbf{x})) = \mathbf{px} - f(\mathbf{x}) = \dfrac{\partial f}{\partial \mathbf{x}} \mathbf{x} - f(\mathbf{x}) = f(\mathbf{x})
+        \end{equation*}
+    \end{proof}
+
+    \begin{theorem}
+        The hamiltonian $H$ is the total energy $H = T + U$.
+    \end{theorem}
+
+    \begin{proof}
+        Reasoning as in the lemma,
+        \begin{equation*}
+            H = \mathbf{p} \dot{\mathbf{q}} - L = 2T - (T - U) = T + U
+        \end{equation*}
+    \end{proof}
+
+    \begin{corollary}
+        $\mathrm{d} H / \mathrm{d} t = \partial H / \partial t$. In particular, for a system whose hamiltonian function does not depend explicitly on time ($\partial H / \partial t = 0$), the law of conservation of the hamiltonian function holds: $H(\mathbf{p}(t), \mathbf{q}(t)) = \text{const}$.
+    \end{corollary}
+
+    \begin{proof}
+        By Hamilton's equations
+        \begin{equation*}
+            \dfrac{\mathrm{d} H}{\mathrm{d} t} = \dfrac{\partial H}{\partial \mathbf{p}} \left( -\dfrac{\partial H}{\partial \mathbf{q}} \right) + \dfrac{\partial H}{\partial \mathbf{q}} \dfrac{\partial H}{\partial \mathbf{p}} + \dfrac{\partial H}{\partial t} = \dfrac{\partial H}{\partial t}
+        \end{equation*}
+    \end{proof}
+
+    \subsection{Cyclic coordiantes}
+    \begin{definition}
+        If a coordinate $q_i$ does not enter into the hamiltonian function $H$, $\partial H / \partial q_i = 0$, then it is called cyclic (the term comes from the particular case of the angular coordinate in a central field).
+    \end{definition}
+
+    The coordinate $q_1$ is cyclic if and only if it does not enter into the lagrangian function ($\partial L / \partial q_1 = 0$). It follows from the hamiltonian form of the equations of motion that:
+
+    \begin{corollary}
+        Let $q_1$ be a cyclic coordinate. Then $p_1$ is a first integral. In this case the variantion of the remaining coordinates with time is the same as in a system with the $n-1$ independent coordinates $q_2, \dots, q_n$ and with hamiltonian function
+        \begin{equation*}
+            H(p_2, \dots, p_n; q_2, \dots, q_n; t, c)
+        \end{equation*}
+        depenging on the parameter $c = p_1$.
+    \end{corollary}
+
+    \begin{proof}
+        Set $\mathbf{p}^\prime = (p_2, \dots, p_n)$ and $\mathbf{q}^\prime = (q_2, \dots, q_n)$. Then Hamilton's equations take the form
+        \begin{align*}
+            \dfrac{\mathrm{d}}{\mathrm{d} t} \mathbf{q}^\prime = \dfrac{\partial H}{\partial \mathbf{p}^\prime} \quad & \dfrac{\mathrm{d}}{\mathrm{d} t} q_1 = \dfrac{\partial H}{\partial p_1} \\
+            \dfrac{\mathrm{d}}{\mathrm{d} t} \mathbf{p}^\prime = -\dfrac{\partial H}{\partial \mathbf{q}^\prime} \quad & \dfrac{\mathrm{d}}{\mathrm{d} t} p_1 = 0
+        \end{align*}
+        The last equation show that $p_1 = \text{const}$. Therefore, in the system of equations for $\mathbf{p}^\prime$ and $\mathbf{q}^\prime$, the value of $p_1$ enters only as a parameter in the hamiltonian function. After this system of $2n-2$ equations is solved, the equation for $q_1$ takes the form
+        \begin{equation*}
+            \dfrac{\mathrm{d}}{\mathrm{d} t} q_1 = f(t),\ \text{where } f(t) = \dfrac{\partial}{\partial p_1}H(p_1, \mathbf{p}^\prime (t), \mathbf{q}^\prime(t), t)
+        \end{equation*}
+        and is easily integrated.
+    \end{proof}
+
+    Almost all the solved problems in mechancis have been solved by means of the above corollary.
+
+    \section{Liouville's theorem}
+    The phase flow of Hamilton's equations preserves phase volume. It follows atht a hamiltonian system cannot be asymptotically stable. Here suppose the hamiltonian function does not depend explicitly on the time: $H = H(\mathbf{p}, \mathbf{q})$.
+
+    \begin{definition}
+        The $2n$-dimensional space with coordinates $p_1,\dots,p_n; q_1,\dots, q_n$ is called phase space.
+    \end{definition}
+
+    \begin{definition}
+        The phase flow is the one-parameter group of transformation of phase space
+        \begin{equation*}
+            g^t:(\mathbf{p}(0), \mathbf{q}(0)) \mapsto (\mathbf{p}(t), \mathbf{q}(t))
+        \end{equation*}
+        where $\mathbf{p}(t)$ and $\mathbf{q}(t)$ are solutions of hamiltonian's system of equations.
+    \end{definition}
+
+    \subsection{Liouville's theorem}
+    Suppose given a system of ordinary differential equations $\dot{\mathbf{x}} = \mathbf{f}(\mathbf{x})$, whose solution may be extended to the whole time axis. Let $\{g^t\}$ be the corresponding group of transformation:
+    \begin{equation*}
+        g^t(\mathbf{x}) = \mathbf{x} + \mathbf{f}(\mathbf{x}) t + O(t^2), \quad (t \mapsto 0).
+    \end{equation*}
+    Let $D(0)$ be a region in $\mathbf{x}$-space and $v(0)$ its volume;
+    \begin{equation*}
+        v(t) = \text{volume of } D(t) \quad D(t) = g^tD(0)
+    \end{equation*}
+
+    \begin{lemma}
+        For any matrix $A = (a_{ij})$
+        \begin{equation*}
+            \det(I + At) = 1 + t \mathrm{tr} A + O(t^2)
+        \end{equation*}
+        where $I$ is the identity matrix and $\mathrm{tr} A = \sum_{i=1}^n a_{ii}$ is the trace of $A$.
+    \end{lemma}
+
+    \begin{proof}
+        By direct expansion of the determinant
+        \begin{align*}
+            \det(I + At) =& \sum_{k=0}^\infty\dfrac{1}{k!}\left( -\sum_{j = 1}^\infty \dfrac{(-1)^j t^j}{j} \mathrm{tr}(A^j) \right)^k \\
+            =& 1 + t \mathrm{tr} A -\sum_{j = 2}^\infty \dfrac{(-1)^j t^j}{j} \mathrm{tr}(A^j) \\
+            & +\sum_{k=2}^\infty\dfrac{1}{k!}\left( -\sum_{j = 1}^\infty \dfrac{(-1)^j t^j}{j} \mathrm{tr}(A^j) \right)^k \\
+            =& 1 + t \mathrm{tr} A + O(t^2)
+        \end{align*}
+    \end{proof}
+
+    \begin{lemma}
+        $\left.(\mathrm{d} v/\mathrm{d} t)\right|_{t=0} = \int_{D(0)} \mathrm{div} \mathbf{f} \mathrm{d} \mathbf{x}$
+    \end{lemma}
+
+    \begin{proof}
+        \begin{align*}
+            v(t) =& \int_{D(0)} \det \dfrac{\partial g^t(\mathbf{x})}{\partial \mathbf{x}} \mathrm{d} \mathbf{x} \\
+            =& \int_{D(0)} \det \left( I + \dfrac{\partial \mathbf{f}}{\partial \mathbf{x}} t + O(t^2) \right) \mathrm{d} \mathbf{x} \\
+            =& \int_{D(0)} \left( 1 + t \mathrm{tr} \dfrac{\partial \mathbf{f}}{\partial \mathbf{x}} + O(t^2) \right) \mathrm{d} \mathbf{x} \\
+            =& \int_{D(0)} \left( 1 + t \sum_{i = 1}^n \dfrac{\partial f_i}{\partial x_i} + O(t^2) \right) \mathrm{d} \mathbf{x} \\
+            =& \int_{D(0)} \left( 1 + t \mathrm{div} \mathbf{f} + O(t^2) \right) \mathrm{d} \mathbf{x}
+        \end{align*}
+        which directly proves the lemma.
+    \end{proof}
+
+    \begin{theorem}
+        If $\mathrm{div} \mathbf{f} \equiv 0$, then $g^t$ preserves volume: $v(t) = v(0)$.
+    \end{theorem}
+
+    \begin{proof}
+        From the lemma above, for any time $t_0$
+        \begin{equation*}
+            \left. \dfrac{\mathrm{d} v(t)}{\mathrm{d} t} \right|_{t=t_0} = \int_{D(t_0)} \mathrm{div} \mathbf{f} \mathrm{d} \mathbf{x}
+        \end{equation*}
+        and if $\mathrm{div}\mathbf{f} \equiv 0$, $\mathrm{d} v / \mathrm{d} t = 0$.
+    \end{proof}
+
+    \begin{theorem}[Liouville's theorem]
+        The phase flow preserves volume: for any region $D$
+        \begin{equation*}
+            \text{volume of } g^tD = \text{volume of } D
+        \end{equation*}
+    \end{theorem}
+
+    \begin{proof}
+        In particular, for hamilton's equations we have
+        \begin{equation*}
+            \mathrm{div} \mathbf{f} = \dfrac{\partial}{\partial \mathbf{p}} \left( -\dfrac{\partial H}{\partial \mathbf{q}} \right) + \dfrac{\partial}{\partial \mathbf{q}} \left( \dfrac{\partial H}{\partial \mathbf{p}} \right) \equiv 0
+        \end{equation*}
+        which proves Liouville's theorem.
+    \end{proof}
+
+    \subsection{Poincar\'{e}'s recurrence theorem}
+    Liouville's theorem allows one to apply methods of \emph{ergodic theory} to the study of mechanics. Here is the simplest example.
+
+    \begin{theorem}[Poincar\'{e}'s theorem]
+        Let $g$ be a volume-preseving continuous one-to-one mapping which maps a bounded region $D$ of euclidean space onto itself: $gD=D$. Then in any neighborhood $U$ of any point of $D$ there is a point $x \in U$ which returns to $U$, $g^n x \in U$ for some $n > 0$.
+    \end{theorem}
+
+    \begin{proof}
+        Consider the images of the neighborhood $U$
+        \begin{equation*}
+            U, gU, g^2U, \dots, g^nU, \dots
+        \end{equation*}
+        All of these have the same volume. If they never intersected, $D$ would have infinite volume. Therefore, for some $k \geq 0$ and $l \geq 0$, with $k > l$,
+        \begin{equation*}
+            g^k U \cap g^lU \neq \emptyset
+        \end{equation*}
+        Therefore, $g^{k-l} \cap g U \neq \emptyset$. If $y$ is in this intersection, then $y = g^n x$, with $x \in U (n = k - l)$. Then $x \in U$ and $g^n x \in U(n = k - l)$.
+    \end{proof}
+
+    This theorem applies, for example, to the phase flow $g^t$ of a two-dimensional system whose potential $U(x_1, x_2)$ goes to infinity as $(x_1, x_2) \to \infty$; in this case the invariant bounded region in phase space is given by the condition
+    \begin{equation*}
+        D = \{ \mathbf{p}, \mathbf{q}: T + U \leq E \}
+    \end{equation*}
+
+    Poincar\'{e}'s theorem can be strengthed, showing that almost every moving point returns repeatedly to the vicinity of its initial position. This is one of the few genereal conclusions which can be drawn about the character of motion.
+
+    If you open a partition separating a chamber containing gas and a chamber with a vacuum, then after a while the gas molecules will again collect in the first chamber. The resolution of the paradox lies in the fact that "a while" may be longer than the duration of the solar system's existence.
+
+    \begin{exmp}
+        Let $D$ be a circle and $g$ rotation through an angle $\alpha$. If $\alpha = 2\pi(m/n)$, then $g^n$ is the identity, and the theorem is obvious. If $\alpha$ is not commensurable with $2\pi$, then Poincar\'{e}'s theorem gives
+        \begin{equation*}
+            \forall \delta > 0, \exists n: | g^n x - x | < \delta
+        \end{equation*}
+    \end{exmp}
+
+    \begin{exmp}
+        Let $D$ be the two-dimensional torus and $\varphi_1$ and $\varphi_2$ angular coordinates on it (longtitude and latitude). Consider the system of ordinary differentiable equations on the torus
+        \begin{equation*}
+            \dot{\varphi_1} = \alpha_1 \quad \dot{\varphi_2} = \alpha_2
+        \end{equation*}
+        Clearly, $\mathrm{div} \mathbf{f} = 0$ and the corresponding motion
+        \begin{equation*}
+            g^t: (\varphi_1, \varphi_2) \to (\varphi_1 + \alpha_1 t, \varphi_2 + \alpha_2 t)
+        \end{equation*}
+        preserves the volume $\mathrm{d} \varphi_1 \mathrm{d} \varphi_2$. From Poincare\'{e}'s theorem it is easy to deduce.
+    \end{exmp}
+
+    Finally, this kind of deduction could be extended into any $n$-dimensional torus given by $n$ angular coordinates.
+
+    \section{Holonomic constraints}
+    Let $\gamma$ be a smooth curve in the plane. If there is a very strong foce field in a neighborhood of $\gamma$, directed towards the curve, then a moving point will always be close to $\gamma$. In the limit case of an infinite force field, the point must remain on the curve $\gamma$. In this case we say that a constraint is put on the system.
+    
+    \begin{definition}
+        Let $\gamma$ be an $m$-dimensional surface in the $3n$-dimensional configuration space of the points $\mathbf{r}_1, \dots, \mathbf{r}_n$ with masses $m_1, \dots, m_n$. Let $\mathbf{q} = (q_1, \dots, q_m)$ be some coordinates on $\gamma: \mathbf{r}_i = \mathbf{r}_i(\mathbf{q})$. The described by the equations
+        \begin{equation*}
+            \dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial L}{\partial \dot{\mathbf{q}}} = \dfrac{\partial L}{\partial \mathbf{q}}, \quad L = \dfrac12\sum m_i \dot{\mathbf{m}}_i^2 + U(\mathbf{q})
+        \end{equation*}
+        is called a system of $n$ points with $3n - m$ ideal \emph{holonomic constriants}. The surface $\gamma$ is called the \emph{configuration space of the system with constriants}. If the surface $\gamma$ is given by $k = 3n - m$ functionally independent equations $f_1(\mathbf{r}) = 0, \dots, f_k(\mathbf{r}) = 0$, then we say that the system is constrained by the relations $f_1 = 0, \dots, f_k = 0$.
+    \end{definition}
+
+    Holonomic constraints also could have been defined as the limiting case of a system with a large potential energy. The meaning of these constraints in mechancis lies in the experimentally determined fact that many mechanical systems belong to this class more or less exactly.
+
+    \section{Differentialble manifolds}
+    \subsection{Definition of differentiable manifold}
+    The configuration space of a system with constraints is a differentiable manifold. A set $M$ is given the structure of a differentiable manifold if $M$ is provided with a finite or countable collection of \emph{charts}, so that every point is represented in at least one chart. A chart is an open set $U$ in the euclidean coordinate space $\mathbf{q} = (q_1, \dots, q_n)$, together with a one-to-one mapping $\varphi$ of $U$ onto some subset of $M$, $\varphi: U \to \varphi U \subset M$. We assume that if points $\mathbf{p}$ and $\mathbf{p}^\prime$ in two charts $U$ and $U^\prime$ have the same image in $M$, then $\mathbf{p}$ and $\mathbf{p}^\prime$ have neighborhoods $V \subset U$ and $V^\prime \subset U^\prime$ with the same image in $M$. In this way we get a mapping $\varphi^{\prime -1} \varphi: V \to V^\prime$. This is a mapping of the region $V$ of the euclidean space $\mathbf{q}$ onto the region $V^\prime$ of the euclidean space $\mathbf{q}^\prime$, and it is given by $n$ functions of $n$ variables, $\mathbf{q}^\prime = \mathbf{q}^\prime(\mathbf{q}), (\mathbf{q}) = \mathbf{q}(\mathbf{q}^\prime)$. The charts $U$ and $U^\prime$ are called \emph{compatible} if these functions are differentiable. An \emph{atlas} is a union of compatible charts. Two atlases are \emph{equivalent} if their union is also an atlas. A differentiable manifold is a class of equivalent atlases. We will consider only \emph{connected} manifolds. Then the number $n$ will be the same for all charts; it is called the \emph{dimension} of the manifold. A \emph{neighborhood} of a point on a manifold is the image under a mapping $\varphi: U \to M$ of a neighborhood of the representation of this point in a chart $U$. We will assume that every two different points have non-intersecting neighborhoods.
+
+    \begin{definition}
+        The dimension of the configuration space is called the \emph{number of degrees of freedom}.
+    \end{definition}
+
+    \subsection{Tangent space}
+    If $M$ is a $k$-dimensional manifold embedded in $E^n$, then at every point $\mathbf{x}$ we have a $k$-dimensional tangent space $TM_{\mathbf{x}}$. Namely, $TM_{\mathbf{x}}$ is the orthogonal complement to $\{\mathrm{grad} f_1, \dots, \mathrm{grad} f_{n-k}\}$. The vectors of the tangent space $TM_{\mathbf{x}}$ based at $\mathbf{x}$ are called tangent vectos to $M$ at $\mathbf{x}$.We can also define these vectors directly as velocity vectors of curves in $M$:
+    \begin{equation*}
+        \dot{\mathbf{x}} = \lim_{t \to 0} \dfrac{\bm{\varphi}(t) - \bm{\varphi}(0)}{t} \quad \text{where } \bm{\varphi}(0) = \bm{x}, \bm{\varphi}(t) \in M
+    \end{equation*}
+
+    The definition of tangent vectors can also be given in the intrinsic terms, independent of the embedding of $M$ into $E^n$.We will call two curves $\mathbf{x} = \bm{\varphi}(t)$ and $\mathbf{x} = \bm{\psi}(t)$ equivalent if $\bm{\varphi}(0) = \bm{\psi}(0) = \mathbf{x}$ and $\lim_{t \to 0} (\bm{\varphi}(t) - \bm{\psi}(t)) / t = 0$ in some charts. Then this tangent relationship is true in any chart.
+
+    \begin{definition}
+        A tangent vector to a manifold $M$ at the point $\mathbf{x}$ is an equivalence calss of curves $\bm{\varphi}(t)$, with $\bm{\varphi}(0) = \mathbf{x}$.
+    \end{definition}
+
+    It is easy to define the operations of multiplication of a tangent vector by a number and addition of tangent vectors. The set of tangent vectors to $M$ at $\mathbf{x}$ forms a \emph{vector space} $TM_\mathbf{x}$. This space is also called the \emph{tangent space} to $M$ at $\mathbf{x}$.
+
+    \begin{definition}
+        Let $U$ be a chart of an atlas for $M$ with coordinates $q_1, \dots, q_n$. Then the \emph{components} of the tangent vector of the curve $\mathbf{q} = \bm{\varphi}(t)$ are the numbers $\xi_1, \dots, \xi_n$, where $\xi_i = (\mathrm{d} \varphi_i / \mathrm{t})|_{t = 0}$.
+    \end{definition}
+
+    \subsection{Tangent bundle}
+    The union of the tangent spaces to $M$ at the various points, $\bigcup_{\mathbf{x} \in M} TM_{\mathbf{x}}$, has a natural differentiable manifold structure, the dimension of which is twice the dimension of $M$. The manifold is called the \emph{tangent bundle} of $M$ and is denoted by $TM$. A point of $TM$ is a vector $\bm{\xi}$, tangent to $M$ at some point $\mathbf{x}$. Local coordinates on $TM$ are constrcuted as follows. Let $q_1, \dots, q_n$ be local coordinates on $M$, and $\xi_1, \dots, \xi_n$ components of a tangent vector in this coordinates system. Then the $2n$ numbers $(q_1, \dots, q_n, \xi_1, \dots, \xi_n)$ give a local coordinate system on $TM$. One sometimes writes $\mathrm{d} q_i$ for $\xi_i$. The mapping $p: TM \to M$ which takes a tangent vector $\bm{\xi}$ to the point $\mathbf{x} \in M$ at which the vector is tangent to $M$ ($\bm{\xi} \in TM_{\mathbf{x}}$), is called the \emph{natural projection}. The inverse image of a point $\mathbf{x} \in M$ under the natural projection, $p^{-1}(\mathbf{x})$, is the tangent space $TM_{\mathbf{x}}$. This space is called the \emph{fiber of the tangent bundle over the point $\mathbf{x}$}.
+
+    \subsection{Riemannian manifolds}
+    If $M$ is a manifold embedded in euclidean space, then the metric on educlidean space allows us to measure the lengths of curves, angles between vectors, volumes, etc. All of these quantities are expressed by means of the lengths of tangent vectors, that is, by the positive-definte quadratic form given on every tangent space $TM_{\mathbf{x}}$:
+    \begin{equation*}
+        TM_{\mathbf{x}} \to \mathbb{R} \quad \bm{\xi} \to \langle \bm{\xi}, \bm{\xi} \rangle
+    \end{equation*}
+
+    \begin{definition}
+        A differentiable manifold with a fixed positive-definite quadratic form $\langle \bm{\xi}, \bm{\xi} \rangle$ on every tangent space $TM_\mathbf{x}$ is called a \emph{Riemannian manifold}. The quadratic form is called the \emph{Riemannian metric}.
+    \end{definition}
+
+    Let $U$ be a chart of an atlas for $M$ with coordiantes $q_1, \dots, q_n$. THen a Riemannian matrix is given by the formula
+    \begin{equation*}
+        \mathrm{d} s^2 = \sum_{i, j = 1}^n a_{ij}(\mathbf{q}) \mathrm{d} q_i \mathrm{d} q_j \quad a_{ij} = a_{ji}
+    \end{equation*}
+    where $\mathrm{d} q_i$ are the coordinates of a tangent vector.
+
+    \subsection{The derivative map}
+    Let $f: M \to N$ be a mapping of a manifold $M$ to a manifold $N$. $f$ is called differentiable if in local coordinates on $M$ and $N$ it is given by differentiable functions.
+
+    \begin{definition}
+        The \emph{derivative} of a differentiable mapping $f: M \to N$ at a point $\mathbf{x} \in M$ is the linear map of the tangent spaces
+        \begin{equation*}
+            f_{\mathbf{*x}}: TM_{\mathbf{x}} \to TN_{f(\mathbf{x})}
+        \end{equation*}
+        which is given in the following way:
+
+        Let $\mathbf{v} \in TM_{\mathbf{x}}$. Consider a curve $\bm{\varphi}: \mathbb{R} \to M$ with $\bm{\varphi}(0) = \mathbf{x}$, and velocity vector $\mathrm{d} \bm{\varphi} / \mathrm{d} t|_{t = 0} = \mathbf{v}$. Then $f_{\mathbf{*x}} \mathbf{v}$ is the velocity vector of the curve $f \circ \bm{\varphi}: \mathbb{R} \to N$,
+        \begin{equation*}
+            f_{\mathbf{*x}} \mathbf{v} = \left. \dfrac{\mathrm{d}}{\mathrm{d} t} \right|_{t = 0} f(\bm{\varphi}(t))
+        \end{equation*}
+    \end{definition}
+
+    \section{Lagrangian dynamical systems}
+    \subsection{Definition of a lagrangian system}
+    Let $M$ be a differentialble manifold, $TM$ its tangent bundle, and $L: TM \to \mathbb{R}$ a differentiable function. A map $\gamma: \mathbb{R} \to M$ is called a \emph{motion in the lagrangian system with configuration manifold $M$ and lagrangian function $L$} if $\bm{\gamma}$ is an extremal of the functional
+    \begin{equation*}
+        \bm{\Phi}(\bm{\gamma}) = \int_{t_0}^{t_1} L(\dot{\bm{\gamma}}) \mathrm{d} t
+    \end{equation*}
+    where $\dot{\bm{\gamma}}$ is the velocity vector $\dot{\bm{\gamma}}(t) \in TM_{\bm{\gamma}(t)}$.
+
+    \begin{theorem}
+        The evolution of the local coordinates $\mathbf{q} = (q_1, \dots, q_n)$ of a point $\bm{\gamma}(t)$ under motion in a lagrangian system on a manifold satisfies the Lagrange equations
+        \begin{equation*}
+            \dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial L}{\partial \dot{\mathbf{q}}} = \dfrac{\partial L}{\partial \mathbf{q}}
+        \end{equation*}
+        where $L(\mathbf{q}, \dot{\mathbf{q}})$ is the expression for the function $L: TM \to \mathbb{R}$ in the coordinates $\mathbf{q}$ and $\dot{\mathbf{q}}$ on $TM$.
+    \end{theorem}
+
+    Let $M$ be a Riemannian manifold. The quadratic form on each tangent space,
+    \begin{equation*}
+        T = \dfrac12 \langle \mathbf{v}, \mathbf{v} \rangle \quad \mathbf{v} \in TM_{\mathbf{x}}
+    \end{equation*}
+    is called the \emph{kinetic energy}. A differentiablefunction $U: M \to \mathbb{R}$ is called a \emph{potential energy}.
+
+    \begin{definition}
+        A lagrangian system on a Riemannian manifold is called \emph{natural} is the lagrangian function is equal to the difference between kinetic and potential energies: $L = T - U$.
+    \end{definition}
+
+    \subsection{Systems with holonomic constraints}
+    Consider the configuration manifold $M$ of a system with constraint as embedded in the $3n$-dimensional configuration space of a system of free points. The metric on the $3n$-dimensional space is given by the quadratic form $\sum_{i = 1}^n m_i \dot{\mathbf{r}}_i^2$. The embedded Riemannian manifold $M$ with potential energy $U$ coincides with the system defined previously or with limiting case of the system with potential $U + N \mathbf{q}_2^2, N \to \infty$, which grows rapidly outside of $M$.
+
+    \subsection{Procedure for solving problems with constraints}
+    \begin{enumerate}
+        \item Determine the configuration manifold and introduce coordinates $q_1, \dots, q_n$ ( in aneighborhood of each of its points).
+        \item Express the kinetic energy $T = \sum \frac12 m_i \dot{\mathbf{r}}_i^2$ as a quadratic form in the generalized velocities
+        \begin{equation*}
+            T = \frac12 \sum a_{ij}(\mathbf{q}) \dot{q}_i \dot{q}_j
+        \end{equation*}
+        \item Construct the lagrangian function $L = T - U(\mathbf{q})$ and solve Lagrange's equations.
+    \end{enumerate}
+
+    \begin{exmp}
+        Consider the motion of a point mass of mass $1$ on a surface of revolution in three-dimensional space. It can be shown that the orbits are geodesics on the surface. In sylindrical coordinates $r, \varphi, z$ the surface is given (locally) in the form $r = r(z)$ or $z = z(r)$. THe kinetic energy has the form
+        \begin{equation*}
+            T = \frac12 (\dot{x}^2 + \dot{y}^2 + \dot{z}^2) = \frac12 [(1 + \dot{r}_z^2) \dot{z}^2 + r^2(z) \dot{\varphi}^2 ]
+        \end{equation*}
+        in coordinates $\varphi$ and $z$, and
+        \begin{equation*}
+            T = \frac12 (\dot{x}^2 + \dot{y}^2 + \dot{z}^2) = \frac12 [(1 + \dot{z}_r^2) \dot{r}^2 + r^2(z) \dot{\varphi}^2 ]
+        \end{equation*}
+        in coordinates $r$ and $\varphi$. (\emph{Note:} $\dot{x}^2 + \dot{y}^2 = \dot{r}^2 + r^2 \dot{\varphi}^2$)
+
+        The lagrangian function $L$ is equal to $T$. In both coordinates systems $\varphi$ is a cyclic coordinates. The corresponding momentum is preserved: $p_{\varphi} = r^2 \dot{\varphi}^2$ is nothing other than the $z$-component of angular momentum. Since the system has two degrees of freedoms, knowing the cyclic corrdinates $\varphi$ is sufficient for integrating the problem completely. Denote by $\alpha$ the angle of the orbit with a meridian. We have $r\dot{\varphi} = |v| \sin \alpha$, where $|v|$ is the magnitude of the velocity vector. By the law of conservation of energy, $H = L = T$ is preserved. Therefore, $|v|$ is constant. So the conservation law for $p_{\varphi}$ takes the form $r \sin \alpha = \text{const}$. This relationship shows that this motion takes palce in the region $|\sin \alpha| \leq 1$. Furthermore, the inclination of the the orbit from the meridian increases as the radius $r$ decreases. When the radius reaches the smallest possible value, $r = r_0 \sin \alpha_0$, the orbit is reflected and returns to the region with larger $r$.
+    \end{exmp}
+
+    \subsection{Non-autonomous systems}
+    A \emph{lagrangian non-autonomous system} differs from the autonomous systems by the additional dependence of the lagrangian function on time:
+    \begin{equation*}
+        L: TM \times \mathbb{R} \to \mathbb{R} \quad L = L(\mathbf{q}, \dot{\mathbf{q}}, t)
+    \end{equation*}
+    In particular, both the kinetic and potential energies can depend on time in a non-autonomous natural system:
+    \begin{align*}
+        &T: TM \times \mathbb{R} \to \mathbb{R} \quad T = T(\mathbf{q}, \dot{\mathbf{q}}, t) \\
+        &U: M \times \mathbb{R} \to \mathbb{R} \quad U = U(\mathbf{q}, t)
+    \end{align*}
+
+    A system of $n$ mass points, constrained by holonomic constraints dependent on time, is defined with the help of a time-dependent submanifold of the configuration space of a free system. Such a manifold is given by a mapping
+    \begin{equation*}
+        i: M \times \mathbb{R} \to E^{3n} \quad i(\mathbf{q}, t) = \mathbf{x}
+    \end{equation*}
+    which, for any fixed $t \in \mathbb{R}$, defines an embedding $M \to E^{3n}$.
+
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
+            \draw[->] (0, 0) -- (-1.414, -1.414) node[left]{$x$};
+            \draw[dashed] (0, 0) -- (0.8, 0);
+            \draw[->] (0.8, 0) -- (2, 0) node[right]{$y$};
+            \draw[->] (0, 0) -- (0, 2) node[above]{$z$};
+
+            \draw[rotate=-60, ultra thick] (0,0) ellipse (1.5cm and 0.75cm);
+
+            \draw[->] (0,0.5) arc (90:45:0.5);
+            \draw (0, 0) -- (0.53,0.53);
+            \filldraw[fill=white] (0.53,0.53) circle (2pt);
+            \node at (0.2, 0.6) {$q$};
+
+            \draw[->, thick] (-0.3, 1.8) arc (250:280:2) node[right]{$\omega$};
+            \draw[->, thick] (-1, -1.2) arc (270:290:5) node[above] {$\bm{\varphi}$};
+        \end{tikzpicture}
+        \caption{Bead on a rotating circle}
+        \label{fig:bead_circle}
+    \end{figure}
+
+    \begin{exmp}
+        Consider the motion of a bead along a vertical circle of radius $r$ (Fig. \ref{fig:bead_circle}) which rotates with angular velocity $\omega$ around the vertical axis passing through the center $O$ of the cicle. The manifold $M$ is the circle. Let $q$ be the angular coordinate on the circle, measured from the highest point. Let $x, y$, and $z$ be cartesian coordiantes in $E^3$ with origin $O$ and vertical axis $z$. Let $\varphi$ be the angle of the plane of the circle with the plane $xOz$. By hypothesis, $\varphi = \omega t$. The mapping $i: M \times \mathbb{R} \to E^3$ is given by the formula
+        \begin{equation*}
+            i(q, t) = (r \sin q \cos \omega t, r \sin q \sin \omega t, r \cos q)
+        \end{equation*}
+        From this formula,
+        \begin{equation*}
+            T = \dfrac{m}{2} (\omega^2 r^2 \sin^2 q + r^2 \dot{q}^2), \quad U = mgr \cos q
+        \end{equation*}
+        In this case the lagrangian function $L = T - U$ turns out to be independent of $t$, alothough the constrain does depend on time. Furthermore, the lagrangian function turns out to be the same as in the one-dimensional system with kinetic energy.
+    \end{exmp}
+
+\end{document}
