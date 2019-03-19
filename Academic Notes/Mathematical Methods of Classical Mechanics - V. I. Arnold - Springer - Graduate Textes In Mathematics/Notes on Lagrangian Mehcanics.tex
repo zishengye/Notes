@@ -593,7 +593,125 @@
         \begin{equation*}
             T = \dfrac{m}{2} (\omega^2 r^2 \sin^2 q + r^2 \dot{q}^2), \quad U = mgr \cos q
         \end{equation*}
-        In this case the lagrangian function $L = T - U$ turns out to be independent of $t$, alothough the constrain does depend on time. Furthermore, the lagrangian function turns out to be the same as in the one-dimensional system with kinetic energy.
+        In this case the lagrangian function $L = T - U$ turns out to be independent of $t$, alothough the constrain does depend on time. Furthermore, the lagrangian function turns out to be the same as in the one-dimensional system with kinetic energy
+        \begin{equation*}
+            T_0 = \dfrac{M}{2} \dot{q}^2 \quad M = mr^2
+        \end{equation*}
+        and with potential energy
+        \begin{equation*}
+            V = A \cos q - B \sin^2 q \quad A = mgr, B = \dfrac{m}{2} \omega^2 r^2
+        \end{equation*}
+        The form of the phase portrait depneds on the ratio between $A$ and $B$. For $2B < A$, the lowest position of the bead ($q = \pi$) is stable and the characteristics of the motions are generally the same as in the case of a mathematical pendulum ($\omega = 0$). For $2B > A$, for sufficiently fast rotaion of the circle, the lowest position of the bead becomes unstable: on the other hand, two stable positions of the bead appear on the circle, where $\cos q = -A / 2B = -g / \omega^2 r$. The behavior of the bead under all positions initial conditions is clear from the shape of the phase curves in the $(q, \dot{q})$-plane.
     \end{exmp}
+
+    \subsection{E. Noether's theorem}
+    Various laws of conservation (of momentum, angular momentum) are particular cases of one general theorem: to every one-parameter group of diffeomorphisms of the configuration manifold of a lagrangian system which preserves the lagrangian function, there corresponds a first integral of the equations of motion.
+
+    Let $M$ be a smooth manifold, $L: TM \to \mathbb{R}$ a smooth function on its tangent bundle $TM$. Let $h: M \to M$ be a smooth map.
+
+    \begin{definition}
+        A lagrangian system $(M, L)$ admits the mapping $h$ if for any tangent vector $\mathbf{v} \in TM$
+        \begin{equation*}
+            L(h_* \mathbf{v}) = L(\mathbf{v})
+        \end{equation*}
+    \end{definition}
+
+    \begin{exmp}
+        Let $M = {(x_1, x_2, x_3)}$, $L = (m/2) (\dot{x}_1^2 + \dot{x}_2^2 + \dot{x}_3^2) - U(x_2, x_3)$. The system admits the translation $h: (x_1, x_2, x_3) \to (x_1 + s, x_2, x_3)$ along the $x_1$ axis and does not admit, generally speaking, translation along the $x_2$ axis.
+    \end{exmp}
+
+    \begin{theorem}[Noether's theorem]
+        If the system $(M, L)$ admits the one-parameter group of diffeomorphisms $h^s: M \to M, s \in \mathbb{R}$, then the lagrangian system of equations corresponding to $L$ has a first integral $I: TM \to \mathbb{R}$. In local coordinates $q$ on $M$ the integral $I$ is written in the form
+        \begin{equation*}
+            I(\mathbf{q}, \dot{\mathbf{q}}) = \dfrac{\partial L}{\partial \dot{\mathbf{q}}} \left. \dfrac{\mathrm{d} h^s(\mathbf{q})}{\mathrm{d} s} \right|_{s = 0}
+        \end{equation*}
+    \end{theorem}
+
+    \begin{proof}
+        Let $M = \mathbb{R}^n$ be coordinate space. Let $\bm{\varphi}: \mathbb{R} \to M$, $\mathbf{q} = \bm{\varphi}(t)$ be a solution to Lagrange's equations. Since $h^s_{*}$ preserves $L$, translation of a solution, $h^s \circ \bm{\varphi}: \mathbb{R} \to M$ also satisfies Lagrange's equations for any $s$.
+
+        Consider the mapping $\bm{\Phi}: \mathbb{R} \times \mathbb{R} \to \mathbb{R}^n$, given by $\mathbf{q}^ = \bm{\Phi}(s, t) = h^s(\bm{\varphi}(t))$. Denote derivatives with respect to $t$ by dots and with respect to $s$ by primes. By hypothesis
+        \begin{align*}
+            0 =& \dfrac{\partial L(\bm{\Phi}, \dot{\bm{\Phi}})}{\partial s} \\
+            =& \dfrac{\partial L}{\partial \mathbf{q}} \cdot \bm{\Phi}^\prime + \dfrac{\partial L}{\partial \dot{\mathbf{q}}} \cdot \dot{\bm{\Phi}}^\prime
+        \end{align*}
+        where the partial derivative of $L$ are taken at the point $\mathbf{q} = \bm{\Phi}(s, t)$, $\dot{\mathbf{q}} = \dot{\bm{\Phi}}(s, t)$. As stated above, the mapping $\left. \bm{\Phi} \right|_{s = \text{const}}: \mathbb{R} \to \mathbb{R}^n$ for any fixed $s$ satisfies Lagrange's equation
+        \begin{equation*}
+            \dfrac{\partial}{\partial t} \left[ \dfrac{\partial L}{\partial \dot{\mathbf{q}}} \left( \bm{\Phi}(s, t), \dot{\bm{\Phi}}(s, t) \right) \right] = \dfrac{\partial L}{\partial \mathbf{q}} \left( \bm{\Phi}(s, t), \dot{\bm{\Phi}}(s, t) \right)
+        \end{equation*}
+        We introduce the notation
+        \begin{equation*}
+            \mathbf{F}(s, t) = \dfrac{\partial L}{\partial \dot{\mathbf{q}}} \left( \bm{\Phi}(s, t), \dot{\bm{\Phi}}(s, t) \right)
+        \end{equation*}
+        and substitute $\partial \mathbf{F} / \partial t$ for $\partial L / \partial \mathbf{q}$ in the first equation,
+        \begin{equation*}
+            0 = \left( \dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial L}{\partial \dot{\mathbf{q}}} \right) \bm{\Phi}^\prime + \dfrac{\partial L}{\partial \dot{\mathbf{q}}} \left( \dfrac{\mathrm{d}}{\mathrm{d} t} \bm{\Phi}^\prime \right) = \dfrac{\mathrm{d}}{\mathrm{d} t} \left( \dfrac{\partial L}{\partial \dot{\mathbf{q}}} \bm{\Phi}^\prime \right) = \dfrac{\mathrm{d} I}{\mathrm{d} t}
+        \end{equation*}
+    \end{proof}
+    The first integral $I = (\partial L / \partial \dot{\mathbf{q}}) \mathbf{q}^\prime$ is defined above using local coordinates $\mathbf{q}$. It turns out that the \emph{value of $I(\mathbf{v})$ does not depend on the choice of coordinate system $\mathbf{q}$}. In face, $I$ is the rate of change of $L(\mathbf{v})$ when the vector $\mathbf{v} \in TM_{\mathbf{x}}$ varies inside $TM_{\mathbf{x}}$ with velocity $(\mathrm{d} / \mathrm{d} s)|_{s = 0} h^s \mathbf{x}$. Therefore, $I(\mathbf{v})$ is well defined as a function of the tangent vector $\mathbf{v} \in TM_{\mathbf{x}}$.
+
+    \begin{exmp}
+        Consider a system of point masses with masses $m_i$:
+        \begin{equation*}
+            L = \sum m_i \dfrac{\dot{\mathbf{x}}_i^2}2 - U(\mathbf{x}) \quad \mathbf{x}_i = x_{i1} \mathbf{e}_1 + x_{i2} \mathbf{e}_2 + x_{i3} \mathbf{e}_3
+        \end{equation*}
+        constrained by the conditions $f_j(\mathbf{x}) = 0$. We assume that the system admits translations along the $\mathbf{e}_1$ axis:
+        \begin{equation*}
+            \forall i \quad h^s: \mathbf{x}_i \to \mathbf{x}_i + s \mathbf{e}_1
+        \end{equation*}
+        In other words, the constraints admit motions of the system as a whole along the $\mathbf{e}_1$ axis, and the potential energy does not change under these. By Noether's theorem we conclude: If a system admits translations along the $\mathbf{e}_1$ axis, then the projection of its center of mass on the $\mathbf{e}_1$ axis moves linearly and uniformly.
+        \begin{equation*}
+            I = \sum \dfrac{\partial L}{\partial \dot{\mathbf{x}}_i} \mathbf{e}_1 = \sum m_i \dot{x}_{i1}
+        \end{equation*}
+        is preserved, the first component $p_1$ of the momentum vector is preserved.
+    \end{exmp}
+
+    \begin{exmp}
+        If a system admits rotations around the $\mathbf{e}_1$ axis, then the angular momentum with respect to this axis
+        \begin{equation*}
+            M_1 = \sum_i \left( [\mathbf{x}_i, m_i\dot{\mathbf{x}}_i], \mathbf{e}_1 \right)
+        \end{equation*}
+        is conserved. It is easy to verify that if $h^s$ is rotation around the $\mathbf{e}_1$ axis by the angle $s$, then $(\mathrm{d} / \mathrm{d}s)|_{s = 0} h^s \mathbf{x}_i = [\mathbf{e}_1, \mathbf{x}_i]$, from which it follows that
+        \begin{align*}
+            I =& \sum_i \dfrac{\partial L}{\partial \dot{\mathbf{x}}} [\mathbf{e}_1, \mathbf{x}_i] \\
+            =& \sum_i (m_i \dot{\mathbf{x}}_i, [\mathbf{e}_1, \mathbf{x}_i]) \\
+            =& \sum_i \left( [\mathbf{x}_i, m_i\dot{\mathbf{x}}_i], \mathbf{e}_1 \right)
+        \end{align*}
+    \end{exmp}
+
+    Noether's theorem can be extended to non-autonomous lagrangian systems. Let $M_1 = M \times \mathbb{R}$ be the extended configuration space (the direct product of the configuration manifold $M$ with the time axis $\mathbb{R}$). Define a function $L_1: TM_1 \to \mathbb{R}$ by
+    \begin{equation*}
+        L\dfrac{\mathrm{d} t}{\mathrm{d} \tau}
+    \end{equation*}
+    in local coordinates $\mathbf{q}$, $t$ on $M_1$ we define it by the formula
+    \begin{equation*}
+        L_1 \left( \mathbf{q}, t, \dfrac{\mathrm{d} \mathbf{q}}{\mathrm{d} \tau}, \dfrac{\mathrm{d}t}{\mathrm{d} \tau} \right) = L\left( \mathbf{q}, \dfrac{\mathrm{d} \mathbf{q} / \mathrm{d} \tau}{\mathrm{d} t / \mathrm{d} \tau}, t \right) \dfrac{\mathrm{d} t}{\mathrm{d} \tau}
+    \end{equation*}
+    Apply Noether's theorem to the lagrangian system $(M_1, L_1)$. If $L_1$ admits the transformation $h^s: M_1 \to M_1$, we obtain a first integral $I_1: TM_1 \to \mathbb{R}$. Since $\int L \mathrm{d} t = \int L_1 \mathrm{d} \tau$, this reduces to a first integral $I: TM \times \mathbb{R} \to \mathbb{R}$ of the original system. If, in local coordinates $(\mathbf{q}, t)$ on $M_1$, we have $I_1 = I_1(\mathbf{q}, t, \mathrm{d} \mathbf{q} / \mathrm{d} \tau, \mathrm{d} t / \mathrm{d} \tau)$, then $I(\mathbf{q}, \dot{\mathbf{q}}, t) = I_1(\mathbf{q}, t, \dot{\mathbf{q}}, 1)$.
+
+    \section{D'Alembert's principle}
+    Consider the holonomic system $(M, L)$, where $M$ is a surface in the three-dimensional space ${\mathbf{x}}$:
+    \begin{equation*}
+        L = \dfrac12m\dot{\mathbf{x}}^2 - U(\mathbf{x})
+    \end{equation*}
+    In mehcanical terms, the mass point $\mathbf{x}$ of mass $m$ must remain on the smooth surface $M$. Consider a motion of the point, $\mathbf{x}(t)$. If Newton's equations $m \ddot{\mathbf{x}} + (\partial U / \partial \mathbf{x}) = 0$ were satisfied, then in the absence of external forces $(U = 0)$ the trajectory would be a straight line and could not lie on the surface $M$. From the point of view of Newton, this indicates the presence of a new force forcing the point to stay on the surface.
+    \begin{definition}
+        The quantity
+        \begin{equation*}
+            \mathbf{R} = m \ddot{\mathbf{x}} + \dfrac{\partial U}{\partial \mathbf{x}}
+        \end{equation*}
+    \end{definition}
+    is called the \emph{constraint force}. If take the constraint force $\mathbf{R(t)}$ into account, Newton's equations are obviously satisfied:
+    \begin{equation*}
+        m \ddot{\mathbf{x}} = -\dfrac{\partial U}{\partial \mathbf{x}} + \mathbf{R}
+    \end{equation*}
+    The physical meaning of the constraint force becomes clear if we consider our system with constraints as the limit of systems with potential energy $U + NU_1$ as $N \to \infty$, where $U_1(\mathbf{x}) = \rho^2 (\mathbf{x}, M)$. For large $N$ the constraint potential $NU_1$ produces a rapidly chaning force $\mathbf{F} = -N \partial U_1 / \partial \mathbf{x}$: when we pass to the limit $(N \to \infty)$ the average value of the force $\mathbf{F}$ under oscillations of $\mathbf{x}$ near $M$ is $\mathbf{R}$. The force $\mathbf{F}$ is perpendicular to $M$. Therefore, the constraint force $\mathbf{R}$ is perpendicular t $M: (\mathbf{R}, \bm{\xi}) = 0$ for every tangent vector $\bm{\xi}$.
+
+    \subsection{Formulation of the D'Alembert-Lagrange principle}
+    In mehcanics, tangent vectors to the configuration manifold are called \emph{virtual variations}. The D'Alembert-Lagrange principle states:
+    \begin{equation*}
+        \left( m \ddot{x} + \dfrac{\partial U}{\partial \mathbf{x}}, \bm{\xi} \right) = 0
+    \end{equation*}
+    for \emph{any virtual variation $\bm{\xi}$}, or stated differently, the \emph{work of the constraint force} on any virtual variation is zero.
 
 \end{document}
