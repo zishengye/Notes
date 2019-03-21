@@ -712,6 +712,32 @@
     \begin{equation*}
         \left( m \ddot{x} + \dfrac{\partial U}{\partial \mathbf{x}}, \bm{\xi} \right) = 0
     \end{equation*}
-    for \emph{any virtual variation $\bm{\xi}$}, or stated differently, the \emph{work of the constraint force} on any virtual variation is zero.
+    for \emph{any virtual variation $\bm{\xi}$}, or stated differently, the \emph{work of the constraint force} on any virtual variation is zero. For a system of points $\mathbf{x}$, with masses $m_i$ the constraint forces $\mathbf{R}_i$ are defined by $\mathbf{R}_i = m_i \ddot{\mathbf{x}} + (\partial U / \partial \mathbf{x}_i)$, and D'Alembert's principle has the form $\sum (\mathbf{R}_i, \bm{\xi}_i) = 0$, or $\sum (m_i \ddot{\mathbf{x}}_i + (\partial U_i / \partial \mathbf{x}_i), \bm{\xi}_i) = 0$, the sum of the works of the constraint forces on any virtual variation ${\bm{\xi}_i} \in TM_{\mathbf{x}}$ is zero. Constraints with the property described above are called \emph{ideal}. If we define a system with holonomic constraints as a limit as $N \to \infty$, then the D'Alembert-Lagrange principle becomes a theorem. It is possible, however, to define an ideal holonomic constraint using the D'Alembert Lagrange principle. In this way we have three definitions of holonomic systems with constriants:
+    \begin{enumerate}
+        \item The limit of systems with potential enrgies $U + NU_1$ as $N \to \infty$.
+        \item A holonomic system $(M, L)$, where $M$ is a smooth submanifold of the configuration space of a system without constraints and $L$ is the lagrangian.
+        \item A system which complies with the D'Alembert Lagrange principle
+    \end{enumerate}
+    All three definitions are mathematically equivalent.
+
+    \subsection{The equivalence of the D'Alembert Lagrange principle and the variational principle}
+    Let $M$ be a submanifold of euclidean space, $M \subset \mathbb{R}^n$, and $\mathbf{x}: \mathbb{R} \to M$ a curve, with $\mathbf{x}(t_0) = \mathbf{x}_0$, $\mathbf{x}(t_1) = \mathbf{x}_1$.
+
+    \begin{definition}
+        The curve $\mathbf{x}$ is called a \emph{conditional extremal} of the action functional
+        \begin{equation*}
+            \bm{\Phi} = \int_{t_0}^{t_1} \left\{ \dfrac{\dot{\mathbf{x}}^2}{2} - U(\mathbf{x}) \right\} \mathrm{d} t
+        \end{equation*}
+        if the differential $\delta \bm{\Phi}$ is equal to zero \emph{under the condition} that the variation consists of nearby curves joining $\mathbf{x}_0$ to $\mathbf{x}_1$ in $M$.
+    \end{definition}
+    We will write
+    \begin{equation*}
+        \delta_M \bm{\Phi} = 0
+    \end{equation*}
+    Clearly, it is equivalent to the Lagrange equations
+    \begin{equation*}
+        \dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial L}{\partial \dot{\mathbf{q}}} = \dfrac{\partial L}{\partial \mathbf{q}} \quad L = \dfrac{\dot{\mathbf{x}}^2}2 - U(\mathbf{x}) \quad \mathbf{x} = \mathbf{x}(\mathbf{q})
+    \end{equation*}
+    in some local coordinates system $\mathbf{q}$ on $M$.
 
 \end{document}
