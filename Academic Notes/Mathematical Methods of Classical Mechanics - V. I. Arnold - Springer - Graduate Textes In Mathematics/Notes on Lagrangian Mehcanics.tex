@@ -738,6 +738,30 @@
     \begin{equation*}
         \dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial L}{\partial \dot{\mathbf{q}}} = \dfrac{\partial L}{\partial \mathbf{q}} \quad L = \dfrac{\dot{\mathbf{x}}^2}2 - U(\mathbf{x}) \quad \mathbf{x} = \mathbf{x}(\mathbf{q})
     \end{equation*}
-    in some local coordinates system $\mathbf{q}$ on $M$.
+    in some local coordinates system $\mathbf{q}$ on $M$. Strictly speaking, in order to define a variation $\delta \Phi$, one must define on the set of curves near $\mathbf{x}$ on $M$ the structure of a region ina vector space. This can be done using coordinates on $M$; however, the property of being a conditional extremal does not depend on the choice of a coordinate system.
+
+    \begin{lemma}
+        Let $\mathbf{f}: \{ t: t_0 \leq t \leq t_1 \} \to \mathbb{R}^N$ be a continuous vector field. If, for every continuous tangent vector field $\bm{\xi}$, tangent to $M$ along $\mathbf{x} \in TM_{\mathbf{x}}(t)$, with $\bm{\xi}(t) = 0$ for $t = t_0$, we have
+        \begin{equation*}
+            \int_{t_0}^{t_1} \mathbf{f}(t) \bm{\xi}(t) \mathrm{d} t = 0
+        \end{equation*}
+        then the field $\mathbf{f}(t)$ is perpendicular to $M$ at every point $\mathbf{x}(t) = 0$.
+    \end{lemma}
+
+    \begin{theorem}
+        A curve $\mathbf{x} : \mathbb{R} \to M \subset R \mathbb{R}^N$ is a conditional extremal of the action if and only if it satisfies D'Alembert's equation
+        \begin{equation*}
+            \left( \ddot{\mathbf{x}} + \dfrac{\partial U}{\partial \mathbf{x}}, \quad \bm{\xi} \right) = 0, \forall \bm{\xi} \in TM_{\mathbf{x}}
+        \end{equation*}
+    \end{theorem}
+
+    \begin{proof}
+        Comapre the value of $\bm{\Phi}$ on the two curves $\mathbf{x}(t)$ and $\mathbf{x}(t) + \bm{\xi}(t)$, where $\bm{\xi}(t_0) = \bm{\xi}(t_1) = 0$. Integrating by parts, 
+        \begin{equation*}
+            \delta \bm{\Phi} = \int_{t_0}^{t_1} \left( \dot{\mathbf{x}} \dot{\bm{\xi}} - \dfrac{\partial U}{\partial \mathbf{x}} \bm{\xi} \right) \mathrm{d} t = -\int_{t_0}^{t_1} \left( \ddot{\mathbf{x}} + \dfrac{\partial U}{\partial \mathbf{x}} \right) \bm{\xi} \mathrm{d} t
+        \end{equation*}
+    \end{proof}
+
+    From the lemma, it is obvious that the collection of equations $\delta \bm{\Phi} = 0$ is equivalent to the D'Alembert-Lagrange equation.
 
 \end{document}
