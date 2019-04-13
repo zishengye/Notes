@@ -1,0 +1,88 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage[top=1in,left=1in,right=1in,bottom=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+
+\allowdisplaybreaks
+
+\numberwithin{equation}{section}
+
+\title{Notes on SPH}
+\author{Zisheng Ye}
+\date{April 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{SPH Concept and Essential Formulation}
+The continuous SPH integral representation for $f(\mathbf{x})$ can be written in the following form of discretized particle approximation
+\begin{align}
+    f(\mathbf{x}) =& \int_{\Omega} f(\mathbf{x}^\prime) W(\mathbf{x} - \mathbf{x}^\prime, h) \mathrm{d} \mathbf{x}^\prime \nonumber \\
+    \approx& \sum_{j = 1}^N f(\mathbf{x}_j) W(\mathbf{x} - \mathbf{x}_j, h) \Delta V_j \nonumber \\
+    =& \sum_{j = 1}^N f(\mathbf{x}_j) W(\mathbf{x} - \mathbf{x}_j, h) \dfrac1{\rho_j}(\rho_j \Delta V_j) \nonumber \\
+    =& \sum_{j = 1}^N f(\mathbf{x}_j) W(\mathbf{x} - \mathbf{x}_j, h) \dfrac1{\rho_j} m_j \nonumber \\
+    =& \sum_{j = 1}^N \dfrac{m_j}{\rho_j} f(\mathbf{x}_j) W(\mathbf{x} - \mathbf{x}_j, h) \label{eq:discretized_particle_approximation}
+\end{align}
+
+For a given particle $i$, according to the particle approximation, the value of a function and its derivative for particle $i$ are approximated as
+\begin{equation}
+    \langle f(\mathbf{x}_i) \rangle = \sum_{j = 1}^N \dfrac{m_j}{\rho_j} f(\mathbf{\mathbf{x}_j}) W_{ij}
+\end{equation}
+\begin{equation}
+    \langle \nabla \cdot f(\mathbf{x}_i) \rangle = \sum_{j = 1}^N \dfrac{m_j}{\rho_j} f(\mathbf{x}_j) \cdot \nabla_i W_{ij}
+\end{equation}
+\begin{equation}
+    W_{ij} = W(\mathbf{x}_i - \mathbf{x}_j, h) = W(| \mathbf{x}_i - \mathbf{x}_j |, h)
+\end{equation}
+\begin{equation}
+    \nabla_i W_{ij} = \dfrac{\mathbf{x}_i - \mathbf{x}_j}{r_{ij}} \dfrac{\partial W_{ij}}{\partial r_{ij}} = \dfrac{x_{ij}}{r_{ij}} \dfrac{\partial W_{ij}}{\partial r_{ij}}
+\end{equation}
+
+Summationa density approach: or the SPH approximation for the density is obtained
+\begin{equation}
+    \rho_i = \sum_{j = 1}^N m_j W_{ij}
+\end{equation}
+
+Here are some techniques in deriving SPH formulations
+\begin{align}
+    \nabla \cdot f(\mathbf{x}_i) =& \dfrac{1}{\rho_i} [ \nabla \cdot (\rho_i f(\mathbf{x}_i) ) - f(\mathbf{x}_i) \cdot \nabla \rho_i ] \nonumber \\
+    =& \dfrac{1}{\rho_i} \left[ \sum_{j=1}^N \dfrac{m_j}{\rho_j} \rho_j f(\mathbf{x}_j) \cdot \nabla_i W_{ij} - f(\mathbf{x}_i) \sum_{j=1}^N m_j \cdot \nabla_i W_{ij} \right] \nonumber \\
+    =& \dfrac1{\rho_i} \left[ \sum_{j = 1}^N m_j \left[ f(\mathbf{x}_j) - f(\mathbf{x}_i) \right] \cdot \nabla_i W_{ij} \right]
+\end{align}
+\begin{align}
+    \nabla \cdot f(\mathbf{x}_i) =& \rho_i \left[\nabla \cdot \left( \dfrac{f(\mathbf{x}_i)}{\rho_i} \right) + \dfrac{f(\mathbf{x}_i)}{\rho_i^2} \cdot \nabla \rho_i \right] \nonumber \\
+    =& \rho_i \left[ \sum_{j=1}^N \dfrac{m_j}{\rho_j} \dfrac{f(\mathbf{x}_j)}{\rho_j} \cdot \nabla_i W_{ij} + \dfrac{f(\mathbf{x}_i)}{\rho_i^2} \sum_{j=1}^N m_j \cdot \nabla_i W_{ij} \right] \nonumber \\
+    =& \rho_i \left[ \sum_{j=1}^N m_j \left[ \dfrac{f(\mathbf{x}_j)}{\rho_j^2} + \dfrac{f(\mathbf{x}_i)}{\rho_i^2} \right] \cdot \nabla_i W_{ij} \right]
+\end{align}
+
+There are some properties of SPH formulations as
+\begin{equation}
+    \langle f_1 + f_2 \rangle = \langle f_1 \rangle + \langle f_2 \rangle = \langle f_2 + f_1 \rangle
+\end{equation}
+\begin{equation}
+    \langle f_1 f_2 \rangle = \langle f_1 \rangle \langle f_2 \rangle = \langle f_2 f_1 \rangle
+\end{equation}
+
+By definition, the support domain for a field point at $\mathbf{x} = (x, y, z)$ is the domain where the information for all the points inside this domain is used to determine the information at the points at $\mathbf{x}$. The influence domain is defined as a domain where a node exerts its influences. Hence the influence domain is associated with a node in the meshfree methods, and the support domain goes with any field point $\mathbf{x}$, which can be, but does not necessarily have to be a node.
+
+\section{Constructing Smoothing Functions}
+In the original SPH paper, the following bell-shaped function was used as the smoothing function
+\begin{equation}
+    W(\mathbf{x} - \mathbf{x}^\prime, h) = W(R, h) = \alpha_d
+    \left\{
+        \begin{aligned}
+            & (1 + 3R) (1 - R)^3 & \quad R \leq 1 \\
+            & 0 & \quad R > 1
+        \end{aligned}
+    \right.
+\end{equation}
+where $\alpha_d$ is $5/4 h$, $5/\pi h^2$ and $105/16\pi h^3$ in one-, two- and three-dimensional space, respectively.
+
+Apply the Taylor series expansion of $f(\mathbf{x}^\prime)$ in the vicinty of $\mathbf{x}$ yields
+\begin{align}
+    f(\mathbf{x}^\prime) =& f(\mathbf{x}) + f^\prime(\mathbf{x}) (\mathbf{x}^\prime  - \mathbf{x}) + \dfrac12 f^{\prime\prime}(\mathbf{X}) (\mathbf{x}^\prime  - \mathbf{x})^2 + \dots \nonumber \\
+    =& \sum_{k=0}^n \dfrac{(-1)^k h^k f^{(k)}(\mathbf{x})}{k!} \left( \dfrac{\mathbf{x} - \mathbf{x}^\prime}{h} \right)^k + r_n\left( \dfrac{\mathbf{x} - \mathbf{x}^\prime}{h} \right)
+\end{align}
+
+\end{document}
