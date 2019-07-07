@@ -764,4 +764,37 @@
 
     From the lemma, it is obvious that the collection of equations $\delta \bm{\Phi} = 0$ is equivalent to the D'Alembert-Lagrange equation.
 
+    \section{Linearization of oscillations}
+    \subsection{Equilibrium positions}
+    \begin{definition}
+        A point $\mathbf{x}_0$ is called an \emph{equilibrium positions} of the system
+        \begin{equation*}
+            \dfrac{\mathrm{d} \mathbf{x}}{\mathrm{d} t} = \mathbf{f}(\mathbf{x}), \quad \mathbf{x} \in \mathbb{R}^n
+        \end{equation*}
+        if $\mathbf{x}(t) \equiv \mathbf{x}_0$ is a solution of this system.
+    \end{definition}
+
+    \begin{theorem}
+        The point $\mathbf{q} = \mathbf{q}_0$, $\dot{\mathbf{q}} = \dot{\mathbf{q}}_0$ will be an equilibrium position if and only if $\dot{\mathbf{q}}_0 = 0$ and $\mathbf{q}_0$ is a critical point of the potential energy
+        \begin{equation*}
+            \left. \dfrac{\partial U}{\partial \mathbf{q}} \right|_{\mathbf{q}_0} = 0
+        \end{equation*}
+    \end{theorem}
+    \begin{proof}
+        Write down Lagrange's equations
+        \begin{equation*}
+            \dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial T}{\partial \dot{\mathbf{q}}} = \dfrac{\partial T}{\partial \mathbf{q}} - \dfrac{\partial U}{\partial \mathbf{q}}
+        \end{equation*}
+        For $\dot{\mathbf{q}} = 0$, we will have $\dfrac{\partial T}{\partial \mathbf{q}} = 0$ and $\dfrac{\partial T}{\partial \dot{\mathbf{q}}} = 0$. Therefore, $\mathbf{q} = \mathbf{q}_0$ is a solution and only holds in that case.
+    \end{proof}
+
+    \section{Stability of equilibrium positions}
+    \begin{theorem}
+        If the point $\mathbf{q}_0$ is strict local minimum of the potential energy $U$, then the equilibrium $\mathbf{q} = \mathbf{q}_0$ is stable in the sense of Liapunov.
+    \end{theorem}
+    \begin{proof}
+        Let $U(\mathbf{q}_0) = h$. For sufficiently small $\varepsilon > 0$, the connected component of the set $\{ \mathbf{q}:U(\mathbf{q}) \leq h + \varepsilon \}$ containing $\mathbf{q}_0$ will be an arbitrarily small neighborhood of the corresponding region in phase space $\mathbf{p}$, $\mathbf{q}$, $\{ \mathbf{p}, \mathbf{q}: E(\mathbf{p}, \mathbf{q}) \leq h + \varepsilon \}$, (where $\mathbf{p} = \dfrac{\partial T}{\partial \dot{\mathbf{q}}}$ is the momentum and $E = T + U$ is the total energy) will be an arbitrarily small neighborhood of the point $\mathbf{p} = 0$, $\mathbf{q} = \mathbf{q}_0$. But the region $\{\mathbf{p}, \mathbf{q}: E \leq h + \varepsilon\}$ is invariant with respect to the phase flow by the law of conservation of energy. Therefore, for initial conditions $\mathbf{p}(0)$, $\mathbf{q}(0)$ close enough to $(0, \mathbf{q}_0)$, every phase trajectory $(\mathbf{p}(t), \mathbf{q}(t))$ is close to $(0, \mathbf{q}_0)$.
+    \end{proof}
+
+    It seems likely that in an analytic system with $n$ degrees of freedom, an equilibrium position which is not a minimum point is unstable, but this has never been proved for $n>2$.
 \end{document}
