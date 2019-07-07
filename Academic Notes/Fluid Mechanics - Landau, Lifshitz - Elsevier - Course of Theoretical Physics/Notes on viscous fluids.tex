@@ -1,0 +1,137 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{tikz}
+\ifCLASSOPTIONcompsoc
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\else
+\usepackage[caption=false,font=footnotesize]{subfig}
+\fi
+
+\newtheorem{theorem}{Theorem}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem{exmp}{Example}
+ 
+\newtheorem{corollary}{Corollary}
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+\allowdisplaybreaks
+
+\begin{document}
+    \title{Notes on viscous fluids}
+
+    \author{\IEEEauthorblockN{Zisheng Ye}}
+
+    \maketitle
+
+    \section{THe equations of motion of a viscous fluid}
+
+    The effect of energy dissipation occurs during the motion of a fluid, on that motion itself. This process is the result of the thermodynamic irreversibility of the motion. This irreversibility always occurs to some extent, and is due to internal friction (viscosity) and thermal conduction.
+
+    In order to obtain the equations describing the motion of a viscous fluid, some additional terms in the equation of motion of an ideal fluid have to be included. The equation of continuity, as seen from its derivation, is equally valid for any fluid, whether viscous or not. Euler's equation, on the other hand, requires modification.
+
+    The Euler's equation can be written in the form
+    \[
+        \dfrac{\partial}{\partial t} (\rho v_i) = -\dfrac{\partial \Pi_{ik}}{\partial x_k}
+    \]
+    where $\Pi_{ik}$ is the momentum flux density tensor. Previously, the momentum flux represents a completely reversible transfer of momentum, due simply to the mechanical transport of the different particles of fluid from place to place and to the pressure forces acting in the fluid. The viscosity (internal friction) causes another, irreversible, transfer of momentum from points where the velocity is large to those where it is small.
+
+    The equation of motion of a viscous fluid may therefore be obtained by adding a term - $\sigma^\prime_{ik}$ which gives the irreversible "viscous" transfer of momentum in the fluid. Thus we write the momentum flux density tensor in a viscous fluid in the form
+    \begin{equation}
+        \Pi_{ik} = p\delta_{ik} + \rho v_i v_k - \sigma^\prime_{ik} = -\sigma_{ik} + \rho v_i v_j
+    \end{equation}
+    The tensor
+    \begin{equation}
+        \sigma_{ik} = -p\delta_{ik} + \sigma^\prime_{ik}
+    \end{equation}
+    is called the \emph{stress tensor}, and $\sigma^\prime_{ik}$ the \emph{viscous stress tensor}. $\sigma_{ik}$ gives the part of the momentum flux that is not due to the direct transfer of momentum with the mass of moving fluid.
+
+    Processes of internal friction occur in a fluid only when different fluid particles move with different velocities, so that there is a relative motion between various parts of the fluid. Hence $\sigma^\prime_{ik}$ must depend on the space derivatives of the velocity. If the velocity gradients are small, we may suppose that the momentum transfer due to viscosity depends only on the first derivatives of the velocity. To the same approximation, $\sigma^\prime_{ik}$ may be supposed a linear function of the derivatives $\partial v_i / \partial x_k$. There can be no terms in $\sigma^\prime_{ik}$ independent of $\partial v_i / \partial x_k$, since $\sigma^\prime_{ik}$ must vanish for $\mathbf{v} = \text{constant}$. Next, we notice that $\sigma^\prime_{ik}$ must also vanish when the whole fluid is in uniform rotation, since it is clear that in such a motion no internal friction occurs in the fluid. In uniform rotation with angular velocity $\boldsymbol{\omega}$, the velocity $\mathbf{v}$ is equal to the vector product $\boldsymbol{\omega} \times \mathbf{r}$. The sums
+    \[
+        \dfrac{\partial v_i}{\partial x_k} + \dfrac{\partial v_k}{\partial x_i}
+    \]
+    are linear combinations of the derivatives $\partial {v_i} / \partial x_k$, and vanish when $\mathbf{v} = \boldsymbol{\omega} \times \mathbf{r}$. Hence $\sigma^\prime_{ik}$ must contain just these symmetrical combinations of the derivatives $\partial v_i / \partial x_k$.
+
+    The most general tensor of rank two satisfying the above conditions is 
+    \begin{equation}
+        \sigma^\prime_{ik} = \eta \left( \dfrac{\partial v_i}{\partial x_k} + \dfrac{\partial v_k}{\partial x_i} - \dfrac23 \delta_{ik} \dfrac{\partial v_l}{\partial x_l} \right) + \zeta \delta_{ik} \dfrac{\partial v_l}{\partial x_l}
+    \end{equation}
+    with coefficients $\eta$ and $\zeta$ independent of the velocity. In making this statement, the fluid is isotropic, as a result of which its properties must be described by scalar quantities only. The terms here are arranged so that the expression in parentheses has the property of vanishing on contraction with respect to $i$ and $k$. The constants $\eta$ and $\zeta$ are called \emph{coefficients of viscosity}, and $\zeta$ often the \emph{second viscosity}. These two coefficients are both postive.
+
+    The equations of motion of a viscous fluid can now be obtained by simply adding the expressions $\partial \sigma^\prime_{ik} / \partial x_k$ to the right-hand side of Euler's equation
+    \begin{align}
+        & \rho \left( \dfrac{\partial v_i}{\partial t} + v_k \dfrac{\partial v_i}{\partial x_k} \right) = -\dfrac{\partial p}{\partial x_i} + \dfrac{\partial}{\partial x_i} \left( \zeta \dfrac{\partial v_l}{\partial x_l} \right) \nonumber \\ 
+        & \quad + \dfrac{\partial}{\partial x_k} \left\{ \eta \left( \dfrac{\partial v_i}{\partial x_k} + \dfrac{\partial v_k}{\partial x_i} -\dfrac23 \delta_{ik} \dfrac{\partial v_l}{\partial x_l} \right) \right\}
+        \label{eq:navier_stokes_index}
+    \end{align}
+    This is the most general form of the equations of motion of a viscous fluid. The quantities $\eta$ and $\zeta$ are functions of pressure and temperature. In general, $p$ and $T$, and therefore the fluid, so that $\eta$ and $\zeta$ cannot be taken outside the gradient operator.
+
+    In most cases, however, the viscosity coefficients do not change noticeably in the fluid, and they may be regarded as constant. We then have equation \ref{eq:navier_stokes_index}, in vector form, as
+    \begin{align}
+        \rho \left[ \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \textbf{grad}) \mathbf{v} \right] =& -\textbf{grad} \ p + \eta \Delta \mathbf{v} \nonumber \\
+        & + (\zeta + \dfrac13 \eta) \textbf{grad} \ \text{div} \ \mathbf{v}
+        \label{eq:navier_stokes_vector}
+    \end{align}
+    This is called the \emph{Navier-Stokes equation}. It becomes considerably simpler if the fluid may be regarded as incompressible, so that $\textbf{div} \ \mathbf{v} = 0$, and the last term on the right of \ref{eq:navier_stokes_vector} is zero. In discussing viscous fluids, we shall always regard them as incompressible, and accordingly use the equation of motion in the form
+    \begin{equation}
+        \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \textbf{grad}) \mathbf{v} = -\dfrac1\rho \textbf{grad} \ p + \dfrac{\eta}{\rho} \Delta \mathbf{v}
+        \label{eq:ns_impressible}
+    \end{equation}
+    The stress tensor in an incompressible fluid takes the simple form
+    \begin{equation}
+        \sigma_{ik} = - p \delta_{ik} + \eta \left( \dfrac{\partial v_i}{\partial x_k} + \dfrac{\partial v_k}{\partial x_i} \right)
+    \end{equation}
+
+    The viscosity of an incompressible fluid is determined by only one coefficient. Since most fluids may be regarded as pratically incompressible, it is this coefficient $\eta$ which is generally of importance. The ratio
+    \[
+        \nu = \dfrac{\eta}{\rho}
+    \]
+    is called the \emph{kinematic viscosity} (while $\eta$ itself is called the \emph{dynamic viscosity}). The pressure can be eliminated in \ref{eq:ns_impressible} in the same way as from Euler's equation and by taking the curl of both sides, 
+    \[
+        \dfrac{\partial}{\partial t} (\textbf{curl} \ \mathbf{v}) = \textbf{curl} (\mathbf{v} \times \textbf{curl} \ \mathbf{v}) + \nu \Delta (\textbf{curl} \  \mathbf{v})
+    \]
+    Since the fluid is incompressible, the equation can be transformed by expanding product in the first term on the right and using the equation $\text{div} \ \mathbf{v} = 0$
+    \begin{align}
+        \dfrac{\partial}{\partial t} (\textbf{curl} \ \mathbf{v}) =& \mathbf{v} \text{div} (\textbf{curl}\ \mathbf{v}) - (\mathbf{v}\cdot \textbf{grad}) \textbf{curl} \ \mathbf{v} \nonumber \\
+        &- \textbf{curl} \ \mathbf{v} \text{div} \ \mathbf{v} + (\textbf{curl} \ \mathbf{v} \cdot \textbf{grad}) \mathbf{v} \nonumber \\
+        &+ \nu \Delta \textbf{curl} \ \mathbf{v} \nonumber \\
+        \dfrac{\partial}{\partial t} (\textbf{curl} \ \mathbf{v}) +& (\mathbf{v}\cdot \textbf{grad}) \textbf{curl} \ \mathbf{v} - (\textbf{curl} \ \mathbf{v} \cdot \textbf{grad}) \mathbf{v} \nonumber \\
+        =& \nu \Delta \textbf{curl} \ \mathbf{v}
+    \end{align}
+
+    When the velocity distribution is known, the pressure distribution in the fluid can be recovered by solving the Poisson-type equation:
+    \begin{equation}
+        \Delta p = -\rho \dfrac{\partial v_i}{\partial x_k} \dfrac{\partial v_k}{\partial x_i} = -\rho \dfrac{\partial^2 v_iv_k}{\partial x_i \partial x_k}
+    \end{equation}
+
+    Then consider the boundary condition on the equations of motion of a viscous fluid. There are always forces of attraction between a viscous fluid and the surface of solid body, and these forces have the result that the layer of fluid immediately adjacent to the surface is brought completely to rest and "adheres" tothe surface. Accordingly, the boundary conditions on the equations of motion of a viscous fluid require that the fluid velocity should vanish at fixed solid surfaces
+    \begin{equation}
+        \mathbf{v} = 0
+    \end{equation}
+
+    It is emphasized that both the normal and tangential velocity component must vanish.
+
+    In the general case of a moving surface, the velocity $\mathbf{v}$ must be equal to the velocity of the surface.
+
+    It is easy to write down an expression for the force acting on a solid surface bounding the fluid. The force acting on an element of the surface is just the momentum flux through this element. The momentum flux through the surface element $\mathrm{d} \mathbf{f}$ is
+    \[
+        \Pi_{ik} \mathrm{d} f_k = (\rho v_i v_k - \sigma_{ik}) \mathrm{d} f_k
+    \]
+
+    In determining the force acting on the surface, each surface element must be considered in a frame of reference in which it is at rest. The force is equal to the momentum flux only when the surface is fixed. Writing $\mathrm{d} f_k$ in the form $\mathrm{d} f_k = n_k \mathrm{d} f$, where $\mathbf{n}$ is a unit vector along the normal, and recalling that $\mathbf{v} = 0$ at a solid surface, we find that the force $\mathbf{P}$ acting on unit surface area is
+    \begin{equation}
+        P_i = -\sigma_{ik} n_k = p n_i - \sigma^\prime_{ik} n_k
+    \end{equation}
+    The first term is the ordinary pressure of the fluid, while the second is the force of friction, due to the viscosity, acting on the surface. We must emphssize that $\mathbf{n}$ above is a unit vector along the outward normal to the fluid, along the inward normal to the solid surface.
+\end{document}

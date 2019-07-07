@@ -1,0 +1,259 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{tikz}
+\ifCLASSOPTIONcompsoc
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\else
+\usepackage[caption=false,font=footnotesize]{subfig}
+\fi
+
+\newtheorem{theorem}{Theorem}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem{exmp}{Example}
+ 
+\newtheorem{corollary}{Corollary}
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+\allowdisplaybreaks
+
+\begin{document}
+    \title{Notes on ideal fluids}
+
+    \author{\IEEEauthorblockN{Zisheng Ye}}
+
+    \maketitle
+
+    \section{The equation of continuity}
+    
+    \emph{Fluid dynamics} concerns itself the study of the motion of fluids (liquids and gases). Fluid is regarded as continuous medium and its phenomena are considered in macro scope. Therefore, any small volume element in the fluid is supposed so large that it still contains a very great number of molecules. Accordingly, infinitely small elements of volume means \emph{physically} infinitely small.
+
+    The mathematical description of the state of a moving fluid is effected by means of functions which give the distribution of the fluid velocity $\mathbf{v} = \mathbf{v}(x, y, z, t)$ and of any two thermodynamic quantities pertaining the fluid, for instance the pressure $p(x, y, z, t)$ and the density $\rho(x, y, z, t)$. All the thermodynamic quantities are determined by the values of any two of them, together with the equation of state; hence, if we are given five quantities, the three components of the velocity $\mathbf{v}$, the pressure $p$ and the density $\rho$, the state of the moving fluid is completely determined.
+
+    All these quantities are, in general, functions of the coordinates $x$, $y$, $z$ and of the time $t$. $\mathbf{v}(x, y, z, t)$ is the velocity of the fluid at a given point $(x, y, z)$ in space and at a given time $t$. It refers to fixed points in space and not to specific particles of the fluid; in the course of time, the latter move about in space. THe same remarks apply to $p$ and $\rho$.
+
+    Begin with the equation which express the conservation of matter. Consider some volume $V_0$ of space. The mass of fluid in this volume is $\int \rho \mathrm{d} V$, where $\rho$ is the fluid density, and the integration is taken over the volume $V_0$. The mass of fluid flowing in unit time through an element $\mathrm{d} \mathbf{f}$ of the surface bounding this volume is $\rho \mathbf{v} \cdot \mathrm{d} \mathbf{f}$; the magnitude of the vector $\mathrm{d} \mathbf{f}$ is equal to the area of the surface element, and its direction is along the normal. By convention, take $\mathrm{d} \mathbf{f}$ along the outward normal. Then $\rho \mathbf{v} \cdot \mathrm{d} \mathbf{f}$ is positive if the fluid is flowing out of the volume, and negative if the flow is into the volume. The total mass of
+    \[
+        \oint \rho \mathbf{v} \cdot \mathrm{d} \mathbf{f}
+    \]
+    where the integration is taken over the whole of the closed surface surrounding the volume in question.
+
+    Then, the decrease per unit time in the mass of the fluid in the volume $V_0$ can be written
+    \[
+        -\dfrac{\partial}{\partial t} \int \rho \ \mathrm{d} V
+    \]
+    Equating the two expression, we have
+    \[
+        \dfrac{\partial}{\partial t} \int \rho \ \mathrm{d} V = - \oint \rho \mathbf{v} \cdot \mathrm{d} \mathbf{f}
+    \]
+    The surface integral can be transformed by Green's formula to a volume integral:
+    \[
+        \oint \rho \mathbf{v} \cdot \mathrm{d} \mathbf{f} = \int \mathrm{div} (\rho \mathbf{v}) \ \mathrm{d} V
+    \]
+    Thus,
+    \[
+        \int \left[ \dfrac{\partial \rho}{\partial t} + \mathrm{div} (\rho \mathbf{v}) \right] \mathrm{d} V = 0
+    \]
+    Since this equation must hold for any volume, the integration must vanish, i.e.
+    \begin{equation}
+        \dfrac{\partial \rho}{\partial t} + \mathrm{div} (\rho \mathbf{v}) = \dfrac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0
+        \label{eq:continuity}
+    \end{equation}
+    This is the \emph{equation of continuity}. Expanding the expression $\text{div} (\rho \mathbf{v})$,
+    \begin{equation}
+        \dfrac{\partial \rho}{\partial t} + \rho \text{div} \mathbf{v} + \mathbf{v} \cdot \textbf{grad} \rho = 0
+    \end{equation}
+    The vector
+    \begin{equation}
+        \mathbf{j} = \rho \mathbf{v}
+    \end{equation}
+    is called the \emph{mass flux density}. Its direction is that of the motion of the fluid, while its magnitude equals the mass of fluid flowing in unit time through unit area perpendicular to the velocity.
+
+    \section{Euler's equation}
+    The toal force acting on the volume in the fluid is equal to the integral
+    \[
+        -\oint p \ \mathrm{d} \mathbf{f}
+    \]
+    of the pressure, taken over the surface bounding the volume. Transforming it to a volume integral,
+    \[
+        -\oint p \ \mathrm{d} \mathbf{f} = - \int \textbf{grad} \ p \ \mathrm{d} V
+    \]
+    Hence, the fluid surrounding any volume element $\mathrm{d} V$ exerts on the element a force $-\mathrm{d} V \textbf{grad} p$. In other words, we can say that the force $-\textbf{grad} \ p$ acts on unit volume of the fluid.
+
+    Write down the equation of motion of a volume element in the fluid by equating the force $-\mathbf{grad} \ p$ to the product of the mass per unit volume $(\rho)$ and the accleration $\mathrm{d} \mathbf{v} / \mathrm{d} t$:
+    \begin{equation}
+        \rho \dfrac{\mathrm{d} \mathbf{v}}{\mathrm{d} t} = -\textbf{grad} \ p
+        \label{eq:force}
+    \end{equation}
+
+    The derivative $\mathrm{d} \mathbf{v} / \mathrm{d} t$ which appears here denotes not the rate of change of the fluid velocity at a fixed point in space, but the rate of change of the velocity of a given fluid particle as it moves about in space. This derivative has to be expressed in terms of quantities referring to points fixed in space. The change $\mathrm{d} \mathbf{v}$ in the velocity of the given fluid particle during the time $\mathrm{d} t$ is composed of two parts, the change during $\mathrm{d} t$ in the velocity at a point fixed in space, and the difference between the velocities (at that instant) at two points $\mathrm{d} \mathbf{r}$ apart, where $\mathbf{r}$ is the distance moved by given fluid particle during the time $\mathrm{d} t$. The first part is $(\partial \mathbf{v} / \partial t) \mathrm{d} t$, where the derivative $\partial \mathbf{v} / \partial t$ is taken for constant $x$, $y$, $z$, i.e. at the given point in space. The second part is
+    \[
+        \mathrm{d} x \dfrac{\partial \mathbf{v}}{\partial x} + \mathrm{d} y \dfrac{\partial \mathbf{v}}{\partial y} + \mathrm{d} z \dfrac{\partial \mathbf{v}}{\partial z} = (\mathrm{d} \mathbf{r} \cdot \textbf{grad}) \mathbf{v}
+    \]
+    Thus
+    \[
+        \mathrm{d} \mathbf{v} = \dfrac{\partial \mathbf{v}}{\partial t} \mathrm{d} t + (\mathrm{d} \mathbf{r} \cdot \textbf{grad}) \mathbf{v}
+    \]
+    or, dividing both sides by $\mathrm{d} t$,
+    \[
+        \dfrac{\mathrm{d} \mathbf{v}}{\mathrm{d} t} = \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \textbf{grad}) \mathbf{v}
+    \]
+    Substituting in \ref{eq:force},
+    \begin{equation}
+        \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \textbf{grad}) \mathbf{v} = -\dfrac1\rho \textbf{grad}\ p
+        \label{eq:euler_equation}
+    \end{equation}
+    It is called \emph{Euler's equation} and is one of the fundamental equations of fluid dynamics.
+
+    If the fluid is in the gravitational field, an additional force $\rho \mathbf{g}$, where $\mathbf{g}$ is the acceleration due to gravity, acts on any unit volume. This force must be added to the right-hand side of equation \ref{eq:force}, so that equation \ref{eq:euler_equation} takes the form
+    \begin{equation}
+        \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \textbf{grad}) \mathbf{v} = -\dfrac1\rho \textbf{grad}\ p + \mathbf{g}
+        \label{eq:euler_equation_gravitational}
+    \end{equation}
+
+    Here, it is taken no account of processes of energy dissipation, which may occur in a moving fluid in consequence of internal friction (viscosity) in the fluid and heat exchange between different parts of it. Thermal conductivity and viscosity are unimportant in current setting and such fluids are said to be \emph{idea}.
+
+    The absence of heat exchange between different parts of the fluid (and also, of course, between the fluid and bodies adjoining it) means that the motion is adiabatic throughout the fluid. Thus the motion of an ideal fluid must necessarily be supposed adiabatic.
+
+    In adiabatic motion the entropy of any particle of fluid remains constant as that particle moves about in space. Denoting by $s$ the entropy per unit mass, the condition for adiabatic motion can be  expressed as
+    \begin{equation}
+        \dfrac{\mathrm{d} s}{\mathrm{d} t} = 0
+    \end{equation}
+    where the total derivative with respect to time denotes the rate of change of entropy for a given fluid particle as it moves about. This condition can be written as
+    \begin{equation}
+        \dfrac{\partial s}{\partial t} + \mathbf{v} \cdot \textbf{grad} \ s = 0
+    \end{equation}
+    This is the general equation describing adiabatic motion of an ideal fluid. Using \ref{eq:continuity}, it can be written as an \emph{equation of continuity} for entropy:
+    \begin{align}
+        & \rho \left(\dfrac{\partial s}{\partial t} + \mathbf{v} \cdot \textbf{grad} \ s \right) + s \left(\dfrac{\partial \rho}{\partial t} + \text{div} (\rho \mathbf{v}) \right) \nonumber \\
+        =& \dfrac{\partial (\rho s)}{\partial t} + \text{div} (\rho s \mathbf{v}) = 0
+    \end{align}
+    The product $\rho s \mathbf{v}$ is the \emph{entropy flux density}.
+
+    The adiabatic equation usually takes a much simpler form. If, as usually happens, the entropy is constant throughout thr volume of the fluid at some initial instant, it retains everywhere the same constant value at all times and for any subsequent motion of the fluid. The adiabatic equation can be simply written as
+    \begin{equation}
+        s = \text{constant}
+    \end{equation}
+    Such a motion is said to be \emph{isentropic}.
+
+    By employing the thermodynamic relation
+    \[
+        \mathrm{d} w = T \mathrm{d} s + V \mathrm{d} p
+    \]
+    where $w$ is the heat function per unit mass of fluid (enthalpy), $V = 1 / \rho$ is the specific volume, and $T$ is the temperature. Since $s = \text{constant}$, we have simply
+    \[
+        \mathrm{d} w = V \mathrm{d} p = \mathrm{d} p / \rho
+    \]
+    and so
+    \[
+        \dfrac{\textbf{grad} \ p}{\rho} = \textbf{grad} \ w
+    \]
+    Equation \ref{eq:euler_equation} can therefore be written in the form
+    \begin{equation}
+        \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \textbf{grad}) \mathbf{v} = - \textbf{grad} \ w
+        \label{eq:euler_enthalpy}
+    \end{equation}
+    Using one formula in vector analysis
+    \[
+        \dfrac12 \textbf{grad} \ v^2 = \mathbf{v} \times \textbf{curl} \ \mathbf{v} + (\mathbf{v} \cdot \textbf{grad}) \mathbf{v}
+    \]
+    Then rewrite \ref{eq:euler_enthalpy} in the form
+    \begin{equation}
+        \dfrac{\partial \mathbf{v}}{\partial t} - \mathbf{v} \times \textbf{curl} \ \mathbf{v} = -\textbf{grad} (w + \dfrac12 v^2)
+    \end{equation}
+    Take the curl of both sides of this equation,
+    \begin{equation}
+        \dfrac{\partial}{\partial t} (\textbf{curl}\ \mathbf{v}) = \textbf{curl} (\mathbf{v} \times \textbf{curl} \ \mathbf{v})
+        \label{eq:euler_velocity}
+    \end{equation}
+    which involves only the velocity.
+
+    The equations of motion have to be supplemented by the boundary conditions that must be satisfied at the surfaces bounding the fluid. For an ideal fluid, the boundary condition is simply that the fluid cannot penetrate a solid surface. This means that the component of the fluid velocity normal to the bounding surface must vanish if that surface is at rest:
+    \begin{equation}
+        v_n = 0
+    \end{equation}
+    IN the general case of a moving surface, $v_n$ must be equal to the corresponding component of the velocity of the surface.
+
+    At a boundary between two immiscible fluids, the condition is that the pressure and the velocity component normal to the surface of separation must be the same for the two fluids, and each of these velocity components must be equal to the corresponding component of the velocity of the surface.
+
+    As stated previously, the state of a moving fluid is determined by five quantities: the three components of the velocity $\mathbf{v}$ and , for example, the pressure $p$ and the density $\rho$. Accordingly, a complete system of equations of fluid dynamics should be five in number. For an ideal fluid these are Euler's equations, the equation of continuity, and the adiabatic equation.
+
+    \section{Hydrostatics}
+    For a fluid at rest in a uniform gravitational field, Euler's equation \ref{eq:euler_equation_gravitational} takes the form
+    \begin{equation}
+        \textbf{grad} \ p = \rho \mathbf{g}
+        \label{eq:gravitational_field}
+    \end{equation}
+    This equation described the mechanical equilibrium of the fluid. This can be integrated immediately if the density of the fluid may be supposed constant throughout its volume. Taking the $z$-axis verticaly upward,
+    \[
+        \dfrac{\partial p}{\partial x} = \dfrac{\partial p}{\partial y} = 0, \quad \dfrac{\partial p}{\partial z} = -\rho g
+    \]
+    Hence
+    \[
+        p = - \rho g z + \text{contant}
+    \]
+    If the fluid at rest has a free surface at height $h$, to which a external pressure $p_0$, the same at every point, is applied, this surface must be the horizontal plane $z = h$. From the condition, $p = p_0$ for $z = h$, we find that the constant is $p_0 + \rho g h$, so that
+    \begin{equation}
+        p = p_0 + \rho g (h - z)
+    \end{equation}
+
+    For large masses of liquid, and for a gas, the density $\rho$ cannot in general be supposed constant; this applies especially to gases (for example, the atmosphere). Let us suppose that the fluid is not only in mechanical equilibrium but also in thermal equilibrium. Then the temperature is the same at every point, and equation \ref{eq:euler_equation_gravitational} can be integrated as follows. First use the thermodynamic relation
+    \[
+        \mathrm{d} \Phi = -s \mathrm{d} T + V \mathrm{d} p
+    \]
+    where $\Phi$ is the thermodynamic potential (Gibbs free energy) per unit mass. For constant temperature
+    \[
+        \mathrm{d} \Phi = V \mathrm{d} p = \mathrm{d} p / \rho
+    \]
+    Hence, the expression $(\textbf{grad} \ p) / \rho$ can be written in this case as $\textbf{grad} \ \Phi$, so that the equation of equilibrium takes the form
+    \[
+        \textbf{grad} \Phi = \mathbf{g}
+    \]
+    For a constant vector $\mathbf{g}$ directed along the negative $z$-axis,
+    \[
+        \mathbf{g} \equiv -\mathbf{grad} \ (gz)
+    \]
+    Thus
+    \[
+        \textbf{grad} \ (\Phi + gz) = 0
+    \]
+    hence we find that throughout the fluid
+    \[
+        \Phi + gz = \text{constant}
+    \]
+    $gz$ is the potential energy of unit mass of fluid in the gravitational field. This condition is known from statistical physics to be the condition for thermodynamic equilibrium of a system in an external field.
+
+    If a fluid is in mechanical equilibrium in a gravitational field, the pressure in it can be a function only of the altitude $z$ (since, if the pressure were different at different points with the same altitude, motion would result). It then follows that the density
+    \begin{equation}
+        \rho = -\dfrac1{g} \dfrac{\mathrm{d} p}{\mathrm{d} z}
+    \end{equation}
+    is also a function of $z$ only. THe pressure and density together determine the temperature, which is therefore again a function of $z$ only. Thus, in mechanical equilibrium in a gravitational field, the pressure, density and temperature distributions depend only on the altitude. If, for example, the temperature is different at different points with the same altitude, then mechanical equilibrium is impossible.
+
+    Finally, let us derive the equation of equilibrium for a very large mass of liquid, whose seperate parts are held together by gravitaitonal attraction - a star. Let $\phi$ be the Newtonian gravitational potential of the field due to the fluid. It statifies the differential equation
+    \begin{equation}
+        \Delta \phi = 4 \pi G \rho
+        \label{eq:newtonian_gravitational_potential}
+    \end{equation}
+    where $G$ is the Newtonian constant of gravitation. The gravitational acceleration is $-\textbf{grad} \ \phi$, and the force on a mass $\rho$ is $-\rho \textbf{grad} \ \phi$. The condition of equilibrium is therefore
+    \[
+        \textbf{grad} \ p = - \rho \textbf{grad} \ \phi
+    \]
+    Dividing both sides by $\rho$, taking the divergence of both sides, and using equation \ref{eq:newtonian_gravitational_potential},
+    \begin{equation}
+        \text{div} \left( \dfrac1\rho \textbf{grad} \ p \right) = -4\pi G\rho
+    \end{equation}
+    Here only concerns mechanical equilibrium and does not presuppose the existence of complete thermal equilibrium.
+
+    If the body is no rotating, it will be spherical when in equilibrium, and the density and pressure distributions will be spherically symmetrical. 
+\end{document}
