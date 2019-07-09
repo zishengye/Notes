@@ -79,13 +79,13 @@
 
     In most cases, however, the viscosity coefficients do not change noticeably in the fluid, and they may be regarded as constant. We then have equation \ref{eq:navier_stokes_index}, in vector form, as
     \begin{align}
-        \rho \left[ \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \textbf{grad}) \mathbf{v} \right] =& -\textbf{grad} \ p + \eta \Delta \mathbf{v} \nonumber \\
-        & + (\zeta + \dfrac13 \eta) \textbf{grad} \ \text{div} \ \mathbf{v}
+        \rho \left[ \dfrac{\partial \mathbf{v}}{\partial t} + \mathbf{v} \cdot \nabla \mathbf{v} \right] =& -\nabla p + \eta \Delta \mathbf{v} \nonumber \\
+        & + (\zeta + \dfrac13 \eta) \nabla (\nabla \cdot \mathbf{v})
         \label{eq:navier_stokes_vector}
     \end{align}
-    This is called the \emph{Navier-Stokes equation}. It becomes considerably simpler if the fluid may be regarded as incompressible, so that $\textbf{div} \ \mathbf{v} = 0$, and the last term on the right of \ref{eq:navier_stokes_vector} is zero. In discussing viscous fluids, we shall always regard them as incompressible, and accordingly use the equation of motion in the form
+    This is called the \emph{Navier-Stokes equation}. It becomes considerably simpler if the fluid may be regarded as incompressible, so that $\nabla \cdot \mathbf{v} = 0$, and the last term on the right of \ref{eq:navier_stokes_vector} is zero. In discussing viscous fluids, we shall always regard them as incompressible, and accordingly use the equation of motion in the form
     \begin{equation}
-        \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \textbf{grad}) \mathbf{v} = -\dfrac1\rho \textbf{grad} \ p + \dfrac{\eta}{\rho} \Delta \mathbf{v}
+        \dfrac{\partial \mathbf{v}}{\partial t} + \mathbf{v} \cdot \nabla \mathbf{v} = -\dfrac1\rho \nabla p + \dfrac{\eta}{\rho} \Delta \mathbf{v}
         \label{eq:ns_impressible}
     \end{equation}
     The stress tensor in an incompressible fluid takes the simple form
@@ -99,15 +99,15 @@
     \]
     is called the \emph{kinematic viscosity} (while $\eta$ itself is called the \emph{dynamic viscosity}). The pressure can be eliminated in \ref{eq:ns_impressible} in the same way as from Euler's equation and by taking the curl of both sides, 
     \[
-        \dfrac{\partial}{\partial t} (\textbf{curl} \ \mathbf{v}) = \textbf{curl} (\mathbf{v} \times \textbf{curl} \ \mathbf{v}) + \nu \Delta (\textbf{curl} \  \mathbf{v})
+        \dfrac{\partial}{\partial t} (\nabla \times \mathbf{v}) = \nabla \times (\mathbf{v} \times (\nabla \times \mathbf{v})) + \nu \Delta (\nabla \times \mathbf{v})
     \]
-    Since the fluid is incompressible, the equation can be transformed by expanding product in the first term on the right and using the equation $\text{div} \ \mathbf{v} = 0$
+    Since the fluid is incompressible, the equation can be transformed by expanding product in the first term on the right and using the equation $\nabla \cdot \mathbf{v} = 0$
     \begin{align}
-        \dfrac{\partial}{\partial t} (\textbf{curl} \ \mathbf{v}) =& \mathbf{v} \text{div} (\textbf{curl}\ \mathbf{v}) - (\mathbf{v}\cdot \textbf{grad}) \textbf{curl} \ \mathbf{v} \nonumber \\
-        &- \textbf{curl} \ \mathbf{v} \text{div} \ \mathbf{v} + (\textbf{curl} \ \mathbf{v} \cdot \textbf{grad}) \mathbf{v} \nonumber \\
-        &+ \nu \Delta \textbf{curl} \ \mathbf{v} \nonumber \\
-        \dfrac{\partial}{\partial t} (\textbf{curl} \ \mathbf{v}) +& (\mathbf{v}\cdot \textbf{grad}) \textbf{curl} \ \mathbf{v} - (\textbf{curl} \ \mathbf{v} \cdot \textbf{grad}) \mathbf{v} \nonumber \\
-        =& \nu \Delta \textbf{curl} \ \mathbf{v}
+        \dfrac{\partial}{\partial t} (\nabla \times \mathbf{v}) =& \mathbf{v} \nabla \cdot (\nabla \times \mathbf{v}) - \mathbf{v} \cdot \nabla (\nabla \times \mathbf{v}) \nonumber \\
+        &- (\nabla \times \mathbf{v}) \nabla \cdot \mathbf{v} + (\nabla \times \mathbf{v}) \cdot \nabla \mathbf{v} \nonumber \\
+        &+ \nu \Delta (\nabla \times \mathbf{v}) \nonumber \\
+        \dfrac{\partial}{\partial t} (\nabla \times \mathbf{v}) &+ \mathbf{v} \cdot \nabla (\nabla \times \mathbf{v}) -  (\nabla \times \mathbf{v}) \cdot \nabla \mathbf{v} \nonumber \\
+        =& \nu \Delta (\nabla \times \mathbf{v})
     \end{align}
 
     When the velocity distribution is known, the pressure distribution in the fluid can be recovered by solving the Poisson-type equation:
@@ -133,5 +133,48 @@
     \begin{equation}
         P_i = -\sigma_{ik} n_k = p n_i - \sigma^\prime_{ik} n_k
     \end{equation}
-    The first term is the ordinary pressure of the fluid, while the second is the force of friction, due to the viscosity, acting on the surface. We must emphssize that $\mathbf{n}$ above is a unit vector along the outward normal to the fluid, along the inward normal to the solid surface.
+    The first term is the ordinary pressure of the fluid, while the second is the force of friction, due to the viscosity, acting on the surface. It must be emphasized that $\mathbf{n}$ above is a unit vector along the outward normal to the fluid, along the inward normal to the solid surface.
+
+    If we have a surface of separation between two immiscible fluids, the conditions at the surface are that the velocities of the fluids must be equal and the forces which they exert on each other must be equal and opposite. The latter condition is written
+    \[
+        n_{1, k} \sigma_{1, ik} + n_{2, k} \sigma_{2, ik} = 0
+    \]
+    where the suffixes 1, 2 refer to the two fluids. The normal vecttor $\mathbf{n}_1$ and $\mathbf{n}_2$ are in opposite directions, $\mathbf{n}_1 = -\mathbf{n}_2$, so that it can be written
+    \begin{equation}
+        n_k \sigma_{1, ik} = n_k \sigma{2, ik}
+    \end{equation}
+    At a free surface of the fluid the condition
+    \begin{equation}
+        \sigma_{ik} n_{k}  \equiv \sigma_{ik}^\prime n_k - p n_i = 0
+    \end{equation}
+    must hold.
+
+    In cylindrical polar coordinates $r, \phi, z$ the components of the stress tensor are
+    \begin{align}
+        \sigma_{rr} =& -p + 2 \eta \dfrac{\partial v_r}{\partial r} \nonumber \\
+        \sigma_{r\phi} =& \eta \left( \dfrac1r \dfrac{\partial v_r}{\partial \phi} + \dfrac{\partial v_\phi}{\partial r} - \dfrac{v_\phi}{r} \right)\nonumber \\
+        \sigma_{\phi\phi} =& -p + 2\eta \left( \dfrac{1}{r} \dfrac{\partial v_{\phi}}{\partial \phi} + \dfrac{v_r}{r} \right) \nonumber \\
+        \sigma_{\phi z} =& \eta \left( \dfrac{\partial v_\phi}{z} + \dfrac1r \dfrac{\partial v_z}{\partial \phi} \right) \nonumber \\
+        \sigma_{zz} =& -p + 2\eta \dfrac{\partial v_z}{\partial z} \nonumber \\
+        \sigma_{zr} =& \eta \left( \dfrac{\partial v_z}{\partial r} + \dfrac{\partial v_r}{\partial z} \right)
+    \end{align}
+
+    \section{Energy dissipation in an incompressible fluid}
+    The presence of viscosity results in the dissipation of energy, which is finally transformed into heat. The calculation of the energy dissipation is especially simple for an incompressible fluid.
+
+    THe total kinetic energy of an incompressible fluid is
+    \[
+        E_{\text{kin}} = \dfrac12 \rho \int v^2 \mathrm{d} V
+    \]
+    Take the time derivative of this energy and substituting for $\dfrac{\partial v_i}{\partial t}$ the expression for it given by the Navier-Stokes equation:
+    \begin{equation*}
+        \dfrac{\partial v_i}{\partial t} = -v_k \dfrac{\partial v_i}{\partial x_k} - \dfrac1\rho \dfrac{\partial p}{\partial x_i} + \dfrac1\rho \dfrac{\partial \sigma^\prime_{ik}}{\partial x_k}
+    \end{equation*}
+    The result is
+    \begin{align*}
+        & \dfrac{\partial}{\partial t} \left( \dfrac12 \rho v^2 \right) \\
+        =& \rho \mathbf{v} \dfrac{\partial \mathbf{v}}{\partial t} \\
+        =& -\rho \mathbf{v} \cdot (\mathbf{v} \cdot \nabla \mathbf{v}) - \mathbf{v} \cdot \nabla p + \mathbf{v} \cdot \nabla \boldsymbol{\sigma}^\prime \\
+        =& -\rho \mathbf{v} \cdot \nabla \left(\dfrac12 v^2 + \dfrac{p}{\rho} \right) + \nabla \cdot (\mathbf{v} \cdot \boldsymbol{\sigma}^\prime) - \boldsymbol{\sigma}^\prime \cdot \nabla \mathbf{v}
+    \end{align*}
 \end{document}

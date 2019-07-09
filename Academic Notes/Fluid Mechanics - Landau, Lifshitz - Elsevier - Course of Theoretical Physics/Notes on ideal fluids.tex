@@ -59,20 +59,20 @@
     \]
     The surface integral can be transformed by Green's formula to a volume integral:
     \[
-        \oint \rho \mathbf{v} \cdot \mathrm{d} \mathbf{f} = \int \mathrm{div} (\rho \mathbf{v}) \ \mathrm{d} V
+        \oint \rho \mathbf{v} \cdot \mathrm{d} \mathbf{f} = \int \nabla \cdot (\rho \mathbf{v}) \ \mathrm{d} V
     \]
     Thus,
     \[
-        \int \left[ \dfrac{\partial \rho}{\partial t} + \mathrm{div} (\rho \mathbf{v}) \right] \mathrm{d} V = 0
+        \int \left[ \dfrac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) \right] \mathrm{d} V = 0
     \]
     Since this equation must hold for any volume, the integration must vanish, i.e.
     \begin{equation}
-        \dfrac{\partial \rho}{\partial t} + \mathrm{div} (\rho \mathbf{v}) = \dfrac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0
+        \dfrac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0
         \label{eq:continuity}
     \end{equation}
     This is the \emph{equation of continuity}. Expanding the expression $\text{div} (\rho \mathbf{v})$,
     \begin{equation}
-        \dfrac{\partial \rho}{\partial t} + \rho \text{div} \mathbf{v} + \mathbf{v} \cdot \textbf{grad} \rho = 0
+        \dfrac{\partial \rho}{\partial t} + \rho \nabla \cdot \mathbf{v} + \mathbf{v} \cdot \nabla \rho = 0
     \end{equation}
     The vector
     \begin{equation}
@@ -87,38 +87,38 @@
     \]
     of the pressure, taken over the surface bounding the volume. Transforming it to a volume integral,
     \[
-        -\oint p \ \mathrm{d} \mathbf{f} = - \int \textbf{grad} \ p \ \mathrm{d} V
+        -\oint p \ \mathrm{d} \mathbf{f} = - \int \nabla p \ \mathrm{d} V
     \]
-    Hence, the fluid surrounding any volume element $\mathrm{d} V$ exerts on the element a force $-\mathrm{d} V \textbf{grad} p$. In other words, we can say that the force $-\textbf{grad} \ p$ acts on unit volume of the fluid.
+    Hence, the fluid surrounding any volume element $\mathrm{d} V$ exerts on the element a force $-\mathrm{d} V \nabla p$. In other words, we can say that the force $-\nabla p$ acts on unit volume of the fluid.
 
-    Write down the equation of motion of a volume element in the fluid by equating the force $-\mathbf{grad} \ p$ to the product of the mass per unit volume $(\rho)$ and the accleration $\mathrm{d} \mathbf{v} / \mathrm{d} t$:
+    Write down the equation of motion of a volume element in the fluid by equating the force $-\nabla p$ to the product of the mass per unit volume $(\rho)$ and the accleration $\mathrm{d} \mathbf{v} / \mathrm{d} t$:
     \begin{equation}
-        \rho \dfrac{\mathrm{d} \mathbf{v}}{\mathrm{d} t} = -\textbf{grad} \ p
+        \rho \dfrac{\mathrm{d} \mathbf{v}}{\mathrm{d} t} = -\nabla p
         \label{eq:force}
     \end{equation}
 
     The derivative $\mathrm{d} \mathbf{v} / \mathrm{d} t$ which appears here denotes not the rate of change of the fluid velocity at a fixed point in space, but the rate of change of the velocity of a given fluid particle as it moves about in space. This derivative has to be expressed in terms of quantities referring to points fixed in space. The change $\mathrm{d} \mathbf{v}$ in the velocity of the given fluid particle during the time $\mathrm{d} t$ is composed of two parts, the change during $\mathrm{d} t$ in the velocity at a point fixed in space, and the difference between the velocities (at that instant) at two points $\mathrm{d} \mathbf{r}$ apart, where $\mathbf{r}$ is the distance moved by given fluid particle during the time $\mathrm{d} t$. The first part is $(\partial \mathbf{v} / \partial t) \mathrm{d} t$, where the derivative $\partial \mathbf{v} / \partial t$ is taken for constant $x$, $y$, $z$, i.e. at the given point in space. The second part is
     \[
-        \mathrm{d} x \dfrac{\partial \mathbf{v}}{\partial x} + \mathrm{d} y \dfrac{\partial \mathbf{v}}{\partial y} + \mathrm{d} z \dfrac{\partial \mathbf{v}}{\partial z} = (\mathrm{d} \mathbf{r} \cdot \textbf{grad}) \mathbf{v}
+        \mathrm{d} x \dfrac{\partial \mathbf{v}}{\partial x} + \mathrm{d} y \dfrac{\partial \mathbf{v}}{\partial y} + \mathrm{d} z \dfrac{\partial \mathbf{v}}{\partial z} = \mathrm{d} \mathbf{r} \cdot \nabla \mathbf{v}
     \]
     Thus
     \[
-        \mathrm{d} \mathbf{v} = \dfrac{\partial \mathbf{v}}{\partial t} \mathrm{d} t + (\mathrm{d} \mathbf{r} \cdot \textbf{grad}) \mathbf{v}
+        \mathrm{d} \mathbf{v} = \dfrac{\partial \mathbf{v}}{\partial t} \mathrm{d} t + \mathrm{d} \mathbf{r} \cdot \nabla \mathbf{v}
     \]
     or, dividing both sides by $\mathrm{d} t$,
     \[
-        \dfrac{\mathrm{d} \mathbf{v}}{\mathrm{d} t} = \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \textbf{grad}) \mathbf{v}
+        \dfrac{\mathrm{d} \mathbf{v}}{\mathrm{d} t} = \dfrac{\partial \mathbf{v}}{\partial t} + \mathbf{v} \cdot \nabla \mathbf{v}
     \]
     Substituting in \ref{eq:force},
     \begin{equation}
-        \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \textbf{grad}) \mathbf{v} = -\dfrac1\rho \textbf{grad}\ p
+        \dfrac{\partial \mathbf{v}}{\partial t} + \mathbf{v} \cdot \nabla \mathbf{v} = -\dfrac1\rho \nabla p
         \label{eq:euler_equation}
     \end{equation}
     It is called \emph{Euler's equation} and is one of the fundamental equations of fluid dynamics.
 
     If the fluid is in the gravitational field, an additional force $\rho \mathbf{g}$, where $\mathbf{g}$ is the acceleration due to gravity, acts on any unit volume. This force must be added to the right-hand side of equation \ref{eq:force}, so that equation \ref{eq:euler_equation} takes the form
     \begin{equation}
-        \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \textbf{grad}) \mathbf{v} = -\dfrac1\rho \textbf{grad}\ p + \mathbf{g}
+        \dfrac{\partial \mathbf{v}}{\partial t} + \mathbf{v} \cdot \nabla \mathbf{v} = -\dfrac1\rho \nabla p + \mathbf{g}
         \label{eq:euler_equation_gravitational}
     \end{equation}
 
@@ -132,12 +132,12 @@
     \end{equation}
     where the total derivative with respect to time denotes the rate of change of entropy for a given fluid particle as it moves about. This condition can be written as
     \begin{equation}
-        \dfrac{\partial s}{\partial t} + \mathbf{v} \cdot \textbf{grad} \ s = 0
+        \dfrac{\partial s}{\partial t} + \mathbf{v} \cdot \nabla s = 0
     \end{equation}
     This is the general equation describing adiabatic motion of an ideal fluid. Using \ref{eq:continuity}, it can be written as an \emph{equation of continuity} for entropy:
     \begin{align}
-        & \rho \left(\dfrac{\partial s}{\partial t} + \mathbf{v} \cdot \textbf{grad} \ s \right) + s \left(\dfrac{\partial \rho}{\partial t} + \text{div} (\rho \mathbf{v}) \right) \nonumber \\
-        =& \dfrac{\partial (\rho s)}{\partial t} + \text{div} (\rho s \mathbf{v}) = 0
+        & \rho \left(\dfrac{\partial s}{\partial t} + \mathbf{v} \cdot \nabla s \right) + s \left(\dfrac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) \right) \nonumber \\
+        =& \dfrac{\partial (\rho s)}{\partial t} + \nabla \cdot (\rho s \mathbf{v}) = 0
     \end{align}
     The product $\rho s \mathbf{v}$ is the \emph{entropy flux density}.
 
@@ -157,24 +157,24 @@
     \]
     and so
     \[
-        \dfrac{\textbf{grad} \ p}{\rho} = \textbf{grad} \ w
+        \dfrac{\nabla p}{\rho} = \nabla w
     \]
     Equation \ref{eq:euler_equation} can therefore be written in the form
     \begin{equation}
-        \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \textbf{grad}) \mathbf{v} = - \textbf{grad} \ w
+        \dfrac{\partial \mathbf{v}}{\partial t} + \mathbf{v} \cdot \nabla \mathbf{v} = - \nabla w
         \label{eq:euler_enthalpy}
     \end{equation}
     Using one formula in vector analysis
     \[
-        \dfrac12 \textbf{grad} \ v^2 = \mathbf{v} \times \textbf{curl} \ \mathbf{v} + (\mathbf{v} \cdot \textbf{grad}) \mathbf{v}
+        \dfrac12 \nabla v^2 = \mathbf{v} \times (\nabla \times \mathbf{v}) + \mathbf{v} \cdot \nabla \mathbf{v}
     \]
     Then rewrite \ref{eq:euler_enthalpy} in the form
     \begin{equation}
-        \dfrac{\partial \mathbf{v}}{\partial t} - \mathbf{v} \times \textbf{curl} \ \mathbf{v} = -\textbf{grad} (w + \dfrac12 v^2)
+        \dfrac{\partial \mathbf{v}}{\partial t} - \mathbf{v} \times (\nabla \times \mathbf{v}) = -\nabla (w + \dfrac12 v^2)
     \end{equation}
     Take the curl of both sides of this equation,
     \begin{equation}
-        \dfrac{\partial}{\partial t} (\textbf{curl}\ \mathbf{v}) = \textbf{curl} (\mathbf{v} \times \textbf{curl} \ \mathbf{v})
+        \dfrac{\partial}{\partial t} (\nabla \times \mathbf{v}) = \nabla \times (\mathbf{v} \times (\nabla \times \mathbf{v}))
         \label{eq:euler_velocity}
     \end{equation}
     which involves only the velocity.
@@ -192,7 +192,7 @@
     \section{Hydrostatics}
     For a fluid at rest in a uniform gravitational field, Euler's equation \ref{eq:euler_equation_gravitational} takes the form
     \begin{equation}
-        \textbf{grad} \ p = \rho \mathbf{g}
+        \nabla p = \rho \mathbf{g}
         \label{eq:gravitational_field}
     \end{equation}
     This equation described the mechanical equilibrium of the fluid. This can be integrated immediately if the density of the fluid may be supposed constant throughout its volume. Taking the $z$-axis verticaly upward,
@@ -216,17 +216,17 @@
     \[
         \mathrm{d} \Phi = V \mathrm{d} p = \mathrm{d} p / \rho
     \]
-    Hence, the expression $(\textbf{grad} \ p) / \rho$ can be written in this case as $\textbf{grad} \ \Phi$, so that the equation of equilibrium takes the form
+    Hence, the expression $(\nabla p) / \rho$ can be written in this case as $\nabla \Phi$, so that the equation of equilibrium takes the form
     \[
-        \textbf{grad} \Phi = \mathbf{g}
+        \nabla \Phi = \mathbf{g}
     \]
     For a constant vector $\mathbf{g}$ directed along the negative $z$-axis,
     \[
-        \mathbf{g} \equiv -\mathbf{grad} \ (gz)
+        \mathbf{g} \equiv -\nabla (gz)
     \]
     Thus
     \[
-        \textbf{grad} \ (\Phi + gz) = 0
+        \nabla (\Phi + gz) = 0
     \]
     hence we find that throughout the fluid
     \[
@@ -245,13 +245,13 @@
         \Delta \phi = 4 \pi G \rho
         \label{eq:newtonian_gravitational_potential}
     \end{equation}
-    where $G$ is the Newtonian constant of gravitation. The gravitational acceleration is $-\textbf{grad} \ \phi$, and the force on a mass $\rho$ is $-\rho \textbf{grad} \ \phi$. The condition of equilibrium is therefore
+    where $G$ is the Newtonian constant of gravitation. The gravitational acceleration is $-\nabla \phi$, and the force on a mass $\rho$ is $-\rho \nabla \phi$. The condition of equilibrium is therefore
     \[
-        \textbf{grad} \ p = - \rho \textbf{grad} \ \phi
+        \nabla p = - \rho \nabla \phi
     \]
     Dividing both sides by $\rho$, taking the divergence of both sides, and using equation \ref{eq:newtonian_gravitational_potential},
     \begin{equation}
-        \text{div} \left( \dfrac1\rho \textbf{grad} \ p \right) = -4\pi G\rho
+        \nabla \cdot \left( \dfrac1\rho \nabla p \right) = -4\pi G\rho
     \end{equation}
     Here only concerns mechanical equilibrium and does not presuppose the existence of complete thermal equilibrium.
 
