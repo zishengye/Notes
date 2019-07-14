@@ -70,7 +70,7 @@
         \dfrac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0
         \label{eq:continuity}
     \end{equation}
-    This is the \emph{equation of continuity}. Expanding the expression $\text{div} (\rho \mathbf{v})$,
+    This is the \emph{equation of continuity}. Expanding the expression $\nabla \cdot (\rho \mathbf{v})$,
     \begin{equation}
         \dfrac{\partial \rho}{\partial t} + \rho \nabla \cdot \mathbf{v} + \mathbf{v} \cdot \nabla \rho = 0
     \end{equation}
@@ -81,7 +81,7 @@
     is called the \emph{mass flux density}. Its direction is that of the motion of the fluid, while its magnitude equals the mass of fluid flowing in unit time through unit area perpendicular to the velocity.
 
     \section{Euler's equation}
-    The toal force acting on the volume in the fluid is equal to the integral
+    The total force acting on the volume in the fluid is equal to the integral
     \[
         -\oint p \ \mathrm{d} \mathbf{f}
     \]
@@ -122,7 +122,7 @@
         \label{eq:euler_equation_gravitational}
     \end{equation}
 
-    Here, it is taken no account of processes of energy dissipation, which may occur in a moving fluid in consequence of internal friction (viscosity) in the fluid and heat exchange between different parts of it. Thermal conductivity and viscosity are unimportant in current setting and such fluids are said to be \emph{idea}.
+    Here, it is taken no account of processes of energy dissipation, which may occur in a moving fluid in consequence of internal friction (viscosity) in the fluid and heat exchange between different parts of it. Thermal conductivity and viscosity are unimportant in current setting and such fluids are said to be \emph{ideal}.
 
     The absence of heat exchange between different parts of the fluid (and also, of course, between the fluid and bodies adjoining it) means that the motion is adiabatic throughout the fluid. Thus the motion of an ideal fluid must necessarily be supposed adiabatic.
 
@@ -255,5 +255,13 @@
     \end{equation}
     Here only concerns mechanical equilibrium and does not presuppose the existence of complete thermal equilibrium.
 
-    If the body is no rotating, it will be spherical when in equilibrium, and the density and pressure distributions will be spherically symmetrical. 
+    If the body is no rotating, it will be spherical when in equilibrium, and the density and pressure distributions will be spherically symmetrical. The equation above in spherical polar coordinates then takes the form
+    \begin{equation}
+        \dfrac1{r^2} \dfrac{\mathrm{d}}{\mathrm{d} r} \left( \dfrac{r^2}{\rho} \dfrac{\mathrm{d} p}{\mathrm{d} r} \right) = -4\pi G\rho
+    \end{equation}
+
+    \section{The condition that convection be absent}
+    A fluid can be in mechanical equilibrium without being in thermal equilibrium. The condition for mechanical equilibrium can be satisfied even if the temperature is not constant throughout the fluid. However, the question then arises of the stability of such an equilibrium. It is found that the equilibrium is stable only when certain condition is fulfilled. Otherwise, the equilibriumis unstable, and this leads to the appearance in the fluid of currents which tend to mix the fluid in such a way as to equalize the temperature. This motion is called \emph{convection}. Thus the condition for a mechanical equilibrium to be stable is the condition that convection is absent.
+
+    Consider a fluid element at height $z$, having a specific volume $V(p, s)$, where $p$ and $s$ are equilibrium pressure and entropy at height $z$. Suppose that this fluid element undergoes an adiabatic upward displacement through a small interval $\xi$; its specific volume then becomes $V(p^\prime, s)$
 \end{document}
