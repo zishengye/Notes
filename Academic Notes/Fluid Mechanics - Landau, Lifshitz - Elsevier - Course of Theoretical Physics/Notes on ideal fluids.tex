@@ -263,5 +263,12 @@
     \section{The condition that convection be absent}
     A fluid can be in mechanical equilibrium without being in thermal equilibrium. The condition for mechanical equilibrium can be satisfied even if the temperature is not constant throughout the fluid. However, the question then arises of the stability of such an equilibrium. It is found that the equilibrium is stable only when certain condition is fulfilled. Otherwise, the equilibriumis unstable, and this leads to the appearance in the fluid of currents which tend to mix the fluid in such a way as to equalize the temperature. This motion is called \emph{convection}. Thus the condition for a mechanical equilibrium to be stable is the condition that convection is absent.
 
-    Consider a fluid element at height $z$, having a specific volume $V(p, s)$, where $p$ and $s$ are equilibrium pressure and entropy at height $z$. Suppose that this fluid element undergoes an adiabatic upward displacement through a small interval $\xi$; its specific volume then becomes $V(p^\prime, s)$
+    Consider a fluid element at height $z$, having a specific volume $V(p, s)$, where $p$ and $s$ are equilibrium pressure and entropy at height $z$. Suppose that this fluid element undergoes an adiabatic upward displacement through a small interval $\xi$; its specific volume then becomes $V(p^\prime, s)$, where $p^\prime$ is the pressure at height $z + \xi$. For the equilibrium to be stable, it is necessary that the resulting force on the element should tend to return it to its original position. This means that the element must be heavier than the fluid which is "displaces" in its new position. The specific volume of the latter is $V(p^\prime, s^\prime)$, where $s^\prime$ is the equilibrium entropy at height $z + \xi$. Thus we have the stability condition
+    \[
+        V(p^\prime, s^\prime) - V(p^\prime, s) > 0
+    \]
+    Expanding this difference in powers of $s - s^\prime = \xi \mathrm{d} s / \mathrm{d} z$,
+    \begin{equation}
+        \left( \dfrac{\partial V}{\partial s}\right)_p \dfrac{\mathrm{d} s}{\mathrm{d} z} > 0
+    \end{equation}
 \end{document}
