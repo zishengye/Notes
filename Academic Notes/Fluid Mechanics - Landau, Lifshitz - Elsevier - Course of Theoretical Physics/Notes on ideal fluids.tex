@@ -271,4 +271,41 @@
     \begin{equation}
         \left( \dfrac{\partial V}{\partial s}\right)_p \dfrac{\mathrm{d} s}{\mathrm{d} z} > 0
     \end{equation}
+    The formula of thermodynamics give
+    \[
+        \left( \dfrac{\partial  V}{\partial s} \right)_p = \dfrac{T}{c_p} \left( \dfrac{\partial V}{\partial T} \right)_p
+    \]
+    where $c_p$ is the specific heat at constant pressure. Since both $c_p$ and $T$ are positive, so that
+    \begin{equation}
+        \left( \dfrac{\partial V}{\partial T} \right)_p \dfrac{\mathrm{d} s}{\mathrm{d} z} > 0
+    \end{equation}
+    THe majority of substances expand on heating, i.e. $\left( \dfrac{\partial V}{\partial T} \right)_p > 0$. The condition that convection be absent then becomes
+    \begin{equation}
+        \dfrac{\mathrm{d} s}{\mathrm{d} z} > 0
+    \end{equation}
+    that the entropy must increase with height.
+
+    Expanding the dreivative $\dfrac{\mathrm{d} s}{\mathrm{d} z}$ with Maxwell relations, we have
+    \begin{align}
+        \dfrac{\mathrm{d} s}{\mathrm{d} z} =& \left( \dfrac{\partial s}{\partial T} \right)_p \dfrac{\mathrm{d} T}{\mathrm{d} z} + \left( \dfrac{\partial s}{\partial p} \right)_T \dfrac{\mathrm{d} p}{\mathrm{d} z} \nonumber \\
+        =& \dfrac{c_p}{T} \dfrac{\mathrm{d} T}{\mathrm{d} z} - \left( \dfrac{\partial V}{\partial T} \right)_p \dfrac{\mathrm{d} p}{\mathrm{d} z} > 0
+    \end{align}
+    By substituting $\dfrac{\mathrm{d} p}{\mathrm{d} z} = -\dfrac{g}{V}$, we obtain
+    \begin{equation}
+        -\dfrac{\mathrm{d} T}{\partial z} < g\beta \dfrac{T}{c_p}
+    \end{equation}
+    Convection occurs if these conditions are not satisfied.
+
+    \section{Bernoulli's equation}
+    The equation of fluid dynamics are much simplified in the case of steady flow. By \emph{steady flow} we mean one in which the velocity is constant in time at any point occupied by fluid. In other words, $\mathbf{v}$ is a function of the coordinates only, so that $\dfrac{\mathbf{v}}{t} = 0$. Then the Euler's equation reduces to 
+    \begin{equation}
+        \dfrac12 \nabla v^2 - \mathbf{v} \times \nabla \times \mathbf{v} = -\nabla w
+    \end{equation}
+    Now introduce the concept of \emph{streamlines}. There are lines such that the tangent to a streamline at any point gives the direction of the velocity at that point; they are determined by the following system of differential equations:
+    \begin{equation}
+        \dfrac{\mathrm{d} x}{v_x} = \dfrac{\mathrm{d} y}{v_y} = \dfrac{\mathrm{d} z}{v_z}
+    \end{equation}
+    In steady flow the streamlines do not vary with time, and coincide with the paths of the fluid particles. In non-steady slow this coincidence no longer occurs: the tangents to the streamlines give the directions of the velocities of fluid particles at various points in space at a given instant, whereas the tangents to the paths give the directions of velocities of given fluid particles at various times.
+
+    
 \end{document}
