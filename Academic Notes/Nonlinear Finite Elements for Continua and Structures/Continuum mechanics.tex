@@ -1,0 +1,51 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{tikz}
+\ifCLASSOPTIONcompsoc
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\else
+\usepackage[caption=false,font=footnotesize]{subfig}
+\fi
+
+\newtheorem{theorem}{Theorem}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem{exmp}{Example}
+ 
+\newtheorem{corollary}{Corollary}
+
+\allowdisplaybreaks
+
+\begin{document}
+    \title{Continuum mechancis}
+
+    \author{\IEEEauthorblockN{Zisheng Ye}}
+
+    \maketitle
+
+    \section{Defomation and motion}
+    Continuum mechanics is concerned with models of solids and fluids in which the properties and response can be characterized by smooth functions of spatial variables, with at most a limited number of discontinuities. It ignores inhomogeneities such as molecular, grain and crystal structures. Features such as crystal structure sometimes appear in continuum models through the constitutive equations, but the response and properties are assumed to be smooth with a finite number of discontinuities. The objective of continuum mehcanics is to provide models for macroscopic behavior of fluids, solids and structures.
+
+    Consider a body in an initial state at a time $t = 0$; the domain of the body in the intial state is denoted by $\Omega_0$ and called the \emph{initial configuration}. In describing the motion of the body and deformation, it is also needed a configuration to which various equations are referred; this is called the \emph{reference configuration}. Unless specified otherwise, the initial configuration is used as the reference configuration. However, other configuration can also be used as the reference configuration. The significance of the reference configuration lies in the fact that motion is defined with respect to this configuration.
+
+    In many cases, It is also needed to specify a configuration which is considered to be an \emph{undeformed configuration}, which occupies domain $\Omega_0$. Unless specified otherwise, the undeformed configuration is identical to the initial configuration. The notion of an "undeformed" configuration should be viewed as an idealization, since undeformed objects seldom exist in reality. 
+    
+    The domain of the \emph{current configuration} of the body is denoted by $\Omega$; this will often also be called the \emph{deformed configuration}. The domain can be any dimensional; The boundary of the domain is denoted by $\Gamma$. The dimension of a model is denoted by $n_{\mathrm{SD}}$, where 'SD' denotes the number of space dimensions.
+
+    \subsection{Eulerian and Lagrangian coordinates}
+    The position vector a material point in the initial configuration is given by $\mathbf{X}$, where
+    \begin{equation}
+        \mathbf{X} = X_i \mathbf{e}_i \equiv \sum_{i = 1}^{n_{\mathrm{SD}}} X_i \mathbf{e}_i
+    \end{equation}
+    where $X_i$ are the components of the position vector in the initial configuration and $\mathbf{e}_i$ are the unit base vectors of a rectangular Cartesian coordinate systems.
+\end{document}
