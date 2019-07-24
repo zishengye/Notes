@@ -150,14 +150,61 @@
     must hold.
 
     In cylindrical polar coordinates $r, \phi, z$ the components of the stress tensor are
-    \begin{align}
-        \sigma_{rr} =& -p + 2 \eta \dfrac{\partial v_r}{\partial r} \nonumber \\
-        \sigma_{r\phi} =& \eta \left( \dfrac1r \dfrac{\partial v_r}{\partial \phi} + \dfrac{\partial v_\phi}{\partial r} - \dfrac{v_\phi}{r} \right)\nonumber \\
-        \sigma_{\phi\phi} =& -p + 2\eta \left( \dfrac{1}{r} \dfrac{\partial v_{\phi}}{\partial \phi} + \dfrac{v_r}{r} \right) \nonumber \\
-        \sigma_{\phi z} =& \eta \left( \dfrac{\partial v_\phi}{z} + \dfrac1r \dfrac{\partial v_z}{\partial \phi} \right) \nonumber \\
-        \sigma_{zz} =& -p + 2\eta \dfrac{\partial v_z}{\partial z} \nonumber \\
+    \begin{equation}
+        \begin{aligned}
+        \sigma_{rr} =& -p + 2 \eta \dfrac{\partial v_r}{\partial r} \\
+        \sigma_{\phi\phi} =& -p + 2\eta \left( \dfrac{1}{r} \dfrac{\partial v_{\phi}}{\partial \phi} + \dfrac{v_r}{r} \right) \\
+        \sigma_{zz} =& -p + 2\eta \dfrac{\partial v_z}{\partial z} \\
+        \sigma_{r\phi} =& \eta \left( \dfrac1r \dfrac{\partial v_r}{\partial \phi} + \dfrac{\partial v_\phi}{\partial r} - \dfrac{v_\phi}{r} \right) \\
+        \sigma_{\phi z} =& \eta \left( \dfrac{\partial v_\phi}{z} + \dfrac1r \dfrac{\partial v_z}{\partial \phi} \right) \\
         \sigma_{zr} =& \eta \left( \dfrac{\partial v_z}{\partial r} + \dfrac{\partial v_r}{\partial z} \right)
+        \end{aligned}
+    \end{equation}
+    The three components of the Navier-Stokes equation are
+    \begin{align}
+        \dfrac{\partial v_r}{\partial t} + (\mathbf{v} \cdot \nabla) v_r - \dfrac{v_{\phi}^2}{r} =& -\dfrac1\rho \dfrac{\partial p}{\partial r} + \nu \left( \Delta v_r - \dfrac2{r^2} \dfrac{\partial v_{\phi}}{\partial \phi} - \dfrac{v_r}{r^2} \right) \nonumber \\
+        \dfrac{\partial v_{\phi}}{\partial t} + (\mathbf{v} \cdot \nabla) v_{\phi} + \dfrac{v_{\phi}v_r}{r} =& -\dfrac1{\rho r} \dfrac{\partial p}{\partial \phi} + \nu \left( \Delta v_{\phi} - \dfrac2{r^2} \dfrac{\partial v_r}{\partial \phi} - \dfrac{v_{\phi}}{r^2} \right) \nonumber \\
+        \dfrac{\partial v_z}{\partial t} + (\mathbf{v} \cdot \nabla) v_z =& -\dfrac1\rho \dfrac{\partial p}{\partial z} + \nu \Delta v_z
     \end{align}
+    where
+    \begin{align*}
+        (\mathbf{v} \cdot \nabla) f =& v_r \dfrac{\partial f}{\partial r} + \dfrac{v_{\phi}}{r} \dfrac{\partial f}{\partial \phi} + v_z \dfrac{\partial f}{\partial z} \\
+        \Delta f =& \dfrac1r \dfrac{\partial}{\partial r}\left( r \dfrac{\partial f}{\partial r} \right) + \dfrac1{r^2} \dfrac{\partial^2 f}{\partial \phi^2} + \dfrac{\partial^2 f}{\partial z^2}
+    \end{align*}
+    The equation of continuity is
+    \begin{equation}
+        \dfrac1r \dfrac{\partial (rv_r)}{\partial r} + \dfrac1r \dfrac{\partial v_\phi}{\partial \phi} + \dfrac{\partial v_z}{\partial z} = 0
+    \end{equation}
+
+    In spherical polar coordinates $r, \phi, \theta$, the stress tensor is
+    \begin{equation}
+        \begin{aligned}
+            \sigma_{rr} =& -p + 2\eta \dfrac{\partial v_r}{\partial r} \\
+            \sigma_{\phi\phi} =& -p + 2\eta \left( \dfrac1{r\sin \theta} \dfrac{\partial v_\phi}{\partial \phi} + \dfrac{v_r}{r} + \dfrac{v_\theta \cot \theta}{r} \right) \\
+            \sigma_{\theta\theta} =& -p + 2\eta \left( \dfrac1r \dfrac{\partial v_\theta}{\partial \theta} + \dfrac{v_r}{r} \right) \\
+            \sigma_{r\theta} =& \eta \left( \dfrac1r \dfrac{\partial v_r}{\partial \theta} + \dfrac{\partial v_\theta}{\partial r} - \dfrac{v_\theta}{r} \right) \\
+            \sigma_{\theta\phi} =& \eta \left( \dfrac1{r\sin \theta} \dfrac{\partial v_\theta}{\partial \phi} + \dfrac1r \dfrac{\partial v_\phi}{\partial \theta} - \dfrac{v_\phi \cot \theta}{r} \right) \\
+            \sigma_{\phi r} =& \eta \left( \dfrac{\partial v_\phi}{\partial r} + \dfrac1{r \sin \theta}\dfrac{\partial v_r}{\partial \phi} - \dfrac{v_\phi}{r} \right)
+        \end{aligned}
+    \end{equation}
+    while the Navier-Stokes equations are
+    \begin{align}
+        \dfrac{\partial v_r}{\partial t} +& (\mathbf{v} \cdot \nabla) v_r - \dfrac{v_\theta^2 + v_\phi^2}r = -\dfrac1\rho \dfrac{\partial p}{\partial r} \nonumber \\
+        +& \nu \left[ \Delta v_r - \dfrac2{r^2\sin^2\theta} \dfrac{\partial (v_\theta \sin\theta)}{\partial \theta} - \dfrac2{r^2\sin\theta} \dfrac{\partial v_\phi}{\partial \phi} - \dfrac{2v_r}{r^2} \right] \nonumber \\
+        \dfrac{\partial v_\theta}{\partial t} +& (\mathbf{v} \cdot \nabla) v_\theta + \dfrac{v_r v_\theta}r - \dfrac{v_\phi^2 \cot \theta}r = -\dfrac1{\rho r} \dfrac{\partial p}{\partial \theta} \\
+        +& \nu \left[ \Delta v_\theta - \dfrac{2\cos\theta}{r^2\sin^\theta} \dfrac{\partial v_\phi}{\partial \phi} + \dfrac2{r^2} \dfrac{\partial v_r}{\partial \theta} - \dfrac{v_\theta}{r^2 \sin^2 \theta} \right] \nonumber \\
+        \dfrac{\partial v_\phi}{\partial t} +& (\mathbf{v} \cdot \nabla) v_\phi + \dfrac{v_r v_\phi}{r} + \dfrac{v_\theta v_\phi \cot \theta}r = -\dfrac1{\rho r \sin \theta} \dfrac{\partial p}{\partial \phi} \nonumber \\
+        +& \nu \left[ \Delta v_\phi + \dfrac2{r^2\sin\theta} \dfrac{\partial v_r}{\partial \phi} + \dfrac{2\cos\theta}{r^2\sin^2\theta} \dfrac{\partial v_\theta}{\partial \phi} - \dfrac{v_\phi}{r^2 \sin^2\theta} \right] \nonumber
+    \end{align}
+    where
+    \begin{align*}
+        &(\mathbf{v} \cdot \nabla) f = v_r \dfrac{\partial f}{\partial r} + \dfrac{v_\theta}r \dfrac{\partial f}{\partial \theta} + \dfrac{v_\phi}{r \sin\theta} \dfrac{\partial f}{\partial \phi} \\
+        &\Delta f = \dfrac1{r^2} \dfrac{\partial}{\partial r} \left( r^2 \dfrac{\partial f}{\partial r} \right) + \dfrac1{r^2 \sin \theta} \left( \sin\theta \dfrac{\partial f}{\partial \theta} +\dfrac1{r^2\sin^2\theta} \dfrac{\partial^2 f}{\partial \phi^2} \right)
+    \end{align*}
+    The equation of continuity is
+    \begin{equation}
+        \dfrac1{r^2} \dfrac{\partial (r^2 v_r}{\partial r} + \dfrac1{r\sin\theta} \dfrac{\partial (v_\theta \sin\theta)}{\partial \theta} + \dfrac1{r\sin\theta} \dfrac{\partial v_\phi}{\partial \phi} = 0
+    \end{equation}
 
     \section{Energy dissipation in an incompressible fluid}
     The presence of viscosity results in the dissipation of energy, which is finally transformed into heat. The calculation of the energy dissipation is especially simple for an incompressible fluid.
@@ -174,7 +221,36 @@
     \begin{align*}
         & \dfrac{\partial}{\partial t} \left( \dfrac12 \rho v^2 \right) \\
         =& \rho \mathbf{v} \dfrac{\partial \mathbf{v}}{\partial t} \\
-        =& -\rho \mathbf{v} \cdot (\mathbf{v} \cdot \nabla \mathbf{v}) - \mathbf{v} \cdot \nabla p + \mathbf{v} \cdot \nabla \boldsymbol{\sigma}^\prime \\
-        =& -\rho \mathbf{v} \cdot \nabla \left(\dfrac12 v^2 + \dfrac{p}{\rho} \right) + \nabla \cdot (\mathbf{v} \cdot \boldsymbol{\sigma}^\prime) - \boldsymbol{\sigma}^\prime \cdot \nabla \mathbf{v}
+        =& -\rho \mathbf{v} \cdot (\mathbf{v} \cdot \nabla \mathbf{v}) - \mathbf{v} \cdot \nabla p + v_i \dfrac{\partial \sigma^\prime_{ik}}{\partial x_k} \\
+        =& -\rho \mathbf{v} \cdot \nabla \left(\dfrac12 v^2 + \dfrac{p}{\rho} \right) + \nabla \cdot (\mathbf{v} \cdot \boldsymbol{\sigma}^\prime) - \sigma_{ik}^\prime \dfrac{\partial v_i}{\partial x_k}
     \end{align*}
+    Here $\mathbf{v} \cdot \boldsymbol{\sigma}^\prime$ whose components are $v_i \sigma^\prime_{ik}$. Since $\nabla \cdot \mathbf{v} = 0$ for an incompresisble fluid, we can write the first term on the right as a divergence
+    \begin{align*}
+        & \dfrac{\partial}{\partial t} (\dfrac12 \rho v^2) \\
+        =& -\nabla \cdot \left[ \rho \mathbf{v} \left( \dfrac12v^2 + \dfrac{p}{\rho} \right) - \mathbf{v} \cdot \boldsymbol{\sigma}^\prime \right] - \sigma_{ik}^\prime \dfrac{\partial v_i}{\partial x_k}
+    \end{align*}
+    The expression in brackets is just the energy flux density in the fluid: the term $\rho \mathbf{v} (\dfrac12 v^2 + \dfrac{p}{\rho})$ is the energy flux due to the actual transfer of fluid mass, and is the same as the energy flux in an ideal fluid. The second term, $\mathbf{v} \cdot \boldsymbol{\sigma}^\prime$, is the energy flux due to processes of internal friction. For the presence of viscosity results in a momentum flux $\sigma_{ik}^\prime$ ;a transfer of momentum, however, always involves a transfer of energy, and the energy flux is clearly equal to the scalar product of the momentum flux and veloctiy.
+
+    If integrate it over some volume $V$,
+    \begin{equation}
+        \begin{aligned}
+            &\dfrac{\partial}{\partial t} \int \dfrac12 \rho v^2 \mathrm{d} V \\
+            =&-\oint \left[ \rho \mathbf{v} \left( \dfrac12 v^2 + \dfrac{p}{\rho} \right)  - \mathbf{v} \cdot \boldsymbol{\sigma}^\prime \right] \cdot \mathrm{d} \mathbf{f} - \int \sigma_{ik}^\prime \dfrac{\partial v_i}{\partial x_k} \mathrm{d} V
+        \end{aligned}
+    \end{equation}
+    The first term on the right gives the rate of change of kinetic energy of the fluid in $V$ owing to the energy flux through the surface bounding $V$. The integral in the second term is consequently the decrease per unit time in the kinetic energy owing to dissipation.
+
+    Consider the motion of the fluid in a system of coordinates such that the fluid is at rest at infinity. For a fluid enclosed in a finite volume, the surface integral again vanishes, because the velocities at the surface vanishes. Therefore, if the integral is extended to the whole volume of the fluid, the surface integral vanishes, and the energy dissipated per unit time in the whole fluid is bo be
+    \begin{equation}
+        \dot{E_{\text{kin}}} = - \int \sigma_{ik}^\prime \dfrac{\partial v_i}{\partial x_k} \mathrm{d} V = \dfrac12 \int \sigma_{ik}^\prime \left( \dfrac{\partial v_i}{\partial x_k} + \dfrac{\partial v_k}{\partial x_i} \right) \mathrm{d} V
+    \end{equation}
+    since the tensor $\sigma_{ik}^\prime$ is symmetrical. In {\color{red} incompresisble fluids}, the energy dissipation in an incompressible gluid is
+    \begin{equation}
+        \dot{E}_{\mathrm{kin}} = \dfrac12 \eta \int \left( \dfrac{\partial v_i}{\partial x_k} + \dfrac{\partial v_k}{\partial x_i} \right)^2 \mathrm{d} V
+    \end{equation}
+    
+    The dissipation leads to a decrease in the mechanical energy. Since $\dot{E}_{\mathrm{kin}} < 0$ and the integral is always positive. Therefore, the viscosity coefficient $\eta$ is always positive.
+
+    \section{Flow with small Reynolds numbers}
+    The Navier-Stokes equation is considerably simplified in the case of flow with small Reynolds numbers. 
 \end{document}
