@@ -26,6 +26,12 @@
 
 \allowdisplaybreaks
 
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+\usepackage{chngcntr}
+
+\counterwithin*{equation}{section}
+
 \begin{document}
     \title{template}
 

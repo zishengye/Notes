@@ -26,6 +26,10 @@
 
 \renewcommand{\theequation}{\thesection.\arabic{equation}}
 
+\usepackage{chngcntr}
+
+\counterwithin*{equation}{section}
+
 \allowdisplaybreaks
 
 \begin{document}
@@ -79,13 +83,13 @@
 
     In most cases, however, the viscosity coefficients do not change noticeably in the fluid, and they may be regarded as constant. We then have equation \ref{eq:navier_stokes_index}, in vector form, as
     \begin{align}
-        \rho \left[ \dfrac{\partial \mathbf{v}}{\partial t} + \mathbf{v} \cdot \nabla \mathbf{v} \right] =& -\nabla p + \eta \Delta \mathbf{v} \nonumber \\
+        \rho \left[ \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla) \mathbf{v} \right] =& -\nabla p + \eta \Delta \mathbf{v} \nonumber \\
         & + (\zeta + \dfrac13 \eta) \nabla (\nabla \cdot \mathbf{v})
         \label{eq:navier_stokes_vector}
     \end{align}
     This is called the \emph{Navier-Stokes equation}. It becomes considerably simpler if the fluid may be regarded as incompressible, so that $\nabla \cdot \mathbf{v} = 0$, and the last term on the right of \ref{eq:navier_stokes_vector} is zero. In discussing viscous fluids, we shall always regard them as incompressible, and accordingly use the equation of motion in the form
     \begin{equation}
-        \dfrac{\partial \mathbf{v}}{\partial t} + \mathbf{v} \cdot \nabla \mathbf{v} = -\dfrac1\rho \nabla p + \dfrac{\eta}{\rho} \Delta \mathbf{v}
+        \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla) \mathbf{v} = -\dfrac1\rho \nabla p + \dfrac{\eta}{\rho} \Delta \mathbf{v}
         \label{eq:ns_impressible}
     \end{equation}
     The stress tensor in an incompressible fluid takes the simple form
@@ -244,7 +248,7 @@
     \begin{equation}
         \dot{E_{\text{kin}}} = - \int \sigma_{ik}^\prime \dfrac{\partial v_i}{\partial x_k} \mathrm{d} V = \dfrac12 \int \sigma_{ik}^\prime \left( \dfrac{\partial v_i}{\partial x_k} + \dfrac{\partial v_k}{\partial x_i} \right) \mathrm{d} V
     \end{equation}
-    since the tensor $\sigma_{ik}^\prime$ is symmetrical. In {\color{red} incompresisble fluids}, the energy dissipation in an incompressible gluid is
+    since the tensor $\sigma_{ik}^\prime$ is symmetrical. In incompresisble fluids, the energy dissipation in an incompressible gluid is
     \begin{equation}
         \dot{E}_{\mathrm{kin}} = \dfrac12 \eta \int \left( \dfrac{\partial v_i}{\partial x_k} + \dfrac{\partial v_k}{\partial x_i} \right)^2 \mathrm{d} V
     \end{equation}
@@ -252,5 +256,94 @@
     The dissipation leads to a decrease in the mechanical energy. Since $\dot{E}_{\mathrm{kin}} < 0$ and the integral is always positive. Therefore, the viscosity coefficient $\eta$ is always positive.
 
     \section{Flow with small Reynolds numbers}
-    The Navier-Stokes equation is considerably simplified in the case of flow with small Reynolds numbers. 
+    The Navier-Stokes equation is considerably simplified in the case of flow with small Reynolds numbers. For steady flow of am incompressible fluid, the equation is
+    \begin{equation*}
+        (\mathbf{v} \cdot \nabla) \mathbf{v} = -\dfrac1\rho \nabla p + \dfrac{\eta}{\rho} \Delta \mathbf{v}
+    \end{equation*}
+    The ratio of the term $(\mathbf{v} \cdot \nabla) \mathbf{v}$ and term $\dfrac{\eta}{\rho} \Delta \mathbf{v}$ is just the Reynolds number. Hence the term $(\mathbf{v} \cdot \nabla) \mathbf{v}$ may be neglected if the Reynold number is small, and the equation of motion reduces to a linear equation
+    \begin{equation}
+        \eta \Delta \mathbf{v} - \nabla p = 0
+    \end{equation}
+    Together with the equation of continuity
+    \begin{equation}
+        \nabla \cdot \mathbf{v} = 0
+    \end{equation}
+    it completely determines the motion. By taking the curl of the equation of motion,
+    \begin{equation}
+        \Delta (\nabla \times \mathbf{v}) = 0
+        \label{eq:curl_of_equation_of_stokes_flow}
+    \end{equation}
+
+    As an example, consider rectilinear and uniform motion of a sphere in a viscous fluid. The problem of the motion of a sphere is exactly equivalent to that of flow past a fixed sphere, the fluid having a given velocity $\mathbf{v}_{\mathrm{inf}}$ at infinity. The velocity distribution in the first problem is obtained from that in the second problem by simply subtracting the velocity $\mathbf{v}_{\mathrm{inf}}$; the fluid is then at rest at infinity, while the sphere moves with velocity $-\mathbf{v}_{\mathrm{inf}}$. If we regard the flow as steady, we must, speak of the flow past a fixed sphere. When the sphere moves, the velocity of the fluid at any point in space varies with time.
+
+    Since $\nabla \times (\mathbf{v} - \mathbf{v}_{\mathrm{inf}}) = \nabla \times \mathbf{v} = 0$, $\mathbf{v} - \mathbf{v}_{\mathrm{inf}}$ can be expressed as the curl of some vector $\mathbf{A}$:
+    \begin{equation*}
+        \mathbf{v} - \mathbf{v}_{\mathrm{inf}} = \nabla \times \mathbf{A}
+    \end{equation*}
+    with $\nabla \times \mathbf{A}$ equal to zero at infinity. The vector $\mathbf{A}$ must be axial, in order for its cuil to be polar, like the velocity. In flow past a sphere, a completely symmetrical body, there is no preferred direction other than that of $\mathbf{v}_{\mathrm{inf}}$. This parameter $\mathbf{v}_{\mathrm{inf}}$ must appear linearly in $\mathbf{A}$, because the equation of motion and its boundary conditions are linear. The general form of a vector function $\mathbf{A}(\mathbf{r})$ satisfying all these requirements is $\mathbf{A} = f^\prime (r) \mathbf{n} \times \mathbf{v}_{\mathrm{inf}}$, where $\mathbf{n}$ is a unit vector parallel to the position vector $\mathbf{r}$ (the origin being taken at the centre of the sphere), and $f^\prime(r)$ is a scalar function of r. The product $f^\prime(r) \mathbf{n}$ can be represented as the gradient of another function $f(r)$. Thus the velocity could be expressed in the form:
+    \begin{equation}
+        \mathbf{v} = \mathbf{v}_{\mathrm{inf}} + \nabla \times (\nabla f \times \mathbf{v}_\mathrm{inf}) = \mathbf{v}_{\mathrm{inf}} + \nabla \times \nabla (f \mathbf{v}_{\mathrm{inf}})
+    \end{equation}
+
+    Next to determine the function $f$. Since
+    \begin{align*}
+        \nabla \times \mathbf{v} =& \nabla \times \nabla \times \nabla \times (f \mathbf{v}_{\mathrm{inf}}) \\
+        =& \nabla\left( \nabla \cdot \left( \nabla \times (f\mathbf{v}_\mathrm{inf}) \right) \right) - \Delta (\nabla \times (f \mathbf{v}_\mathrm{inf})) \\
+        =& -\Delta (\nabla \times (f\mathbf{v}_\mathrm{inf}))
+    \end{align*}
+
+    Use \ref{eq:curl_of_equation_of_stokes_flow} takes the form
+    \begin{align*}
+        &\Delta^2 (\nabla \times (f\mathbf{v}_\mathrm{inf})) \\
+        =& \Delta^2 (\nabla f \times \mathbf{v}_\mathrm{inf}) \\
+        =& (\Delta^2 \nabla f) \times \mathbf{v}_\mathrm{inf} \\
+        =& 0
+    \end{align*}
+
+    It follows from this that
+    \begin{equation}
+        \Delta^2 \nabla f = 0
+    \end{equation}
+    A first integration gives
+    \begin{equation}
+        \Delta f^2 = \mathrm{const.}
+    \end{equation}
+    Since the velocity difference $\mathbf{v} - \mathbf{v}_\mathrm{inf}$ must vanish at infinity, and so must its derivatives, the constant must be zero. The expression $\Delta^2 f$ contains fourth derivatives of $f$, whilst the velocity is given in terms of the second derivatives of $f$. Thus
+    \begin{equation*}
+        \Delta^2 f \equiv \dfrac1{r^2} \dfrac{\mathrm{d}}{\mathrm{d} r} \left( r^2 \dfrac{\mathrm{d}}{\mathrm{d} r} \right) \Delta f = 0
+    \end{equation*}
+    Hence
+    \[
+        \Delta f = 2\dfrac{a}{r} + c
+    \]
+    The constant $c$ must be zero if the velocity $\mathbf{v} - \mathbf{v}_\mathrm{inf}$ is to vanish at infinity. Therefore
+    \begin{equation}
+        f = ar + \dfrac{b}{r}
+    \end{equation}
+    The additive constant is omitted, since it is immaterial (the velocity being given by derivatives of $f$).
+
+    Finally, the expression of velocity is
+    \begin{equation}
+        \mathbf{v} = \mathbf{v}_\mathrm{inf} - a \dfrac{\mathbf{v}_\mathrm{inf} + \mathbf{n} (\mathbf{v}_\mathrm{inf} \cdot \mathbf{n})} r + b \dfrac{3\mathbf{n} (\mathbf{v}_\mathrm{inf} \cdot \mathbf{n} - \mathbf{v}_\mathrm{inf})}{r^3}
+    \end{equation}
+
+    The constants $a$ and $b$ have to be determined from the boundary conditions: at the surface of the sphere $(r = R)$, $\mathbf{v} = 0$,
+    \begin{equation*}
+        \mathbf{v}_\mathrm{inf} \left( \dfrac{a}{R} + \dfrac{b}{R^3} - 1 \right) + \mathbf{n} (\mathbf{v}_\mathrm{inf} \cdot \mathbf{n}) \left( -\dfrac{a}{R} + \dfrac{3b}{R^3} \right) = 0
+    \end{equation*}
+    Since this equation must hold for all $\mathbf{n}$, the coefficients of $\mathbf{v}_\mathrm{inf}$ and $\mathbf{n} (\mathbf{v}_\mathrm{inf} \cdot \mathbf{n})$ must each vanish. Hence $a = \dfrac34R$, $b = \dfrac14R^3$. Thus finally
+    \begin{align}
+        f =& \dfrac34 Rr + \dfrac{R^3}{4r} \\
+        \mathbf{v} =& -\dfrac34 R \dfrac{\mathbf{v}_\mathrm{inf} + \mathbf{n} (\mathbf{v}_\mathrm{inf} \cdot \mathbf{n})}r - \dfrac14 R^3 \dfrac{\mathrm{v} - 3\mathbf{n} (\mathbf{v}_\mathrm{inf} \cdot \mathbf{n})}{r^3} + \mathbf{v}_\mathrm{inf}
+    \end{align}
+    or, in spherical polar components with the axis parallel to $\mathbf{v}_\mathrm{inf}$,
+    \begin{equation*}
+        \left\{
+            \begin{aligned}
+                v_r =& v_\mathrm{inf} \cos \theta \left[ 1 - \dfrac{3R}{2r} + \dfrac{R^3}{2r^3} \right] \\
+                v_\theta =& -v_\mathrm{inf} \sin \theta \left[ 1 - \dfrac{3R}{4r} - \dfrac{R^3}{4r^3} \right]
+            \end{aligned}
+        \right.
+    \end{equation*}
+    
 \end{document}
