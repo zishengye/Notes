@@ -81,13 +81,13 @@
     \end{align}
     This is the most general form of the equations of motion of a viscous fluid. The quantities $\eta$ and $\zeta$ are functions of pressure and temperature. In general, $p$ and $T$, and therefore the fluid, so that $\eta$ and $\zeta$ cannot be taken outside the gradient operator.
 
-    In most cases, however, the viscosity coefficients do not change noticeably in the fluid, and they may be regarded as constant. We then have equation \ref{eq:navier_stokes_index}, in vector form, as
+    In most cases, however, the viscosity coefficients do not change noticeably in the fluid, and they may be regarded as constant. We then have equation Eq. \ref{eq:navier_stokes_index}, in vector form, as
     \begin{align}
         \rho \left[ \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla) \mathbf{v} \right] =& -\nabla p + \eta \Delta \mathbf{v} \nonumber \\
         & + (\zeta + \dfrac13 \eta) \nabla (\nabla \cdot \mathbf{v})
         \label{eq:navier_stokes_vector}
     \end{align}
-    This is called the \emph{Navier-Stokes equation}. It becomes considerably simpler if the fluid may be regarded as incompressible, so that $\nabla \cdot \mathbf{v} = 0$, and the last term on the right of \ref{eq:navier_stokes_vector} is zero. In discussing viscous fluids, we shall always regard them as incompressible, and accordingly use the equation of motion in the form
+    This is called the \emph{Navier-Stokes equation}. It becomes considerably simpler if the fluid may be regarded as incompressible, so that $\nabla \cdot \mathbf{v} = 0$, and the last term on the right of Eq. \ref{eq:navier_stokes_vector} is zero. In discussing viscous fluids, we shall always regard them as incompressible, and accordingly use the equation of motion in the form
     \begin{equation}
         \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla) \mathbf{v} = -\dfrac1\rho \nabla p + \dfrac{\eta}{\rho} \Delta \mathbf{v}
         \label{eq:ns_impressible}
@@ -101,7 +101,7 @@
     \[
         \nu = \dfrac{\eta}{\rho}
     \]
-    is called the \emph{kinematic viscosity} (while $\eta$ itself is called the \emph{dynamic viscosity}). The pressure can be eliminated in \ref{eq:ns_impressible} in the same way as from Euler's equation and by taking the curl of both sides, 
+    is called the \emph{kinematic viscosity} (while $\eta$ itself is called the \emph{dynamic viscosity}). The pressure can be eliminated in Eq \ref{eq:ns_impressible} in the same way as from Euler's equation and by taking the curl of both sides, 
     \[
         \dfrac{\partial}{\partial t} (\nabla \times \mathbf{v}) = \nabla \times (\mathbf{v} \times (\nabla \times \mathbf{v})) + \nu \Delta (\nabla \times \mathbf{v})
     \]
@@ -263,6 +263,7 @@
     The ratio of the term $(\mathbf{v} \cdot \nabla) \mathbf{v}$ and term $\dfrac{\eta}{\rho} \Delta \mathbf{v}$ is just the Reynolds number. Hence the term $(\mathbf{v} \cdot \nabla) \mathbf{v}$ may be neglected if the Reynold number is small, and the equation of motion reduces to a linear equation
     \begin{equation}
         \eta \Delta \mathbf{v} - \nabla p = 0
+        \label{eq:equation_of_motion_stokes}
     \end{equation}
     Together with the equation of continuity
     \begin{equation}
@@ -283,6 +284,7 @@
     with $\nabla \times \mathbf{A}$ equal to zero at infinity. The vector $\mathbf{A}$ must be axial, in order for its cuil to be polar, like the velocity. In flow past a sphere, a completely symmetrical body, there is no preferred direction other than that of $\mathbf{v}_{\mathrm{inf}}$. This parameter $\mathbf{v}_{\mathrm{inf}}$ must appear linearly in $\mathbf{A}$, because the equation of motion and its boundary conditions are linear. The general form of a vector function $\mathbf{A}(\mathbf{r})$ satisfying all these requirements is $\mathbf{A} = f^\prime (r) \mathbf{n} \times \mathbf{v}_{\mathrm{inf}}$, where $\mathbf{n}$ is a unit vector parallel to the position vector $\mathbf{r}$ (the origin being taken at the centre of the sphere), and $f^\prime(r)$ is a scalar function of r. The product $f^\prime(r) \mathbf{n}$ can be represented as the gradient of another function $f(r)$. Thus the velocity could be expressed in the form:
     \begin{equation}
         \mathbf{v} = \mathbf{v}_{\mathrm{inf}} + \nabla \times (\nabla f \times \mathbf{v}_\mathrm{inf}) = \mathbf{v}_{\mathrm{inf}} + \nabla \times \nabla (f \mathbf{v}_{\mathrm{inf}})
+        \label{eq:velocity_in_f}
     \end{equation}
 
     Next to determine the function $f$. Since
@@ -292,7 +294,7 @@
         =& -\Delta (\nabla \times (f\mathbf{v}_\mathrm{inf}))
     \end{align*}
 
-    Use \ref{eq:curl_of_equation_of_stokes_flow} takes the form
+    Use Eq. \ref{eq:curl_of_equation_of_stokes_flow} takes the form
     \begin{align*}
         &\Delta^2 (\nabla \times (f\mathbf{v}_\mathrm{inf})) \\
         =& \Delta^2 (\nabla f \times \mathbf{v}_\mathrm{inf}) \\
@@ -337,13 +339,147 @@
         \mathbf{v} =& -\dfrac34 R \dfrac{\mathbf{v}_\mathrm{inf} + \mathbf{n} (\mathbf{v}_\mathrm{inf} \cdot \mathbf{n})}r - \dfrac14 R^3 \dfrac{\mathrm{v} - 3\mathbf{n} (\mathbf{v}_\mathrm{inf} \cdot \mathbf{n})}{r^3} + \mathbf{v}_\mathrm{inf}
     \end{align}
     or, in spherical polar components with the axis parallel to $\mathbf{v}_\mathrm{inf}$,
-    \begin{equation*}
+    \begin{equation}
         \left\{
             \begin{aligned}
                 v_r =& v_\mathrm{inf} \cos \theta \left[ 1 - \dfrac{3R}{2r} + \dfrac{R^3}{2r^3} \right] \\
                 v_\theta =& -v_\mathrm{inf} \sin \theta \left[ 1 - \dfrac{3R}{4r} - \dfrac{R^3}{4r^3} \right]
             \end{aligned}
         \right.
+        \label{eq:velocity_in_spherical_coordinates}
+    \end{equation}
+    This gives the velocity distribution about the moving shpere. To determine the pressure, substitute Eq. \ref{eq:velocity_in_f} in Eq. \ref{eq:equation_of_motion_stokes}:
+    \begin{align*}
+        \nabla p =& \eta \Delta \mathbf{v} \nonumber \\
+        =& \eta \Delta \nabla \times (\nabla \times (f\mathbf{v}_\mathrm{inf})) \nonumber \\
+        =& \eta \Delta (\nabla (\nabla \cdot(f \mathbf{v}_\mathrm{inf})) - \mathbf{v}_\mathrm{inf} \Delta f)
+    \end{align*}
+    But $\Delta^2 f = 0$, and so
+    \begin{equation*}
+        \nabla p = \nabla [\eta \Delta \nabla \cdot (f \mathbf{v}_\mathrm{inf})] = \nabla (\eta \mathbf{v}_\mathrm{inf} \cdot \nabla (\Delta f))
     \end{equation*}
+    Hence
+    \begin{equation}
+        p = \eta \mathbf{v}_\mathrm{inf} \cdot \nabla  (\Delta f) + p_0
+    \end{equation}
+    where $p_0$ is the fluid pressure at infinity. Substitution for $f$ leads to the final expression
+    \begin{equation}
+        p = p_0 - \dfrac32 \eta \dfrac{\mathbf{v}_\mathrm{inf} \cdot \mathbf{n}}{r^2} R
+    \end{equation}
+
+    Using the above formulae, the force $\mathbf{F}$ exerted on the sphere by the moving fluid (or, what is the same thing, the drag on the sphere as it moves through the fluid) can be calculated. Take spherical polar coordinates with axis parallel to $\mathbf{v}_\mathrm{inf}$; by symmetry, all quantities are functions only of $r$ and of the polar angle $\theta$. The force $\mathbf{F}$ is evidently parallel to the velocity $\mathbf{v}_\mathrm{inf}$. Substituting Eq. \ref{eq:velocity_in_spherical_coordinates} in the following formulae
+    \begin{equation*}
+        \sigma_{rr}^\prime = 2\eta \dfrac{\partial v_r}{\partial r}, \quad \sigma_{r\theta}^\prime = \eta \left( \dfrac1r \dfrac{\partial v_r}{\partial \theta} + \dfrac{\partial v_\theta}{\partial r} - \dfrac{v_\theta}{r} \right)
+    \end{equation*}
+    , at the surface of the sphere
+    \begin{equation*}
+        \sigma_{rr}^\prime = 0, \quad \sigma_{r\theta}^\prime = -\dfrac{3\eta}{2R} v_\mathrm{inf} \sin \theta
+    \end{equation*}
+    while the pressure $p$ is $p_0 - \dfrac{3\eta}{2R} v_\mathrm{inf} \cos \theta$. The components, normal and tangential to the surface, of the force on an element of the surface of the sphere, and projecting these components on the direction of $\mathbf{v}_\mathrm{inf}$, we find
+    \begin{equation}
+        F = \oint(-p \cos \theta + \sigma_{rr}^\prime \cos \theta - \sigma_{r\theta}^\prime \sin \theta) \mathrm{d} f
+        \label{eq:integral_of_F}
+    \end{equation}
+    Hence, the integral \ref{eq:integral_of_F} reduces to $F = \dfrac{3\eta v_\mathrm{inf}}{2R} \oint \mathrm{d} f$. In this way we finally arrive at \emph{Stokes' formula} for the drag on a sphere moving slowing in a fluid:
+    \begin{equation}
+        F = 6\pi \eta R v_\mathrm{inf}
+        \label{eq:Stokes_formula}
+    \end{equation}
+    
+    The drag is proportional to the velocity and linear size of the body. This could have been forseen from dimensional arguments: the fluid density $\rho$ does not appear in the approximate, Stoke's equations, and so the force $F$ which they give must be expressed only in terms of $\eta$, $v_\mathrm{inf}$ and $R$; from these, only one combination with the with the dimension of force can be formed, namely the product $\eta R v_\mathrm{inf}$.
+
+    A similar dependence occurs for slowly moving bodies with other shapes. The direction of the drag on a body of arbitrary shape is not the same as that of the velocity; the general form of the dependence of $\mathbf{F}$ on $\mathbf{v}_\mathrm{inf}$ can be written as 
+    \begin{equation}
+        F_i = \eta a_{ik} u_k
+        \label{eq:dependece_F_on_u}
+    \end{equation}
+    where $a_{ik}$ is a tensor of rank two, independent of the velocity. It is important to note that this tensor is symmetrical, a result which holds in the linear approximation with respect to velocity, and is a particular case of a general law valid for slow motion accompanied by dissipative processes.
+
+    The above solution of the problem of flow past a sphere is not valid at large distances, even if the Reynolds number is small. To see this, let us estimate the term in $\mathbf{v} \cdot \nabla) \mathbf{v}$ neglected in Eq. \ref{eq:equation_of_motion_stokes}. At large distances, $\mathbf{v} \approx \mathbf{v}_\mathrm{inf}$; the velocity derivatives there are of the order of $\dfrac{v_\mathrm{inf} R}{r^2}$. Hence $(\mathbf{v} \cdot \nabla) \mathbf{v} \sim \dfrac{v_\mathrm{inf}^2 R}{r^2}$. The terms retained in Eq. \ref{eq:equation_of_motion_stokes} are of the order of $\eta\dfrac{R v_\mathrm{inf}}{\rho r^3} \gg \dfrac{v_\mathrm{inf}^2 R}{r^2}$ is satisfied only for distances such that
+    \begin{equation}
+        r \ll \dfrac{v}{v_\mathrm{inf}}
+    \end{equation}
+    At greater distances, the terms neglected are not negligile, and the velocity distribution so found is incorrect.
+
+    To find the velocity distribution at large distances from the body, the omitted term has to be recovered. Since at these distances $\mathbf{v}$ is almost the same as $\mathbf{v}_\mathrm{inf}$. Therefore, approximately replace $\mathbf{v} \cdot \nabla$ by $\mathbf{v}_\mathrm{inf} \cdot \nabla$. We then find for the velocity at large distances the linear equation
+    \begin{equation}
+        (\mathbf{v}_\mathrm{inf} \cdot \nabla) \mathbf{v} = -\dfrac1\rho \nabla p + \nu \Delta \mathbf{v}
+        \label{eq:Oseen_equation}
+    \end{equation}
+    (C. W. Oseen 1910). The velocity distribution thus obtained can be used to derive a more accurate formula for the drag on the sphere, which includes the next term in the expansion of the drag in powers of the Reynolds number $\mathrm{R} = \dfrac{v_\mathrm{inf}R}{v}$
+    \begin{equation}
+        F = 6\pi \eta v_\mathrm{inf} R (1 + \dfrac{3v_\mathrm{inf}}{8 v})
+        \label{eq:drag_per_unit_length_on_cylinder}
+    \end{equation}
+    In solving the problem of flow past an infinite cylinder at right angles to its axis, Oseen's equation has to be used from the start; Eq. \ref{eq:equation_of_motion_stokes} has in this case no solution satisfying the boundary conditions at the surface of the cylinder and also at infinity. The drag per unit length of the cylinder is found to be
+    \begin{equation}
+        F = \dfrac{4n\eta v_\mathrm{inf}}{\frac12 - C - \log(\dfrac{v_\mathrm{inf}}{4v})} = \dfrac{4\pi \eta v_\mathrm{inf}}{\log(3 \cdot \frac{70v}{v_\mathrm{inf}R})}
+    \end{equation}
+    where $C$ is Euler's constant (H. Lamb 1911).
+
+    Another comment should be made regarding the problem of flow past a sphere. The replacement of $\mathbf{v}$ by $\mathbf{v}_\mathrm{inf}$ in the non-linear term in \ref{eq:Oseen_equation} is valid at large distances from the sphere, $r \gg R$. It is therefore natural that Oseen's equation, while correctly refining the picture of flow at large distances, does not do the same at short distances. This is evident from the fact that the solution of \ref{eq:Oseen_equation} which satisfies the necessary conditions at infinity does not satisfy the exact condition that the velocity be zero on the surface of the sphere, which is met only by the zero-order term in the expansion of the velocity in powers of the Reynolds number and not even by the first-order term.
+
+    It might therefore seem at first sight that the solution of Oseen's equation cannot be used for a valid calculation of the correction term in the drag. This is not so, however, for the following reason. The contribution to $\mathbf{F}$ from the motion of the fluid at short distances (for which $v_\mathrm{inf} \ll v / r$) has to be expandable in powers of $\mathbf{v}_\mathrm{inf}$. The first non-zero correction term in the vector $\mathbf{F}$ arising from this contribution therefore has to be proportional to $\mathbf{v}_\mathbf{inf} v_\mathbf{inf}^2$, and gives a second-order correction relative to the Reynolds number; it thus does not affect the first correction in Eq. \ref{eq:drag_per_unit_length_on_cylinder}.
+
+    Further corrections to Stokes' formula and a valid refinement of the flow pattern at short distances can  not be obtained by a direct solution of Eq. \ref{eq:Oseen_equation}. It is considerable methodological interest in deriving and analysing a consistent perturbation theory for solving problemsof vicous flow at small Reynolds numbers.
+
+    To show explicity the small parameter $\mathrm{R}$, the Reynolds number, use the dimensionless velocity and position vector $\mathbf{v}^\prime = \dfrac{\mathbf{v}}{v_\mathrm{inf}}$, $\mathbf{r}^\prime = \dfrac{\mathbf{r}}{v_\mathrm{inf}}$, and in the rest of this section, denote them by $\mathbf{v}$ and $\mathbf{r}$ without the primes. The exact solution of the equation of motion is then
+    \begin{equation}
+        \mathrm{R} \nabla \times (\mathbf{v} \times (\nabla \times \mathbf{v})) + \Delta (\nabla \times \mathbf{v}) = 0
+    \end{equation}
+    Distinguish two regions of space around the sphere: the near region with $r \ll 1/R$, and the far region with $r \gg 1$. THese together cover all space, overlapping in the intermediate range
+    \begin{equation}
+        1/\mathrm{R} \gg r \gg 1
+    \end{equation}
+
+    In a consistent perturbation theory, the initial approximation in the near region is the Stokes qpproximation, by neglecting the term which contains the factor $\mathrm{R}$. In dimensionless variables, it is
+    \begin{align}
+        v_r^{(1)} =& \cos \theta \left(1 - \dfrac3{2r} + \dfrac1{2r^3} \right) \nonumber \\
+        v_\theta^{(1)} =& -\sin \theta \left( 1 - \dfrac3{4r} -\dfrac1{4r^3} \right) \nonumber \\
+        r \ll& \dfrac{1}{\mathrm{R}}
+        \label{eq:r_ll_1/R}
+    \end{align}
+    the superscript $(1)$ denoting the first approximation.
+
+    The first approximation in the far region is simply the constant $\mathbf{v}^{(1)} = \boldsymbol{\nu}$ corresponding to the unperturbed uniform incoming flow. Substitution of $\mathbf{v} = \boldsymbol{\nu} + \mathbf{v}^{(2)}$ gives for $\mathbf{v}^{(2)}$ Oseen's equation
+    \begin{equation}
+        \mathrm{R} \nabla \times (\mathbf{v} \times (\nabla \times \mathbf{v}^{(2)})) + \Delta (\nabla \times \mathbf{v}^{(2)}) = 0
+    \end{equation}
+    The solution must satisfy the condition that the velocity $\mathbf{v}^{(2)}$ be zero at infinity and the condition for joining to the solution above in the intermediate range. The latter excludes, in particular, solutions that increase too rapidly with decreasing $r$. The appropriate solution is
+    \begin{align}
+        v_r^{(1)} + v_r^{(2)} =& \cos \theta +\dfrac3{2r^2 \mathrm{R}} \nonumber \\
+        &- \dfrac3{2r^2 \mathrm{R}}\left[1 + \dfrac12 r \mathrm{R}(1 + \cos \theta) \right]e^{-\frac12 r \mathrm{R} (1 - \cos \theta)} \nonumber \\
+        v_\theta^{(1)} + v_\theta^{(2)} =& -\sin \theta + \dfrac3{4r} \sin 
+        \theta e^{-\frac12r\mathrm{R}(1 - \cos\theta)} \nonumber \\
+        r \gg& 1
+    \end{align}
+    Note that the varibale for the far region is really the product $\rho = r \mathrm{R}$, not the radial coordinate $r$ itself. When this variable is used, $\mathrm{R}$ disappears, in accordance with the fact that when $r \gtrsim 1/R$ the vicous and inertia terms in the equation become comparable in order of magnitude. The number $\mathrm{R}$ occurs in the solution only through the boundary condition for joining to that in the near region. the expansion of $\mathbf{v}(\mathbf{r})$ in the far region is therefore an expansion in term of $\rho$, contain $\mathrm{R}$ as a factor. In the intermediate range $r\mathrm{R} \ll 1$ and the above expression can be expanded in powers of this variabla. As far as the first two terms (apart from the uniform flow),
+    \begin{equation}
+        \left\{
+            \begin{aligned}
+                v_r =& \cos \theta \left( 1 - \dfrac{3}{2r} \right) + \dfrac{3\mathrm{R}}{16}(1 - \cos \theta)(1 + 3\cos \theta) \\
+                v_\theta =& -\sin \theta \left( 1 - \dfrac3{4r} \right) - \dfrac{3\mathrm{R}}8 \sin\theta (1 - \cos \theta)
+            \end{aligned}
+        \right.
+        \label{eq:rR_ll_1}
+    \end{equation}
+    In the same range, on the other hand, $r \gg 1$ and therefore the terms in $1/r^3$ can be omitted Eq. \ref{eq:r_ll_1/R}; the remaining terms are the same as the first terms in Eq. \ref{eq:rR_ll_1}, and the second terms there will be made use of later.
+
+    On going to the next approximation in the near region, write $\mathbf{v} = \mathbf{v}^{(1)} + \mathbf{v}^{(2)}$ and obtain from an equation for the correction in the second approximation:
+    \begin{equation}
+        \Delta (\nabla \times \mathbf{v}^{(2)}) = - \mathrm{R} \nabla \times (\mathbf{v}^{(1)} \times (\nabla \times \mathbf{v}^{(1)}))
+    \end{equation}
+    The solution of this equation must satisfy the condition of vanishing on the surface of the sphere and that of joining to the solution in the far region; the latter means that the leading terms in the function $\mathbf{v}^{(2)}(\mathbf{r})$ when $r \gg 1$ must agree with the second term in Eq. \ref{eq:rR_ll_1}. The appropriate solution is
+    \begin{align}
+        v_r^{(2)} =& \dfrac{3\mathrm{R}}{8} v_r^{(1)} + \dfrac{3\mathrm{R}}{32} \left( 1 - \dfrac1r \right)^2 \left( 2 + \dfrac1r + \dfrac1{r^2} \right) (1 - 3\cos^2 \theta) \nonumber \\
+        v_\theta^{(2)} =& \dfrac{3\mathrm{R}}{8} v_\theta^{(1)} + \dfrac{3\mathrm{R}}{32} \left( 1 - \dfrac1r \right)^2 \left( 4 + \dfrac1r + \dfrac1{r^2} + \dfrac2{r^3} \right) \sin\theta\cos\theta \nonumber \\
+        r \ll & \dfrac1{\mathrm{R}}
+        \label{eq:r_ll_1/R}
+    \end{align}
+    In the intermediate region, only the terms without a factor $\dfrac1r$ remain in these expressions, and they do in fact with the second terms in Eq. \ref{eq:rR_ll_1}.
+
+    From the velocity distribution in close region, we can calculate the correction to Stokes formula for the drag. The second terms in Eq. \ref{eq:r_ll_1/R}, because of their angular dependence, do not contribute to the drag; the first terms give the correction $\dfrac{3\mathrm{R}}8$. According to the above discussion, the exact velocity distribution near the sphere leads in this approximation to the same result for the drag as the solution of Oseen's equation.
+
+    \section{The laminar wake}
     
 \end{document}
