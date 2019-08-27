@@ -51,7 +51,7 @@
     \]
     where $\Pi_{ik}$ is the momentum flux density tensor. Previously, the momentum flux represents a completely reversible transfer of momentum, due simply to the mechanical transport of the different particles of fluid from place to place and to the pressure forces acting in the fluid. The viscosity (internal friction) causes another, irreversible, transfer of momentum from points where the velocity is large to those where it is small.
 
-    The equation of motion of a viscous fluid may therefore be obtained by adding a term - $\sigma^\prime_{ik}$ which gives the irreversible "viscous" transfer of momentum in the fluid. Thus we write the momentum flux density tensor in a viscous fluid in the form
+    The equation of motion of a viscous fluid may therefore be obtained by adding a term $\sigma^\prime_{ik}$ which gives the irreversible \emph{viscous} transfer of momentum in the fluid. Thus we write the momentum flux density tensor in a viscous fluid in the form
     \begin{equation}
         \Pi_{ik} = p\delta_{ik} + \rho v_i v_k - \sigma^\prime_{ik} = -\sigma_{ik} + \rho v_i v_j
     \end{equation}
@@ -81,13 +81,13 @@
     \end{align}
     This is the most general form of the equations of motion of a viscous fluid. The quantities $\eta$ and $\zeta$ are functions of pressure and temperature. In general, $p$ and $T$, and therefore the fluid, so that $\eta$ and $\zeta$ cannot be taken outside the gradient operator.
 
-    In most cases, however, the viscosity coefficients do not change noticeably in the fluid, and they may be regarded as constant. We then have equation Eq. \ref{eq:navier_stokes_index}, in vector form, as
+    In most cases, however, the viscosity coefficients do not change noticeably in the fluid, and they may be regarded as constant. We then have equation Eq.~\ref{eq:navier_stokes_index}, in vector form, as
     \begin{align}
         \rho \left[ \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla) \mathbf{v} \right] =& -\nabla p + \eta \Delta \mathbf{v} \nonumber \\
         & + (\zeta + \dfrac13 \eta) \nabla (\nabla \cdot \mathbf{v})
         \label{eq:navier_stokes_vector}
     \end{align}
-    This is called the \emph{Navier-Stokes equation}. It becomes considerably simpler if the fluid may be regarded as incompressible, so that $\nabla \cdot \mathbf{v} = 0$, and the last term on the right of Eq. \ref{eq:navier_stokes_vector} is zero. In discussing viscous fluids, we shall always regard them as incompressible, and accordingly use the equation of motion in the form
+    This is called the \emph{Navier-Stokes equation}. It becomes considerably simpler if the fluid may be regarded as incompressible, so that $\nabla \cdot \mathbf{v} = 0$, and the last term on the right of Eq.~\ref{eq:navier_stokes_vector} is zero. In discussing viscous fluids, we shall always regard them as incompressible, and accordingly use the equation of motion in the form
     \begin{equation}
         \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla) \mathbf{v} = -\dfrac1\rho \nabla p + \dfrac{\eta}{\rho} \Delta \mathbf{v}
         \label{eq:ns_impressible}
@@ -101,7 +101,7 @@
     \[
         \nu = \dfrac{\eta}{\rho}
     \]
-    is called the \emph{kinematic viscosity} (while $\eta$ itself is called the \emph{dynamic viscosity}). The pressure can be eliminated in Eq \ref{eq:ns_impressible} in the same way as from Euler's equation and by taking the curl of both sides, 
+    is called the \emph{kinematic viscosity} (while $\eta$ itself is called the \emph{dynamic viscosity}). The pressure can be eliminated in Eq.~\ref{eq:ns_impressible} in the same way as from Euler's equation and by taking the curl of both sides, 
     \[
         \dfrac{\partial}{\partial t} (\nabla \times \mathbf{v}) = \nabla \times (\mathbf{v} \times (\nabla \times \mathbf{v})) + \nu \Delta (\nabla \times \mathbf{v})
     \]
@@ -116,10 +116,10 @@
 
     When the velocity distribution is known, the pressure distribution in the fluid can be recovered by solving the Poisson-type equation:
     \begin{equation}
-        \Delta p = -\rho \dfrac{\partial v_i}{\partial x_k} \dfrac{\partial v_k}{\partial x_i} = -\rho \dfrac{\partial^2 v_iv_k}{\partial x_i \partial x_k}
+        \Delta p = -\rho \dfrac{\partial v_i}{\partial x_k} \dfrac{\partial v_k}{\partial x_i} = -\rho \dfrac{\partial^2 v_i v_k}{\partial x_i \partial x_k}
     \end{equation}
 
-    Then consider the boundary condition on the equations of motion of a viscous fluid. There are always forces of attraction between a viscous fluid and the surface of solid body, and these forces have the result that the layer of fluid immediately adjacent to the surface is brought completely to rest and "adheres" tothe surface. Accordingly, the boundary conditions on the equations of motion of a viscous fluid require that the fluid velocity should vanish at fixed solid surfaces
+    Then consider the boundary condition on the equations of motion of a viscous fluid. There are always forces of attraction between a viscous fluid and the surface of solid body, and these forces have the result that the layer of fluid immediately adjacent to the surface is brought completely to rest and \emph{adheres} tothe surface. Accordingly, the boundary conditions on the equations of motion of a viscous fluid require that the fluid velocity should vanish at fixed solid surfaces
     \begin{equation}
         \mathbf{v} = 0
     \end{equation}
@@ -233,7 +233,7 @@
         & \dfrac{\partial}{\partial t} (\dfrac12 \rho v^2) \\
         =& -\nabla \cdot \left[ \rho \mathbf{v} \left( \dfrac12v^2 + \dfrac{p}{\rho} \right) - \mathbf{v} \cdot \boldsymbol{\sigma}^\prime \right] - \sigma_{ik}^\prime \dfrac{\partial v_i}{\partial x_k}
     \end{align*}
-    The expression in brackets is just the energy flux density in the fluid: the term $\rho \mathbf{v} (\dfrac12 v^2 + \dfrac{p}{\rho})$ is the energy flux due to the actual transfer of fluid mass, and is the same as the energy flux in an ideal fluid. The second term, $\mathbf{v} \cdot \boldsymbol{\sigma}^\prime$, is the energy flux due to processes of internal friction. For the presence of viscosity results in a momentum flux $\sigma_{ik}^\prime$ ;a transfer of momentum, however, always involves a transfer of energy, and the energy flux is clearly equal to the scalar product of the momentum flux and veloctiy.
+    The expression in brackets is just the energy flux density in the fluid: the term $\rho \mathbf{v} (\dfrac12 v^2 + \dfrac{p}{\rho})$ is the energy flux due to the actual transfer of fluid mass, and is the same as the energy flux in an ideal fluid. The second term, $\mathbf{v} \cdot \boldsymbol{\sigma}^\prime$, is the energy flux due to processes of internal friction. For the presence of viscosity results in a momentum flux $\sigma_{ik}^\prime$; a transfer of momentum, however, always involves a transfer of energy, and the energy flux is clearly equal to the scalar product of the momentum flux and veloctiy.
 
     If integrate it over some volume $V$,
     \begin{equation}
@@ -476,10 +476,193 @@
         r \ll & \dfrac1{\mathrm{R}}
         \label{eq:r_ll_1/R}
     \end{align}
-    In the intermediate region, only the terms without a factor $\dfrac1r$ remain in these expressions, and they do in fact with the second terms in Eq. \ref{eq:rR_ll_1}.
+    In the intermediate region, only the terms without a factor $\dfrac1r$ remain in these expressions, and they do in fact with the second terms in Eq.~\ref{eq:rR_ll_1}.
 
-    From the velocity distribution in close region, we can calculate the correction to Stokes formula for the drag. The second terms in Eq. \ref{eq:r_ll_1/R}, because of their angular dependence, do not contribute to the drag; the first terms give the correction $\dfrac{3\mathrm{R}}8$. According to the above discussion, the exact velocity distribution near the sphere leads in this approximation to the same result for the drag as the solution of Oseen's equation.
+    From the velocity distribution in close region, we can calculate the correction to Stokes formula for the drag. The second terms in Eq.~\ref{eq:r_ll_1/R}, because of their angular dependence, do not contribute to the drag; the first terms give the correction $\dfrac{3\mathrm{R}}8$. According to the above discussion, the exact velocity distribution near the sphere leads in this approximation to the same result for the drag as the solution of Oseen's equation.
 
     \section{The laminar wake}
+    In steady flow of a viscous fluid past a solid body, the flow at great distances behind the body has certain characteristics which can be investigated independently of the particular shape of the body.
+
+    Let us denote by $\mathbf{U}$ the constant velocity of the incident current; we take the direction of $\mathbf{U}$ as the $x$-axis, with the origin somewhere inside the body. The actual fluid velocity at any point may be written $\mathbf{U} + \mathbf{v}$; $\mathbf{v}$ vanishes at infinity.
+
+    It is found that, at great distances behind the body, the velocity $\mathbf{v}$ is noticeably different from zero only in a relatively narrow region near the $x$-axis. This region, called the \emph{laminar wake}, is reached by fluid particles which move along streamlines passing fairly close to the body. Hence the flow in the wake is essentially rotational. The reason is that rotational flow of a viscous fluid past a solid body is due to the surface of the body. This is easily seen if we recall that, in the pattern of potential flow for an ideal flow, only the normal velocity component is zero on the surface of the body, not the tangential component $\mathbf{v}_t$. The boundary condition of adhesion for a real fluid makes $\mathbf{v}_t$ also zero, however. If the pattern of potential flow were maintained, this would cause a non-zero discontinuity of $\mathbf{v}_t$, i.e.\ the occurrence of a surface vorticity. The viscosity smooths out the discontinuity, and the rotational state penetrates into the fluid, from which it passes by convection into the wake region.
+
+    On the other hand, the viscosity has almost no effect at any point on streamlines that do not pass near the body, and the vorticity, which is zero in the incident current, remains parctically zero on these streamlines, as it would in an ideal fluid. Thus the flow at great distances from the body may be regarded as potential flow everywhere except in the wake.
+
+    We shall now derive formulae relating the properties of the flow in the wake to the forces acting on the body. The total momentum transported by the fluid through any closed surface surrounding the body is equal to the integral of the momentum flux density tensor over that surface, $\oint \Pi_{ik} \mathrm{d} f_k$. The components of the tensor $\Pi_{ik}$ are
+    \begin{equation*}
+        \Pi_{ik} = p \delta_{ik} + \rho (U_i + v_i)(U_k + v_k)
+    \end{equation*}
+    Write the pressure in the form $p = p_0 + p^\prime$, where $p_0$ is the pressure at infinity. The integration of the constant term $p_0\delta_{ik} + \rho U_i U_k$ gives zeros, since the vector integral $\oint f \mathrm{d} \mathbf{f}$ over a closed surface is zero. The integral $\oint \rho v_k \mathrm{d} f_k$ also vanishes: since the total mass of fluid in the volume considered is zero. Finally, the velocity $\mathbf{v}$ far from the body is small compared with $\mathbf{U}$. Hence, if the surface in question is sufficiently far from the body, we can neglect the term $\rho v_i v_k$ in $\Pi_{ik}$ as compared with $\rho U_k v_i$. Thus the total momentum flux is
+    \begin{equation*}
+        \oint (p^\prime \delta_{ik} + \rho U_k v_i) \mathrm{d} f_k
+    \end{equation*}
     
+    Now take the fluid volume concerned to be the volume between two infinite planes $x = \text{const}$, one of them far infront of the body and the other far behind it. The integral over the infinitely distant \emph{lateral} surface vanishes (since $p^\prime = \mathbf{v} = 0$ at infinity), and it is therefore sufficient to integrate only over the two planes. The momentum flux thus obtained is evidently the difference between the total momentum flux entering through the forward plane and that leaving through the backward plane. This difference, however, is just the quantity of momentum transmitted to the body by the fluid per unit time, i.e. the force $\mathbf{F}$ exerted on the body.
+
+    Thus the components of the force $\mathbf{F}$ are
+    \begin{align*}
+        F_x =& \left( \iint\limits_{x = x_2} - \iint\limits_{x = x_1} \right) (p^\prime + \rho U v_x) \mathrm{d} y \mathrm{d} z \\
+        F_y =& \left( \iint\limits_{x = x_2} - \iint\limits_{x = x_1} \right) \rho U v_y \mathrm{d} y \mathrm{d} z \\
+        F_z =& \left( \iint\limits_{x = x_2} - \iint\limits_{x = x_1} \right) \rho U v_z \mathrm{d} y \mathrm{d} z
+    \end{align*}
+    where the integration is taken over the infinite planes $x = x_1$ (far behind the body) and $x = x_2$ (far in front of it). Let us first consider the expression for $F_x$.
+
+    Outside the wake we have potential flow, and therefore Bernoulli's equation
+    \begin{equation*}
+        p + \dfrac12 \rho (\mathbf{U} + \mathbf{v})^2 = \text{const} \equiv p_0 + \dfrac12 \rho U^2
+    \end{equation*}
+    holds, or, neglecting the term $\dfrac12 \rho v^2$ in comparison with $\rho \mathbf{U} \cdot \mathbf{v}$,
+    \begin{equation*}
+        p^\prime = -\rho U v_x
+    \end{equation*}
+    In this approximation the integrand in $F_x$ vanishes everywhere outside the wake. In other word, the integral over the plane $x = x_2$ (which lies in frnot of the body and does not intersect the wake) is zero, and the integral over the plane $x = x_1$ need be taken only over the area covered by the cross-section of the wake. In the wake, however, the pressure change $p^\prime$ is of the order of $\rho v^2$, i.e. small compared with $\rho Uv_x$. Thus we reach the result that the drag on the body is
+    \begin{equation}
+        F_x = -\rho U \iint v_x \mathrm{d} y \mathrm{d} z
+        \label{eq:Fx}
+    \end{equation}
+    where the integration is taken over the cross-sectional area of the wake for behind the body. The velocity $v_x$ in the wake is, of course, negative: the fluid moves more slowly than it would if the body were absent. Attention to the fact that the integral in Eq. \ref{eq:Fx} gives the amount by which the discharge through the wake falls short of its value in the absence of the body.
+    
+
+    Let us now consider the force (whose components are $F_y$, $F_z$) which tends to move the body transversely. This force is called the \emph{lift}. Outside the wake, where we have potential flow, write $v_y = \partial \phi / \partial y$, $v_z = \partial \phi / \partial z$; the integral over the plane $x = x_2$, which does not meet the wake, is zero:
+    \begin{equation*}
+        \iint v_y \mathrm{d} y \mathrm{d} z = \iint \dfrac{\partial \phi}{\partial y} \mathrm{d} y \mathrm{d} z = 0, \iint \dfrac{\partial \phi}{\partial z} \mathrm{d} y \mathrm{d} z = 0
+    \end{equation*}
+    since $\phi = 0$ at infinity. Therefore we find for the lift
+    \begin{equation}
+        F_y = -\rho U \iint x_y \mathrm{d} y \mathrm{d} z, F_z = -\rho U \iint v_z \mathrm{d} y \mathrm{d} z
+    \end{equation}
+    The integration in these formulae is again taken only over the cross-sectional area of the wake. If the body has an axis of symmetry (not necessarily complete axial symmetry), and the flow is parallel to this axis, then the flow past the body has an axis of symmetry also. In this case the lift is, of course, zero.
+
+    Let us return to the flow in the wake. An estimate of the magnitudes of various terms in the Navier-Stokes equation shows that the term $\nu \Delta \mathbf{v}$ can in general be neglected at distances $r$ from the body such that $rU/\nu \gg 1$; these are the distances at which the flow outside the wake may be regarded as potential flow. It is not possible to neglect that term inside the wake even at these distances, however, since the transverse derivates $\partial^2 \mathbf{v} / \partial y^2$, $\partial^2 \mathbf{v} / \partial z^2$ are large compared with $\partial^2 \mathbf{v} / \partial x^2$.
+
+    Let $Y$ be of the order of magnitude of the width of the wake, i.e. the distances from the $x$-axis at which the velocity $\mathbf{v}$ falls off markedly. The order of the terms in the Navier-Stokes equation is then
+    \begin{equation*}
+        (\mathbf{v} \cdot \nabla) \mathbf{v} \sim U \dfrac{\partial U}{\partial x} \sim U \dfrac{v}{x}, \nu \Delta \mathbf{v} \sim \nu \dfrac{\partial^2 v}{\partial y^2} \sim \nu \dfrac{v}{Y^2}
+    \end{equation*}
+    If these two magnitudes are comparable, we find
+    \begin{equation}
+        Y = \sqrt{\dfrac{\nu x}{U}}
+        \label{eq:comparable_magnitude}
+    \end{equation}
+    This quantity is in fact small compared with $x$, by the assumed condition $\dfrac{Ux}{\nu} \gg 1$. Thus the width of the laminar wake increases as the square root of the distance from the body.
+
+    In order of determine how the velocity decreases with increasing $x$ in the wake, return to formula Eq. \ref{eq:Fx}. The region of integration has an area of the order of $Y^2$. Hence the integral can be estimated as $F_x \sim \rho U v Y^2$, and by using the relation Eq. \ref{eq:comparable_magnitude} we obtain
+    \begin{equation}
+        v \sim \dfrac{F_x}{\rho \nu x}
+    \end{equation}
+
+    \subsection{Flow inside the wake}
+    In the Navier-Stokes equation for steady flow
+    \begin{equation}
+        (\mathbf{v} \cdot \nabla) \mathbf{v} = - \nabla \left(\dfrac{p}{\rho}\right) + \nu \Delta \mathbf{v}
+    \end{equation}
+    we use far from the body Oseen's approximation, replacing the term $(\mathbf{v} \cdot \nabla) \mathbf{v}$ by $(\mathbf{U} \cdot \nabla) \mathbf{v}$. Furthermore, inside the wake the derivative with respect to the longitudinal coordinate $x$ in $\Delta \mathbf{v}$ can be neglected in comparison with the transverse derivates. We thus start from the equation
+    \begin{equation}
+        U \dfrac{\partial \mathbf{v}}{\partial x} = - \nabla \left(\dfrac{p}{\rho}\right) + \nu \left( \dfrac{\partial^2 \mathbf{v}}{\partial y^2} + \dfrac{\partial^2 \mathbf{v}}{\partial z^2}\right)
+    \end{equation}
+
+    We seek the solution of this in the form $\mathbf{v} = \mathbf{v}_1 + \mathbf{v}_2$, where $\mathbf{v}_1$ is the solution of
+    \begin{equation}
+        U \dfrac{\partial \mathbf{v}_1}{\partial x} = \nu \left( \dfrac{\partial \mathbf{v}_1}{\partial y} + \dfrac{\partial^2 \mathbf{v}_1}{\partial z^2} \right)
+    \end{equation}
+    The quantity $\mathbf{v}_2$ arising from the term $-\nabla \left( \dfrac{p}{\rho} \right)$ in the initial equation may be sought as the gradient of a scalar $\Phi$. Since, far from the body, the derivatives with respect to $x$ are small in comparison with those with respect to $y$ and $z$, in the approximation considered we may neglect the term $\dfrac{\partial \Phi}{\partial x}$, i.e. take $v_x = v_{1x}$. We thus have for $v_x$ the equation
+    \begin{equation}
+        U \dfrac{\partial v_x}{\partial x} = \nu \left( \dfrac{\partial^2 v_x}{\partial y^2} + \dfrac{\partial^2 v_x}{\partial z^2} \right)
+    \end{equation}
+
+    This is formally the same as the two-dimensional equation of the heat conduction, with $x / U$ in place of the time, and the viscosity $\nu$ in place of the thermometric conductivity. The solution which decreases with increasing $y$ and $z$ (for fixed $x$) and gives an infinitely narrow wake as $x \to 0$ (in this approximation the dimensions of the body are regarded as small) is
+    \begin{equation}
+        v_x = -\dfrac{F_x}{4 \pi \rho \nu x} e^{-\dfrac{U(y^2+z^2)}{4\nu x}}
+    \end{equation}
+    The constant coefficient in this formula is expressed in terms of the drag , in which the integration may be extended over the whole $yz$-plane because of the rapid convergence. If the Cartesian coordinates are replaced by spherical polar coordinates $r$, $\theta$, $\phi$ with the polar axis along the $x$-axis, then the region of the wake, $\sqrt{(y^2 + z^2)} \ll x$, corresponds to $\theta \ll 1$. In these coordinates, the above formula becomes
+    \begin{equation}
+        v_x = -\dfrac{F_x}{4 \pi \rho \nu r} e^{- \dfrac{Ur\theta^2}{4\nu}}
+    \end{equation}
+    The term in $\dfrac{\partial \Phi}{\partial x}$ (with $\Phi$ given by Eq. \ref{eq:Phi} below), which we have omitted, would give a term in $v_x$ which contains an additional small factor $\theta$.
+
+    The form of $v_{1y}$ and $v_{1z}$ must be the same as $v_x$ but with different coefficients. We take the direction of the lift as the $y$axis (so that $F_z = 0$). Since $\Phi = 0$ at infinity,
+    \begin{align*}
+        \iint v_y \mathrm{d} y \mathrm{d} z =& \iint (v_{1y} + \dfrac{\partial \phi}{\partial y}) \mathrm{d} y \mathrm{d} z \\
+        =& \iint v_{1y} \mathrm{d} y \mathrm{d} z \\
+        =& - \dfrac{F_y}{\rho U} \\
+        \iint v_{1z} \mathrm{d} y \mathrm{d} z =& 0
+    \end{align*}
+    It is therefore clear that $v_{1y}$ differs from $v_{x}$ in that $F_x$ is replaced by $F_y$, and $v_{1x} = 0$. Thus we find
+    \begin{equation}
+        v_y = -\dfrac{F_x}{4 \pi \rho \nu x} e^{-\dfrac{U(y^2 + z^2)}{4 \nu x}} + \dfrac{\partial \Phi}{\partial y}, v_z = \dfrac{\partial \Phi}{\partial z}
+    \end{equation}
+
+    Next to determine the function $\Phi$. Write the equation of continuity, neglecting the longitudinal derivative:
+    \begin{equation}
+        \nabla \cdot \mathbf{v} \approx \dfrac{\partial v_y}{\partial y} + \dfrac{\partial v_z}{\partial z} = \left( \dfrac{\partial^2}{\partial y^2} + \dfrac{\partial^2}{\partial z^2} \right) \Phi + \dfrac{\partial v_{1y}}{\partial y} = 0
+    \end{equation}
+    Differentiating this equation with respect to $x$ for $v_{1y}$,
+    \begin{align*}
+        \left( \dfrac{\partial^2}{\partial y^2} + \dfrac{\partial^2}{\partial z^2} \right) \dfrac{\partial \Phi}{\partial x} =& -\dfrac{\partial}{\partial y} \left( \dfrac{\partial v_{1y}}{\partial x} \right) \\
+        =& -\dfrac{\nu}{U} \left( \dfrac{\partial^2}{\partial y^2} + \dfrac{\partial^2}{\partial z^2} \right) \dfrac{\partial v_{1z}}{\partial y}
+    \end{align*}
+    Hence
+    \begin{equation*}
+        \dfrac{\partial \Phi}{\partial x} = - \dfrac{\nu}{U} \dfrac{\partial v_{1y}}{\partial y}
+    \end{equation*}
+    Finally, substituting the expression for $v_{1y}$, and integrating with respect to $x$,
+    \begin{equation}
+        \Phi = -\dfrac{F_y}{2 \pi \rho U} \dfrac{y}{y^2 + z^2} \left[ e^{-\dfrac{U(y^2 + z^2)}{4\nu x}} - 1 \right]
+        \label{eq:Phi}
+    \end{equation}
+    the constant of integration is chosen so that $\Phi$ remains finite when $y = z = 0$. In spherical polar coordinates (with the azimuthal angle $\phi$ measured from the $xy$-plane)
+    \begin{equation}
+        \Phi = -\dfrac{F_y}{2 \pi \rho U} \dfrac{\cos \phi}{r \theta} \left[ e^{-\dfrac{Ur\theta^2}{4\nu}} - 1 \right]
+        \label{eq:Phi_theta}
+    \end{equation}
+    It is seen that $v_y$ and $v_z$, unline $v_x$, contain terms which decrease only as $\dfrac1{\theta^2}$ when we move away from the axis of the wake, as well as those which decrease exponentially with increasing $\theta$ (for a given $r$).
+
+    If there is no lift, the flow in the wake is axially symmetrical, and $\Phi = 0$.
+
+    \subsection{Flow outside the wake}
+    Outside the wake, potential flow may be assumed. Since we are interested only in the terms in the potential $\Phi$ which decrease least rapidly at large distances, here seek a solution of Laplace's equation
+    \begin{align*}
+        \Delta \Phi =& \dfrac1{r^2} \dfrac{\partial}{\partial r} \left(r^2 \dfrac{\partial \Phi}{\partial r} \right) + \dfrac1{r^2 \sin \theta} \dfrac{\partial}{\partial \theta} \left( \sin \theta \dfrac{\partial \Phi}{\partial \theta} \right) \\
+        &+ \dfrac1{r^2 \sin^2 \theta}\dfrac{\partial^2 \Phi}{\partial \phi^2} = 0
+    \end{align*}
+    as a sum of two terms:
+    \begin{equation}
+        \Phi = \dfrac{a}{r} + \dfrac{\cos \theta}{r} f(\theta)
+    \end{equation}
+    of which the first is spherically symmetrical and belongs to the force $F_x$, while the second is symmetrical about the $xy$-plane belongs to the force $F_y$.
+
+    For the function $f(\theta)$ the equation
+    \begin{equation*}
+        \dfrac{\mathrm{d}}{\mathrm{d} \theta} \left( \sin \theta \dfrac{\mathrm{d} f}{\mathrm{d} \theta} \right) - \dfrac{f}{\sin \theta} = 0
+    \end{equation*}
+    The solution of this equation finite as $\theta \to \pi$ isotropic
+    \begin{equation*}
+        f = b \cot \dfrac{\theta}2
+    \end{equation*}
+    The coefficient $b$ must be determined from the condition for joining the solution to that inside the wake. The reason is that Eq. \ref{eq:Phi} relates to the angle range $\theta \ll 1$ and Eq. \ref{eq:Phi_theta} to $\theta \gg \sqrt{\dfrac{\nu}{Ur}}$. These ranges overlap when $\sqrt{\dfrac{\nu}{Ur}} \ll \theta \ll 1$, and Eq. \ref{eq:Phi} then becomes
+    \begin{equation*}
+        \Phi = \dfrac{F_y}{2\pi \rho U} \dfrac{\cos \phi}{r \theta}
+    \end{equation*}
+    and the second term in Eq. \ref{eq:Phi_theta} is $\dfrac{2b}{r\theta} \cos \phi$. Comparison of these expressions shows that we must take $b = \dfrac{F_y}{4\pi \rho U}$.
+
+    To determine the coefficient $a$ in \ref{eq:Phi_theta}, since the total mass flux through a sphere $S$ with wlarge radius $r$ equals zero, as for any closed surface. The rate of inflow through the part $S_0$ of $S$ intercepted by the wake is
+    \begin{equation*}
+        -\iint\limits_{S_0} v_x \mathrm{d} y \mathrm{d} z = \dfrac{F_x}{\rho U}
+    \end{equation*}
+    Hence the same quantity must flow out through the rest of the surface of the sphere, i.e.
+    \begin{equation*}
+        \oint\limits_{S - S_0} \mathbf{v} \cdot \mathrm{d} \mathbf{f} = \dfrac{F_x}{\rho U}
+    \end{equation*}S
+    ince $S-0$ is small compared with $S$,
+    \begin{equation*}
+        \oint\limits_{S} \mathbf{v} \cdot \mathrm{d} \mathbf{f} = \int\limits_S \nabla \Phi \cdot \mathrm{d} \mathbf{f} = -4\pi a = \dfrac{F_x}{\rho U}
+    \end{equation*}
+    whence $a = -\dfrac{F_x}{4 \pi \rho U}$.
+
+    The complete expression for the velocity potential is thus
+    \begin{equation*}
+        \Phi = \dfrac1{4\pi \rho U r}(-F_x + F_y \cos \phi \cot \dfrac12 U)
+    \end{equation*}
+    which gives the flow everywhere outside the wake far from the body. The potential diminishes with increasing distance $\dfrac1r$, the velocity accordingly decreases as $\dfrac1{r^2}$. If there is no lift, the flow outside the wake is axially symmetrical.
 \end{document}
