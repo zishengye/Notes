@@ -304,12 +304,26 @@
     The equation of fluid dynamics are much simplified in the case of steady flow. By \emph{steady flow} we mean one in which the velocity is constant in time at any point occupied by fluid. In other words, $\mathbf{v}$ is a function of the coordinates only, so that $\dfrac{\mathbf{v}}{t} = 0$. Then the Euler's equation reduces to 
     \begin{equation}
         \dfrac12 \nabla v^2 - \mathbf{v} \times \nabla \times \mathbf{v} = -\nabla w
+        \label{eq:steady_state_flow}
     \end{equation}
     Now introduce the concept of \emph{streamlines}. There are lines such that the tangent to a streamline at any point gives the direction of the velocity at that point; they are determined by the following system of differential equations:
     \begin{equation}
         \dfrac{\mathrm{d} x}{v_x} = \dfrac{\mathrm{d} y}{v_y} = \dfrac{\mathrm{d} z}{v_z}
     \end{equation}
     In steady flow the streamlines do not vary with time, and coincide with the paths of the fluid particles. In non-steady slow this coincidence no longer occurs: the tangents to the streamlines give the directions of the velocities of fluid particles at various points in space at a given instant, whereas the tangents to the paths give the directions of velocities of given fluid particles at various times.
+
+    Form the scalar product of Eq. \ref{eq:steady_state_flow} with the unit vector tangent to the streamline at each point; this unit vector is denoted by $\mathbf{l}$. The projection of the gradient on any direction is, as we know, the derivative in that direction. Hence the projection of $\nabla w$ is $\dfrac{\partial w}{\partial l}$. The vector $\mathbf{v} \times \nabla \times \mathbf{v}$ is perpendicular to $\mathbf{v}$, and its projection on the direction of $\mathbf{l}$ is therefore zero.
+
+    Thus, from Eq. \ref{eq:steady_state_flow}
+    \begin{equation*}
+        \dfrac{\partial}{\partial l} \left( \dfrac12 v^2 + w \right) = 0
+    \end{equation*}
+    It follows from this that $\dfrac12 v^2 + w$ is constant along a streamline:
+    \begin{equation}
+        \dfrac12 v^2 + w = \text{const.}
+        \label{eq:Bernoulli}
+    \end{equation}
+    In general the constant takes different values for different streamlines.Eq. \ref{eq:Bernoulli} is called \emph{Bernoulli's equation}.
 
     
 \end{document}
