@@ -665,4 +665,77 @@
         \Phi = \dfrac1{4\pi \rho U r}(-F_x + F_y \cos \phi \cot \dfrac12 U)
     \end{equation*}
     which gives the flow everywhere outside the wake far from the body. The potential diminishes with increasing distance $\dfrac1r$, the velocity accordingly decreases as $\dfrac1{r^2}$. If there is no lift, the flow outside the wake is axially symmetrical.
+
+    \section{The viscosity of suspensions}
+    A fluid in which numerous fine solid particles are suspended (forming a \emph{suspension}) may be regarded as a homogeneous medium if we are concerned with phenomena whose characteristic lengths are large compared with the dimensions of the particles. Such a medium has an effective viscosity $\eta$ which is different from the viscosity $\eta_0$ of the original fluid. The value of $\eta$ can be calculated for the case where the concentration of the suspended particles is small (i.e. their total volume is small in comparison with that of the fluid). The calculations are relatively simple for the case of spherical particles (A. Einstein).
+
+    It is necessary to consider first the effect of a single solid globule, immersed in a fluid, on flow having a constant velocity gradient. Let the unperturbed flow be described by a linear velocity distribution
+    \begin{equation}
+        v_{0i} = \alpha_{ik} x_k
+        \label{eq:linear_velocity}
+    \end{equation}
+    where $\alpha_{ik}$ is a constant symmetrical tensor. The fluid pressure is constant:
+    \begin{equation*}
+        p_0 = \text{const}.
+    \end{equation*}
+    and take $p_0$ to zero in the following section, i.e. measure only the deviation from this constant value. If the fluid is incompressible ($\nabla \cdot \mathbf{v}_0 = 0$), the sum of the diagonal elements, or trace, of the tensor $\alpha_{ik}$ must be zero:
+    \begin{equation}
+        \alpha_{ii} = 0
+    \end{equation}
+
+    Now let a small sphere with radius $R$ be placed at the origin. Denote the altered fluid velocity by $\mathbf{v} = \mathbf{v}_0 + \mathbf{v}_1$; $\mathbf{v}_1$ must vanish at infinity, but near the sphere $\mathbf{v}_1$ is not small compared with $\mathbf{v}_0$. It is clear from the symmetry of the flow that the sphere remains at rest, so that the boundary condition is $\mathbf{v} = 0$ for $r = R$.
+
+    The required solution of the equations of motion may be obtained at once from the solution of Stokes flow, wiht the function $f$ given previously in Stokes flow. In the present case we desire a solution depending on the components of the tensor $\alpha_{ik}$ as parameters. Such a solution is
+    \begin{equation*}
+        \mathbf{v}_1 = \nabla \times \nabla \times [(\boldsymbol{\alpha} \cdot \nabla) f], p = \eta_0 \alpha_{ik} \dfrac{\partial^2 \Delta f}{\partial x_i\partial x_k}
+    \end{equation*}
+    where $(\boldsymbol{\alpha \cdot \nabla}) f$ denotes a vector whose components are $\alpha_{ik} \dfrac{\partial f}{\partial x_k}$. Expanding these expressions and determining the constants $a$ and $b$ in the function $f = ar + \dfrac{b}{r}$ so as to satisfy the boundary conditions at the surface of the sphere, we obtain the following formulae for the velocity and pressure:
+    \begin{equation}
+        v_{1i} = \dfrac{5}{2} \left( \dfrac{R^5}{r^4} - \dfrac{R^3}{r^2} \right) \alpha_{ki} n_i n_k n_l - \dfrac{R^5}{r^4} \alpha_{ik} n_k
+        \label{eq:suspension_velocity}
+    \end{equation}
+    \begin{equation}
+        p = -5 \eta_0 \dfrac{R^3}{r^3} \alpha_{ik} n_i n_k
+    \end{equation}
+    where $\mathbf{n}$ is a unit vector in the direction of the position vector.
+
+    Returning now to the problem of determining the effective viscosity of a suspension, we calculate the mean value (over the volume) of the momentum flux density tensor $\Pi_{ik}$, which, in the linear approximation with respect to the velocity, is the same as the stress tensor $-\sigma_{ik}$:
+    \begin{equation*}
+        \delta_{ik} = \dfrac1V \int \sigma_{ik} \mathrm{d} V
+    \end{equation*}
+    The integration here may be taken over the volume $V$ of a sphere with large radius, which is then extended to infinity.
+
+    First of all,
+    \begin{align}
+        \delta_{ik} =& \eta_0 \left( \dfrac{\overline{\partial v_i}}{\partial x_k} + \dfrac{\overline{\partial v_k}}{\partial x_i} \right) - \overline{p} \delta_{ik} \nonumber \\
+        &+ \dfrac1V \int \left\{ \dfrac{\partial v_i}{\partial x_k} - \eta_0 \left( \dfrac{\partial v_i}{\partial x_k} + \dfrac{\partial v_k}{\partial x_i} \right) + p \delta_{ik} \right\} \mathrm{d} V
+        \label{eq:whole_sigma}
+    \end{align}
+    The integrand on the right is zero except within the solid spheres; since the concentration of the suspension is supposed small, the integral may be calculated for a single sphere as if the others were absent, and then multiplied by the concentration $n$ of the suspension (the number of spheres per unit volume). The direct calculation of this integral would require an investigation of internal stresses in the spheres. We can circumvent this difficulty, however, by transforming the volume integral into a surface integral over an infinitely distant sphere, which lies entirely in the fluid. To do so, the equation of motion $\dfrac{\partial \sigma_{il}}{\partial x_l} = 0$ leads to the identity
+    \begin{equation*}
+        \sigma_{ik} = \dfrac{\partial (\sigma_{il} x_k)}{\partial x_l}
+    \end{equation*}
+    hence the transformation of the volume integral into a surface integral gives
+    \begin{equation*}
+        \overline{\sigma}_{ik} = \eta_0 \left( \dfrac{\overline{\partial v_i}}{\partial x_k} + \dfrac{\overline{\partial v_k}}{\partial x_i} \right) + n \oint [\sigma_{il} x_k \mathrm{d} f_l - \eta_0 (v_i \mathrm{d} f_k + v_k \mathrm{d} f_i)]
+    \end{equation*}
+    Omit the term in $\overline{p}$, since the mean pressure is necessarily zero; $\overline{p}$ is a scalar which must be given by a linear combination of the components $\alpha_{ik}$, and the only such scalar is $\alpha_{ii} = 0$.
+
+    When calculating the integral over a sphere with very large radius, only the terms of order $1/r^2$ need be retained in Eq. \ref{eq:suspension_velocity}. A simple calculation gives the value of the integral as
+    \begin{equation*}
+        n \eta_0 \cdot 20 \pi R^3 (5 \alpha_{lm} \overline{n_i n_k n_l n_m} - \alpha_{il} \overline{n_k n_l})
+    \end{equation*}
+    where the bar denotes an average with respect to directions of the unit vector $\mathbf{n}$. Effecting the averaging, finally
+    \begin{equation}
+        \overline{\sigma}_{ik} = \eta_0 \left( \dfrac{\overline{\partial v_i}}{\partial x_k} + \dfrac{\overline{\partial v_k}}{\partial x_i} \right) + 5 \eta_0 \alpha_{ik} \cdot \dfrac43 \pi R^3 n
+        \label{eq:averaged_sigma}
+    \end{equation}
+
+    The first term in Eq. \ref{eq:averaged_sigma}, on substitution of $v_0$ from Eq. \ref{eq:linear_velocity}, gives $2 \eta_0 \alpha_{ik}$; the first-order small component is identically zero after averaging with respect to the directions of $\mathbf{n}$, as it should be, since the effect resides entirely in the integral separated in Eq. \ref{eq:whole_sigma}. Hence the required relative correction to the effective viscosity $\eta$ of the suspension is determined by the ratio-of the second and the first terms in Eq. \ref{eq:averaged_sigma}. Thus
+    \begin{equation}
+        \eta = \eta_0 (1 + \dfrac52 \phi), \phi = \dfrac43 \pi R^3 n
+    \end{equation}
+    where $\phi$ is the small ratio of the total volume of the sphere to the total volume of the suspension.
+
+    In the flow of a suspension of non-spherical particles, the presence of velocity gradients has an orienting effect on them. The simultaneous action of orienting hydrodynamics forces and disorienting rotary Brownian motion gives rise to an anisotropic distribution of the particles as regards their orientation in space. This, however, need not be considered when calculating the correction to the viscosity $\eta$: the anisotropy of the orientation distribution is itself dependent on the velocity gradients (linearly in the first approximation), and including it would give stress tensor terms non-linear in the gradients.
 \end{document}
