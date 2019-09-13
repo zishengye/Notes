@@ -381,6 +381,35 @@
     \]
     The first term is the energy (kinetic and internal) transported through the surface in unit time by the mass of fluid. The second term is the work done by pressure forces on the fluid within the surface.
 
+    \section{The momentum flux}
+    The momentum of unit volume is $\rho \mathbf{v}$. Let us determine its rate of change, $\dfrac{\partial \rho \mathbf{v}}{\partial t}$. By using the tensor notation
+    \[
+        \dfrac{\partial}{\partial t} \left( \rho v_i \right) = \rho \dfrac{\partial v_i}{\partial t} + \dfrac{\partial \rho}{\partial t} v_i
+    \]
+    Using the equation of continuity and Euler's equation, we obtain
+    \begin{align}
+        \dfrac{\partial}{\partial t} \left( \rho v_i \right) =& -\rho v_k\dfrac{\partial v_i}{\partial x_k} - \dfrac{\partial p}{\partial x_i} - v_i \dfrac{\partial (\rho v_k)}{\partial x_k} \nonumber \\
+        =& -\dfrac{\partial p}{\partial x_i} - \dfrac{\partial}{\partial x_k} (\rho v_i v_k) \nonumber \\
+        =& -\delta_{ik} \dfrac{\partial p}{\partial x_k} - \dfrac{\partial}{\partial x_k} (\rho v_i v_k) \nonumber \\
+        =& -\dfrac{\partial \Pi_{ik}}{\partial x_k}
+    \end{align}
+    where the tensor is defined as
+    \begin{equation}
+        \Pi_{ik} = p \delta_{ik} + \rho v_i v_k
+    \end{equation}
+    This tensor is clearly symmetrical.
+
+    Integrate the above equation
+    \[
+        \dfrac{\partial}{\partial t} \int \rho v_i \mathrm{d} V = -\int\dfrac{\partial \Pi_{ik}}{\partial x_k} \mathrm{d} V = -\oint \Pi_{ik} \mathrm{d} f_k
+    \]
     
+    The left-hand side is the rate of changes of the $i$-th component of the momentum contained in the volume considered. The surface integral on the right is therefore the amount of momentum flowing out through the bounding surface in unit time. Consequently, $\Pi_{ik} \mathrm{d} f_k$ is the $i$-th component of the momentum flowing through the surfaces element $\mathrm{d} f$. It we write $\mathrm{d} f_k$ in the form $n_k \mathrm{d} f$, $\Pi_{ik} n_k$ is the flux of the $i$th component of momentum through unit surface area. Thus $\Pi_{ik}$ is the $i$-th component of the amount of momentum flowing in unit time through unit area perpendicular to the $x_k$-axis. The tensor $\Pi_{ik}$ is called the \emph{momentum flux density tensor}. The energy flux is determined by a vector, energy being a scalar; the momentum flux, however, is determined by a tensor of rank two, the momentum itself being a vector.
+
+    The vector
+    \begin{equation}
+        p \mathbf{n} + \rho \mathbf{v} (\mathbf{v} \cdot \mathbf{n})
+    \end{equation}
+    gives the momentum flux in the direction of $\mathbf{n}$, through a surface perpendicular to $\mathbf{n}$. In particular, taking the unit vector $\mathbf{n}$ to be directed parallel to the fluid direction, and its flux density is $p + \rho v^2$. In a direction perpendicular to the velocity, only the transverse component (relative to $\mathbf{v}$) of momentum is transported its flux density being just $p$.
     
 \end{document}
