@@ -137,6 +137,7 @@
     where the total derivative with respect to time denotes the rate of change of entropy for a given fluid particle as it moves about. This condition can be written as
     \begin{equation}
         \dfrac{\partial s}{\partial t} + \mathbf{v} \cdot \nabla s = 0
+        \label{eq:general_adiabatic}
     \end{equation}
     This is the general equation describing adiabatic motion of an ideal fluid. Using \ref{eq:continuity}, it can be written as an \emph{equation of continuity} for entropy:
     \begin{align}
@@ -325,5 +326,61 @@
     \end{equation}
     In general the constant takes different values for different streamlines.Eq. \ref{eq:Bernoulli} is called \emph{Bernoulli's equation}.
 
+    \section{The energy flux}
+    Choose some volume element fixed in space, and find how the energy of the fluid contained in this volume element varies with time. The energy of unit volume of fluid is
+    \[
+        \dfrac12 \rho v^2 + \rho \varepsilon
+    \]
+    where the first term is the kinetic energy and the second the internal energy, $\varepsilon$ being the internal energy per unit mass. The change in this energy is given by the partial derivative
+    \[
+        \dfrac{\partial }{\partial t} \left(\dfrac12 \rho v^2 + \rho \varepsilon \right)
+    \]
+    By using the equation of continuity \ref{eq:continuity} and equation of motion \ref{eq:euler_equation} and thermodynamic relation $\mathrm{d} w = T \mathrm{d} s + \dfrac1\rho \mathrm{d} p$
+    \begin{align*}
+        \dfrac{\partial}{\partial t} \left( \dfrac12 \rho v^2 \right) =& \dfrac12 v^2 \dfrac{\partial \rho}{\partial t} + \rho \mathbf{v} \cdot \dfrac{\partial \mathbf{v}}{\partial t} \\
+        =& -\dfrac12 v^2 \nabla \cdot (\rho \mathbf{v}) - \mathbf{v} \cdot \nabla p - \rho \mathbf{v} \cdot (\mathbf{v} \cdot \nabla) \mathbf{v} \\
+        =& -\dfrac12 v^2 \nabla \cdot (\rho \mathbf{v}) - \rho \mathbf{v} \cdot \nabla (\dfrac12 v^2 + w) + \rho T \mathbf{v} \cdot \nabla s
+    \end{align*}
+    Then in order to transform the derivative $\dfrac{\partial \rho \varepsilon}{\partial t}$, ues the thermodynamic relation
+    \[
+        \mathrm{d} \varepsilon = T \mathrm{d} s - p \mathrm{d} V = T \mathrm{d} s + \dfrac{p}{\rho^2} \mathrm{d} \rho
+    \]
+    Since $\varepsilon + \dfrac{p}{\rho} = \varepsilon + p V$ is simply the heat function $w$ per unit mass
+    \[
+        \mathrm{d} (\rho \varepsilon) = \varepsilon \mathrm{d} \rho + \rho \mathrm{d} \varepsilon = w \mathrm{d} \rho + \rho T \mathrm{d} s
+    \]
+    and so sonsider the general adiabatic equation \ref{eq:general_adiabatic} and the equation of continuity \ref{eq:continuity}
+    \[
+        \dfrac{\rho \varepsilon}{\partial t} =  w \dfrac{\partial \rho}{\partial t} + \rho T \dfrac{\partial s}{\partial t} = -w \nabla \cdot (\rho \mathbf{v}) - \rho T \mathbf{v} \cdot \nabla s
+    \]
+
+    Combining the above results, the change in the energy is to be
+    \begin{align*}
+        \dfrac{\partial}{\partial t} \left( \dfrac12 \rho v^2 + \rho \varepsilon \right) =& -\left( \dfrac12 v^2 + w \right) \nabla \cdot (\rho \mathbf{v}) - \rho \mathbf{v} \cdot \nabla \left( \dfrac{1}{2}v^2 + w \right) \\
+        =& - \nabla \cdot \left[ \rho \mathbf{v} \left( \dfrac12 v^2 + w \right) \right]
+    \end{align*}
+
+    In order to see the meaning of the equation, integrate it over some volume:
+    \begin{equation*}
+        \dfrac{\partial}{\partial t} \int \left( \dfrac12 \rho v^2 + \rho \varepsilon \right) \mathrm{d} V = -\int \nabla \left[ \rho \mathbf{v} \left(\dfrac12 v^2 + w\right) \right] \mathrm{d} V
+    \end{equation*}
+    or, cnverting the volume integral on the right into a surface integral,
+    \begin{align}
+        \dfrac{\partial}{\partial t} \int \left( \dfrac12 \rho v^2 + \rho \varepsilon \right) \mathrm{d} V = -\oint \rho \mathbf{v} \left( \dfrac12 v^2 + w \right) \cdot \mathrm{d} \mathbf{f}
+    \end{align}
+    
+    The left-hand side is the rate of change of the energy of the fluid in some given volume. The right-hand side is therefore the amount of energy flowing out of this volume in unit time. The expression
+    \begin{equation}
+        \rho \mathbf{v} \left( \dfrac12 v^2 + w \right)
+    \end{equation}
+    may be called the \emph{energy flux density} vector. Its magnitude is the amount of energy passing in unit time through unit area perpendicular to the direction of the velocity.
+
+    The energy flux density vector shows that any unit mass of fluid carries with it during its motion an amount of energy $w + \dfrac12 v^2$. The fact that the heat function $w$ appears here, and not the internal energy $\varepsilon$, has a simple physical significance. Putting $w = \varepsilon + \dfrac{p}\rho$, the flux of the energy through a closed surface is in the form
+    \[
+        -\oint \rho \mathbf{v} \left( \dfrac12 v^2 + \varepsilon \right) \cdot \mathrm{d} \mathbf{f} - \oint \rho \mathbf{v} \cdot \mathrm{d} \mathbf{f}
+    \]
+    The first term is the energy (kinetic and internal) transported through the surface in unit time by the mass of fluid. The second term is the work done by pressure forces on the fluid within the surface.
+
+    
     
 \end{document}
