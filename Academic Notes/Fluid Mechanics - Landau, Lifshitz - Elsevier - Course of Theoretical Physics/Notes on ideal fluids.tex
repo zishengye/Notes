@@ -411,5 +411,78 @@
         p \mathbf{n} + \rho \mathbf{v} (\mathbf{v} \cdot \mathbf{n})
     \end{equation}
     gives the momentum flux in the direction of $\mathbf{n}$, through a surface perpendicular to $\mathbf{n}$. In particular, taking the unit vector $\mathbf{n}$ to be directed parallel to the fluid direction, and its flux density is $p + \rho v^2$. In a direction perpendicular to the velocity, only the transverse component (relative to $\mathbf{v}$) of momentum is transported its flux density being just $p$.
+
+    \section{The conservation of circulation}
+    The integral
+    \[
+        \Gamma = \oint \mathbf{v} \cdot \mathrm{d} \mathbf{l}
+    \]
+    taken along some closed contour, is called the \emph{velocity circulation} round that contour.
+
+    Consider a closed contour drawn in the fluid at some instant. Suppose it to be a fluid contour, composed of the fluid particles that lie on it. In the course of time these particles move about, and the contour moves with them. Let us investigate what happens to the velocity circulation. In other words, let us calculate the time derivative
+    \[
+        \dfrac{\mathrm{d}}{\mathrm{d} t} \oint \mathbf{v} \cdot \mathrm{d} \mathrm{l}
+    \]
+    To avoid any diffusion, temporarily denote differentiation with respect to the coordinates by the symbol $\delta$, retaining the symbol $\mathrm{d}$ for differentiation with respect to time. Next, an element $\mathrm{d} \mathbf{l}$ of the length of the contour can be written as the difference $\delta \mathbf{r}$ between the position vectors $\mathbf{r}$ of the points at the ends of the element. Thus write the velocity circulation $\oint \mathbf{v} \cdot \delta \mathbf{r}$. In differentiating this integral with respect to time, it must be borne in mind that not only the velocity but also the contour itself changes. Hence, on taking the time differentiation under the integral sign, must differentiate not only $\mathbf{v}$ but also for $\delta \mathbf{r}$:
+    \[
+        \dfrac{\mathrm{d}}{\mathrm{d} t} \oint \mathbf{v} \cdot \delta \mathbf{r} = \oint \dfrac{\mathrm{d} \mathbf{v}}{\mathrm{d} t} \cdot \delta \mathbf{r} + \oint \mathbf{v} \cdot \dfrac{\mathrm{d} \delta \mathbf{r}}{\mathrm{d} t}
+    \]
+    Since the velocity $\mathbf{v}$ is just the time derivative of the position vector $\mathbf{r}$,
+    \[
+        \mathbf{v} \cdot \dfrac{\mathrm{d} \delta \mathbf{r}}{\mathrm{d} t} = \mathbf{v} \cdot \delta \dfrac{\mathrm{d} \mathbf{r}}{\mathrm{d} t} = \mathbf{v} \cdot \delta \mathbf{v} = \delta \left( \dfrac12 v^2 \right)
+    \]
+    The integral of a total differential along a closed contour, however, is zero. The second integral therefore vanishes, leaving
+    \[
+        \dfrac{\mathrm{d}}{\mathrm{d} t} \oint \mathbf{v} \cdot \delta \mathbf{r} = \oint \dfrac{\mathrm{d} \mathbf{v}}{\mathrm{d} t} \cdot \delta \mathbf{r}
+    \]
+
+    It now remains to substitute for the acceleration $\dfrac{\mathrm{d} \mathbf{v}}{\mathrm{d} t}$ from
+    \[
+        \dfrac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla) \mathbf{v} = -\nabla w
+    \]
+    into 
+    \[
+        \dfrac{\mathrm{d} \mathbf{v}}{\mathrm{d} t} = -\nabla w
+    \]
+    since $\nabla \times \nabla w \equiv 0$. Thus
+    \[
+        \dfrac{\mathrm{d}}{\mathrm{d} t} \oint \mathbf{v} \cdot \mathrm{d} \mathbf{l} = 0
+    \]
+    or
+    \begin{equation}
+        \oint \mathbf{v} \cdot \mathrm{d} \mathbf{l} = \text{const}
+    \end{equation}
+    
+    Therefore, in an ideal fluid, the velocity circulation round a closed "fluid" contour is constant in time (\emph{Kelvin's theorem} or the \emph{law of conservation of circulation}).
+
+    It should be emphasized that this result has been obtained by using Euler's equation, and therefore involves the assumption that the flow is isentropic. The theorem does not hold for flows which are not isentropic.
+
+    By applying Kevlin's theorem to an infinitesimal closed contour $\delta C$ and transforming the integral according to Stokes' theorem,
+    \begin{equation}
+        \oint \mathbf{v} \cdot \mathrm{d} \mathbf{l} = \int \nabla \times \mathbf{v} \cdot \mathrm{d} \mathbf{f} \approx \delta \mathbf{f} \cdot \nabla \times \mathbf{v} = \text{const}
+    \end{equation}
+    where $\mathrm{d} \mathbf{f}$ is a fluid surface elemen spanning the contour $\delta C$. The vector $\nabla \times \mathbf{v}$ is often called the \emph{vorticity} of the fluid flow at a given point. The constancy of the product above can be intuitively interpreted as meaning that the vorticity moves with fluid.
+
+    When the flow is not isentropic, the right-hand side of Euler's equation becomes
+    \[
+        \dfrac{\partial \omega}{\partial t} = \nabla \times (\mathbf{v} \times \boldsymbol{\omega}) + \dfrac1{\rho^2} \nabla p \times \nabla \rho
+    \]
+    where $\boldsymbol{\omega} = \nabla \times \mathbf{v}$. Since $s = s(p, \rho)$, $\nabla s$ is a linear function of $\nabla p$ and $\nabla \rho$, and $\nabla s \cdot (\nabla \rho \times \nabla p) = -$. By scalarly multiplying $\nabla s$, the expression on the right-hand side can then be transformed as:
+    \begin{align*}
+        \nabla s \cdot \dfrac{\partial \boldsymbol{\omega}}{\partial t} =& \nabla s \cdot \nabla \times (\mathbf{v} \times \boldsymbol{\omega}) \\
+        =& -\nabla \cdot [\nabla s \times (\mathbf{v} \times \boldsymbol{\omega})] \\
+        =& -\nabla \cdot [\mathbf{v} (\boldsymbol{\omega} \cdot \nabla s)] + \nabla \cdot [\boldsymbol{\omega} (\mathbf{v} \cdot \nabla s)] \\
+        =& - (\boldsymbol{\omega} \cdot \nabla s) \nabla \cdot \mathbf{v} - \mathbf{v} \cdot \nabla (\boldsymbol{\omega} \cdot \nabla s) \\
+        &+ \boldsymbol{\omega} \cdot \nabla (\mathbf{v} \cdot \nabla s)
+    \end{align*}
+    Therefore,
+    \[
+        \dfrac{\partial}{\partial t} (\boldsymbol{\omega} \cdot \nabla s) + \mathbf{v} \cdot \nabla (\boldsymbol{\omega} \cdot \nabla s) + (\boldsymbol{\omega} \cdot \nabla s) \nabla \cdot \mathbf{v} = 0
+    \]
+    The first two terms can be combined as $\dfrac{\mathrm{d} (\boldsymbol{\omega} \cdot \nabla s)}{\mathrm{d} t}$, where $\dfrac{\mathrm{d}}{\mathrm{d} t} = \dfrac{\partial}{\partial t} + \mathbf{v} \cdot \nabla$; in the last term, and from $\rho \nabla \cdot \mathbf{v} = - \dfrac{\mathrm{d} \rho}{\mathrm{d} t}$. The result is
+    \[
+        \dfrac{\mathrm{d}}{\mathrm{d} t} \left( \dfrac{\boldsymbol{\omega} \cdot \nabla s}{\rho} \right) = 0
+    \]
+    which gives a conservation law for isentropic flow.
     
 \end{document}
